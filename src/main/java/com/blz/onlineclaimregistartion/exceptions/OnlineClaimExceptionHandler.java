@@ -14,8 +14,8 @@ import com.blz.onlineclaimregistartion.dto.ResponseDTO;
 
 import lombok.extern.slf4j.Slf4j;
 
-@ControllerAdvice
 @Slf4j
+@ControllerAdvice
 public class OnlineClaimExceptionHandler {
 	
 	private static final String message="Exception while processing rest request";

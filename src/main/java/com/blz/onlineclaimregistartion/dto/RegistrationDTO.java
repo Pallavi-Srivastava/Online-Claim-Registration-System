@@ -11,13 +11,13 @@ public class RegistrationDTO {
 	
 	@Pattern(regexp="^[A-Z]{1}[a-zA-Z\\s]{2,}$", message="Employee name Invalid")
 	@NotEmpty(message="User name cannot be null ")
-	private String userName;
+	public String userName;
 	
-//	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,20}$",
-//			message = "Password length should be 8 char, must contain at least one uppercase, lowercase, special character and number")
+	@Pattern(regexp = "^(?=.*[@#$%^&+=])(?=.*[0-9])(?=.*[A-Z]).{8,}$", 
+			message = "Password length should be 8, must be a combination of at least one uppercase, lowercase, special character and number")
 	@NotEmpty(message="Password cannot be null ")
-	private String password;
+	public String password;
 	
 	@NotBlank
-	private String roleCode;
+	public String roleCode;
 }

@@ -13,8 +13,8 @@ public class UserDTO {
 	@NotEmpty(message="User name cannot be null ")
 	private String userName;
 
-//	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,20}$",
-//			message = "Password length should be 8 char, must contain at least one uppercase, lowercase, special character and number")
-	@NotBlank
+	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,20}$",
+			message = "Password length should be 8 char, must contain at least one uppercase, lowercase, special character and number")
+	@NotBlank(message="Password cannot be null ")
 	private String password;
 }

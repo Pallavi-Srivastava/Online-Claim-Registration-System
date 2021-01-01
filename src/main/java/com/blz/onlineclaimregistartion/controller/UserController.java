@@ -15,30 +15,29 @@ import io.swagger.annotations.ApiOperation;
 import com.blz.onlineclaimregistartion.dto.RegistrationDTO;
 import com.blz.onlineclaimregistartion.dto.ResponseDTO;
 import com.blz.onlineclaimregistartion.dto.UserDTO;
+import com.blz.onlineclaimregistartion.exceptions.UserException;
+import com.blz.onlineclaimregistartion.model.User;
 
 @RestController
 @RequestMapping("/onlineinsurancesystem")
 @CrossOrigin(allowedHeaders = "*", origins = "*")
 public class UserController {
-	
+
 	@Autowired
 	private IUserService userService;
 
-    @ApiOperation("For registration")
-    @PostMapping("/register")
-    public ResponseEntity<ResponseDTO> register(@RequestBody @Valid RegistrationDTO registrationDto)  {
-          if (userService.register(registrationDto))
-            return new ResponseEntity<>(new ResponseDTO(200,"user register successful"), HttpStatus.OK);
-        return new ResponseEntity<>(new ResponseDTO(400, "user register unsuccessful"), HttpStatus.BAD_REQUEST);
-    }
-	
+	@ApiOperation("For registration")
+	@PostMapping("/register")
+	public ResponseEntity<ResponseDTO> register(@Valid @RequestBody RegistrationDTO registrationDto) {
+		User user = (userService.register(registrationDto));
+		ResponseDTO data = new ResponseDTO("Your account has been successfully created", user);
+		return new ResponseEntity<>(data, HttpStatus.OK);
+	}
+
+	@ApiOperation("For login")
 	@PostMapping("/login")
-	@ApiOperation("For Log")
-	public ResponseEntity<ResponseDTO> login(@RequestBody @Valid UserDTO userDTO){
-		 String token = userService.login(userDTO);
-	        if(token!=null) {
-	            return new ResponseEntity<>(new ResponseDTO(200, "User login successful", token), HttpStatus.OK);
-	        }
-	   return new ResponseEntity<>(new ResponseDTO(400, "User login unsuccessful"), HttpStatus.NOT_ACCEPTABLE);
-	}   
+	public ResponseEntity<ResponseDTO> login(@Valid @RequestBody UserDTO userDTO) {
+		String token = userService.login(userDTO);
+		return new ResponseEntity<>(new ResponseDTO(200, "Login Successful", token), HttpStatus.OK);
+	}
 }

@@ -19,6 +19,7 @@ public class ResponseDTO {
 		this.message = message;
 		this.data = data;
 	}
+
 	public ResponseDTO(int status, String message, Object data) {
 		this.message = message;
 		this.status = status;
@@ -30,5 +31,5 @@ public class ResponseDTO {
 		this.status = status;
 		this.responseMessage = responseMessage;
 	}
-	
+
 }

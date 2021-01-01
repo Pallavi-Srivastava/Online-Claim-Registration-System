@@ -1,6 +1,5 @@
 package com.blz.onlineclaimregistartion.utility;
 
-
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -22,10 +21,9 @@ public class JsonWebToken {
 	private static Date now;
 	private static final long REGISTRATION_EXP = 10800000;
 
-
 	public static String createToken(long id) {
-		long ttlMillis=REGISTRATION_EXP;
-		signatureAlgorithm= SignatureAlgorithm.HS256;
+		long ttlMillis = REGISTRATION_EXP;
+		signatureAlgorithm = SignatureAlgorithm.HS256;
 		nowMillis = System.currentTimeMillis();
 		now = new Date(nowMillis);
 		byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(secretKey);

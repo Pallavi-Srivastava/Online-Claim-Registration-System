@@ -10,7 +10,7 @@ import lombok.Data;
 public class UserDTO {
 	
 	@Pattern(regexp="^[A-Z]{1}[a-zA-Z\\s]{2,}$", message="Employee name Invalid")
-	@NotEmpty(message="User name cannot be null ")
+	@NotEmpty(message="User name cannot be null")
 	private String userName;
 
 //	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,20}$",

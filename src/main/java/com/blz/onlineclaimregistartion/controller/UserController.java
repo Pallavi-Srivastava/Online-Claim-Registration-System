@@ -28,17 +28,17 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<ResponseDTO> register(@RequestBody @Valid RegistrationDTO registrationDto)  {
           if (userService.register(registrationDto))
-            return new ResponseEntity<>(new ResponseDTO(200,"user register successful"), HttpStatus.OK);
-        return new ResponseEntity<>(new ResponseDTO(400, "user register unsuccessful"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ResponseDTO("user register successful",registrationDto), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseDTO("user register unsuccessful"), HttpStatus.BAD_REQUEST);
     }
 	
 	@PostMapping("/login")
 	@ApiOperation("For Log")
-	public ResponseEntity<ResponseDTO> login(@RequestBody @Valid UserDTO userDTO){
+	public ResponseEntity<ResponseDTO> login( @Valid @RequestBody UserDTO userDTO){
 		 String token = userService.login(userDTO);
 	        if(token!=null) {
-	            return new ResponseEntity<>(new ResponseDTO(200, "User login successful", token), HttpStatus.OK);
+	            return new ResponseEntity<>(new ResponseDTO("User login successful", token), HttpStatus.OK);
 	        }
-	   return new ResponseEntity<>(new ResponseDTO(400, "User login unsuccessful"), HttpStatus.NOT_ACCEPTABLE);
+	   return new ResponseEntity<>(new ResponseDTO("User login unsuccessful"), HttpStatus.NOT_ACCEPTABLE);
 	}   
 }

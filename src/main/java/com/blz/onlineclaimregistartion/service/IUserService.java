@@ -4,11 +4,12 @@ import javax.validation.Valid;
 
 import com.blz.onlineclaimregistartion.dto.RegistrationDTO;
 import com.blz.onlineclaimregistartion.dto.UserDTO;
+import com.blz.onlineclaimregistartion.model.User;
 
 public interface IUserService {
 
 	String login(@Valid UserDTO userDTO);
 
-	boolean register(@Valid RegistrationDTO registrationDto);
+	User register(@Valid RegistrationDTO registrationDto);
 
 }

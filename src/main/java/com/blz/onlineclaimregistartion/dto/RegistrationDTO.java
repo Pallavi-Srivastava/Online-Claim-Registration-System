@@ -3,21 +3,23 @@ package com.blz.onlineclaimregistartion.dto;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
-
 import lombok.Data;
 
 @Data
 public class RegistrationDTO {
-	
-	@Pattern(regexp="^[A-Z]{1}[a-zA-Z\\s]{2,}$", message="Employee name Invalid")
-	@NotEmpty(message="User name cannot be null ")
-	private String userName;
-	
-//	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,20}$",
-//			message = "Password length should be 8 char, must contain at least one uppercase, lowercase, special character and number")
-	@NotEmpty(message="Password cannot be null ")
-	private String password;
-	
+
+	// UserName is 6-20 characters long,Should not start and end with _ or . and in
+	// between __ or _. or ._ or .. also not allowed.
+	@NotEmpty(message = "UserName can't be null ")
+	@Pattern(regexp = "^(?=[a-zA-Z0-9.@_]{6,20}$)(?!.*[_.]{2})[^_.].*[^_.]$", message = "Invalid UserName")
+	public String userName;
+
+	// Password is 8 characters long and must be the combination of least one
+	// uppercase, lowercase, special character and number.
+	@Pattern(regexp = "^(?=.*[@#$%^&+=])(?=.*[0-9])(?=.*[A-Z]).{8,}$", message = "Invalid Pattern")
+	@NotEmpty(message = "Password can't be null ")
+	public String password;
+
 	@NotBlank
-	private String roleCode;
+	public String roleCode;
 }

@@ -14,5 +14,5 @@ public class ResponseDTO {
 	public ResponseDTO(String message, Object data) {
 		this.message = message;
 		this.data = data;
-	}	
+	}
 }

@@ -9,17 +9,15 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
 import com.blz.onlineclaimregistartion.dto.ResponseDTO;
 
 import lombok.extern.slf4j.Slf4j;
 
-@ControllerAdvice
 @Slf4j
+@ControllerAdvice
 public class OnlineClaimExceptionHandler {
 	
 	private static final String message="Exception while processing rest request";
-
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ResponseDTO> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception){
@@ -27,5 +25,11 @@ public class OnlineClaimExceptionHandler {
 		List<String> errMessage=errorList.stream().map(mapper -> mapper.getDefaultMessage()).collect(Collectors.toList());
 		ResponseDTO responseDTO=new ResponseDTO(message, errMessage);
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(UserException.class)
+	public ResponseEntity<ResponseDTO> handleUserException(UserException exception) {
+		ResponseDTO responseDTO = new ResponseDTO(message, exception.getMessage());
+		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.BAD_REQUEST);
 	}
 }

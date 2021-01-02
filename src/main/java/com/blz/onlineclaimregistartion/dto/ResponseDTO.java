@@ -1,20 +1,20 @@
 package com.blz.onlineclaimregistartion.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor 
 public class ResponseDTO {
+	
+	private int status;
 	private String message;
 	private Object data;
 	private int statusCode;
 	
-	public ResponseDTO(String message) {
+	public ResponseDTO(int status, String message) {
+		this.status = status;
 		this.message = message;
-	} 
-
-	public ResponseDTO(String message, Object data) {
-		this.message = message;
-		this.data = data;
 	}
 	
 	public ResponseDTO(int statusCode, String message, Object token) {
@@ -22,4 +22,5 @@ public class ResponseDTO {
 		this.data = token;
 		this.statusCode=statusCode;
 	}
+
 }

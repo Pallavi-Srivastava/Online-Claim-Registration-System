@@ -23,13 +23,13 @@ public class OnlineClaimExceptionHandler {
 	public ResponseEntity<ResponseDTO> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception){
 		List<ObjectError> errorList=exception.getBindingResult().getAllErrors();
 		List<String> errMessage=errorList.stream().map(mapper -> mapper.getDefaultMessage()).collect(Collectors.toList());
-		ResponseDTO responseDTO=new ResponseDTO(message, errMessage);
+		ResponseDTO responseDTO=new ResponseDTO(400, message, errMessage);
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.BAD_REQUEST);
 	}
 	
 	@ExceptionHandler(UserException.class)
 	public ResponseEntity<ResponseDTO> handleUserException(UserException exception) {
-		ResponseDTO responseDTO = new ResponseDTO(message, exception.getMessage());
+		ResponseDTO responseDTO = new ResponseDTO(400, message, exception.getMessage());
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.BAD_REQUEST);
 	}
 }

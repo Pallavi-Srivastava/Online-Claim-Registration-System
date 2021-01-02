@@ -15,8 +15,6 @@ import io.swagger.annotations.ApiOperation;
 import com.blz.onlineclaimregistartion.dto.RegistrationDTO;
 import com.blz.onlineclaimregistartion.dto.ResponseDTO;
 import com.blz.onlineclaimregistartion.dto.UserDTO;
-import com.blz.onlineclaimregistartion.exceptions.UserException;
-import com.blz.onlineclaimregistartion.model.User;
 
 @RestController
 @RequestMapping("/onlineinsurancesystem")
@@ -30,9 +28,8 @@ public class UserController {
 	@PostMapping("/register")
 	public ResponseEntity<ResponseDTO> register(@Valid @RequestBody RegistrationDTO registrationDto) {
 		if (userService.register(registrationDto) != null)
-			return new ResponseEntity<>(new ResponseDTO("Your account has been successfully created", registrationDto),
-					HttpStatus.OK);
-		return new ResponseEntity<>(new ResponseDTO("user registration unsuccessful"), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(new ResponseDTO(200, "User login successful"),HttpStatus.OK);
+		return new ResponseEntity<>(new ResponseDTO(400,"user registration unsuccessful"), HttpStatus.BAD_REQUEST);
 	}
 
 	@PostMapping("/login")
@@ -40,8 +37,8 @@ public class UserController {
 	public ResponseEntity<ResponseDTO> login(@Valid @RequestBody UserDTO userDTO) {
 		String token = userService.login(userDTO);
 		if (token != null) {
-			return new ResponseEntity<>(new ResponseDTO("User login successful", token), HttpStatus.OK);
+			return new ResponseEntity<>(new ResponseDTO(200, "User login successful", token), HttpStatus.OK);
 		}
-		return new ResponseEntity<>(new ResponseDTO("User login unsuccessful"), HttpStatus.NOT_ACCEPTABLE);
+		return new ResponseEntity<>(new ResponseDTO(400, "User login unsuccessful"), HttpStatus.BAD_REQUEST);
 	}
 }

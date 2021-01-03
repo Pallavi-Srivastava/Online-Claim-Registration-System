@@ -1,5 +1,7 @@
 package com.blz.onlineclaimregistartion.model;
 
+import javax.persistence.ManyToOne;
+
 import com.blz.onlineclaimregistartion.dto.PolicyDTO;
 
 import lombok.AllArgsConstructor;
@@ -13,9 +15,15 @@ public class Policy {
 
 	private long id;
 	private double premium;
+
 	
 	public Policy(PolicyDTO policyDTO) {
 		this.id = policyDTO.id;
 		this.premium = policyDTO.premium;
 	}
+	
+	public Policy(int i, double d) {
+		// TODO Auto-generated constructor stub
+	}
+	
 }

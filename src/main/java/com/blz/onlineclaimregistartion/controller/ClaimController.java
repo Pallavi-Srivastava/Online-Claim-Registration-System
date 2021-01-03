@@ -24,9 +24,7 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/onlineinsurancesystem")
 @CrossOrigin(allowedHeaders = "*", origins = "*")
-public class ClaimController {
-
-	
+public class ClaimController {	
 	
 	@Autowired
 	private IClaimService claimService;
@@ -35,7 +33,7 @@ public class ClaimController {
 	@PostMapping("/createclaim")
 	public ResponseEntity<ResponseDTO> claim(@Valid @RequestBody ClaimDTO claimDTO) {
 		Claim claim = claimService.createClaim(claimDTO);
-		ResponseDTO responseDTO = new ResponseDTO("Claim Created Sucessfull",claim);
+		ResponseDTO responseDTO = new ResponseDTO(200, "Claim Created Sucessfull",claim);
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
 	}
 	
@@ -43,7 +41,7 @@ public class ClaimController {
 	@GetMapping("/viewclaim")
 	public ResponseEntity<ResponseDTO> viewClaimById(@RequestHeader String token){
 		List<Claim> claim=claimService.viewClaim(token);
-		ResponseDTO responseDTO = new ResponseDTO("List of cliams ", claim);
+		ResponseDTO responseDTO = new ResponseDTO(200, "List of cliams ", claim);
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
 	}
 	
@@ -51,7 +49,7 @@ public class ClaimController {
 	@GetMapping("/viewallclaims")
 	public ResponseEntity<ResponseDTO> viewClaim(@RequestHeader String token){
 		List<Claim> claim=claimService.viewAllClaim(token);
-		ResponseDTO responseDTO = new ResponseDTO("List of cliams ", claim);
+		ResponseDTO responseDTO = new ResponseDTO(200, "List of cliams ", claim);
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
 	}
 }

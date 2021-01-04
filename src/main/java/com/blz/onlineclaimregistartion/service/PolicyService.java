@@ -12,17 +12,17 @@ import com.blz.onlineclaimregistartion.model.Policy;
 public class PolicyService implements IPolicyService {
 
 	List<Policy> policies = new ArrayList<>();
-	
+
 	@Override
 	public List<Policy> getAllPolicies(String token) {
-		policies.add(new Policy(1, 50000.0));
-		policies.add(new Policy(2, 100000.0));
+		policies.add(new Policy(1l, "GLI", 50000.0));
+		policies.add(new Policy(2l, "BPI", 100000.0));
 		return policies;
 	}
 
 	@Override
-	public Policy getPolicyById(String token, int policyId) {
-		return policies.get(policyId-1);
+	public Policy getPolicyById(String token, Long policyId) {
+		return policies.get((int)(policyId-1));
 	}
 
 	@Override
@@ -33,20 +33,23 @@ public class PolicyService implements IPolicyService {
 	}
 
 	@Override
-	public Policy updatePolicy(String token, int policyId, PolicyDTO policyDTO) {
-		return policies.set(policyId, new Policy(policyDTO));
+	public Policy updatePolicy(String token, Long policyId, PolicyDTO policyDTO) {
+		return policies.set( (int)(policyId-1), new Policy(policyDTO));
 	}
 
 	@Override
-	public void deletePolicy(String token, int policyId) {
-		policies.remove(policyId-1);
+	public void deletePolicy(String token, Long policyId) {
+		policies.remove((int)(policyId-1));
 	}
 
 	@Override
 	public List<Policy> getAllPoliciesByUserId(String token) {
-		policies.add(new Policy(1, 50000.0));
-		policies.add(new Policy(2, 100000.0));
 		return policies;
+	}
+
+	@Override
+	public Policy registerPolicyByUserId(String token, Long policyId) {
+		return null;
 	}
 
 }

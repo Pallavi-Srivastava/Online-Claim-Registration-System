@@ -9,13 +9,15 @@ public interface IPolicyService {
 
     List<Policy> getAllPolicies(String token);
 
-    Policy getPolicyById(String token, int policyId);
+    Policy getPolicyById(String token, Long policyId);
 
     Policy createPolicy(String token, PolicyDTO policyDTO);
 
-    Policy updatePolicy(String token, int policyId, PolicyDTO policyDTO);
+    Policy updatePolicy(String token, Long policyId, PolicyDTO policyDTO);
 
-    void deletePolicy(String token, int policyId);
+    void deletePolicy(String token, Long policyId);
     
     List<Policy> getAllPoliciesByUserId(String token);
+    
+    Policy registerPolicyByUserId(String token, Long policyId);
 }

@@ -11,11 +11,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Policy {
 
-	private long id;
-	private double premium;
+	private Long policyId;
+	private String policyName;
+	private Double premium;
 	
 	public Policy(PolicyDTO policyDTO) {
-		this.id = policyDTO.id;
+		this.policyId = policyDTO.policyId;
+		this.policyName = policyDTO.policyName;
 		this.premium = policyDTO.premium;
 	}
 }

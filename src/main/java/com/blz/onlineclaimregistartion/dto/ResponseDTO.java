@@ -4,16 +4,22 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor 
+@AllArgsConstructor
 public class ResponseDTO {
-	
+
 	private int status;
 	private String message;
 	private Object data;
-	
+	private int statusCode;
+
 	public ResponseDTO(int status, String message) {
 		this.status = status;
 		this.message = message;
 	}
-	
+
+	public ResponseDTO(int statusCode, String message, Object data) {
+		this.message = message;
+		this.data = data;
+		this.statusCode = statusCode;
+	}
 }

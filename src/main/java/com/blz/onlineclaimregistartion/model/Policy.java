@@ -1,5 +1,7 @@
 package com.blz.onlineclaimregistartion.model;
 
+import javax.persistence.ManyToOne;
+
 import com.blz.onlineclaimregistartion.dto.PolicyDTO;
 
 import lombok.AllArgsConstructor;
@@ -20,4 +22,5 @@ public class Policy {
 		this.policyName = policyDTO.policyName;
 		this.premium = policyDTO.premium;
 	}
+	
 }

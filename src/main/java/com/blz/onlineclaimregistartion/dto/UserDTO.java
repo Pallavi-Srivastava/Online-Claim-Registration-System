@@ -19,5 +19,4 @@ public class UserDTO {
 	@Pattern(regexp = "^(?=.*[@#$%^&+=])(?=.*[0-9])(?=.*[A-Z]).{8,}$", message = "Invalid Pattern")
 	@NotEmpty(message = "Password can't be null ")
 	public String password;
-
 }

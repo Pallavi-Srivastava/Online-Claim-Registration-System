@@ -1,50 +1,55 @@
 package com.blz.onlineclaimregistartion.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.blz.onlineclaimregistartion.dto.PolicyDTO;
+import com.blz.onlineclaimregistartion.exceptions.PolicyException;
 import com.blz.onlineclaimregistartion.model.Policy;
+import com.blz.onlineclaimregistartion.repository.PolicyRepository;
 
 @Service
 public class PolicyService implements IPolicyService {
 
-	List<Policy> policies = new ArrayList<>();
+	@Autowired
+	private PolicyRepository policyRepository;
 
 	@Override
 	public List<Policy> getAllPolicies(String token) {
-		policies.add(new Policy(1l, "GLI", 50000.0));
-		policies.add(new Policy(2l, "BPI", 100000.0));
-		return policies;
+		return policyRepository.findAll();
 	}
 
 	@Override
 	public Policy getPolicyById(String token, Long policyId) {
-		return policies.get((int)(policyId-1));
+		return policyRepository.findById(policyId)
+									.orElseThrow(() -> new PolicyException("Policy with "+ policyId +" id doesn't exist"));
 	}
 
 	@Override
 	public Policy createPolicy(String token, PolicyDTO policyDTO) {
 		Policy policy = new Policy(policyDTO);
-		policies.add(policy);
-		return policy;
+		return policyRepository.save(policy);
 	}
 
 	@Override
 	public Policy updatePolicy(String token, Long policyId, PolicyDTO policyDTO) {
-		return policies.set( (int)(policyId-1), new Policy(policyDTO));
+		Policy policy = this.getPolicyById(token, policyId);
+		policy.updatePolicy(policyDTO);
+		return policyRepository.save(policy);
 	}
 
 	@Override
 	public void deletePolicy(String token, Long policyId) {
-		policies.remove((int)(policyId-1));
+		Policy policy = this.getPolicyById(token, policyId);
+		policyRepository.delete(policy);
 	}
 
 	@Override
 	public List<Policy> getAllPoliciesByUserId(String token) {
-		return policies;
+		return null;
 	}
 
 	@Override

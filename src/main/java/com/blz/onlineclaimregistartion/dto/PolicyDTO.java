@@ -7,8 +7,6 @@ import lombok.ToString;
 @ToString
 public class PolicyDTO {
 	
-	public long policyId;
-	
 	@NotBlank(message = "Policy name can't be empty")
 	public String policyName;
 	

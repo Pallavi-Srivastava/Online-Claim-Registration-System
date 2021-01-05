@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -15,10 +16,12 @@ import com.blz.onlineclaimregistartion.dto.PolicyDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "policy_details")
 @Data
+@NoArgsConstructor
 public class Policy {
 	
 	@Id
@@ -36,8 +39,6 @@ public class Policy {
 	@Column(nullable=false, updatable = false)
 	@CreationTimestamp
 	private LocalDateTime createdDate = LocalDateTime.now();
-	
-	public Policy() {}
 	
 	public Policy(PolicyDTO policyDTO) {
 		this.updatePolicy(policyDTO);

@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
@@ -60,4 +63,10 @@ public class User {
 
 	@Column(name = "inactive_user")
 	private boolean inactiveUser;// It's used to identify user state active/inActive
+	
+	@ManyToMany
+	@JoinTable(name="user_policies",
+    joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"), 	
+    				inverseJoinColumns = @JoinColumn(name = "policy_id", referencedColumnName = "policy_id", unique = false))
+	private List<Policy> policies;
 }

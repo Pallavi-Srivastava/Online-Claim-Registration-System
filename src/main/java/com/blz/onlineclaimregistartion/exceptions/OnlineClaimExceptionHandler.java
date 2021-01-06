@@ -32,4 +32,10 @@ public class OnlineClaimExceptionHandler {
 		ResponseDTO responseDTO = new ResponseDTO(400, message, exception.getMessage());
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.BAD_REQUEST);
 	}
+	
+    @ExceptionHandler(PolicyException.class)
+    public ResponseEntity<ResponseDTO> handlePolicyExceptions(PolicyException exception){
+        ResponseDTO responseDTO = new ResponseDTO(400, message,exception.getMessage());
+        return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.BAD_REQUEST);
+    }
 }

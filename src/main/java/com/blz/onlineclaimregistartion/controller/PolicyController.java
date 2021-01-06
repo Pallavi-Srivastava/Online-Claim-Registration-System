@@ -24,59 +24,73 @@ import com.blz.onlineclaimregistartion.model.Policy;
 import com.blz.onlineclaimregistartion.service.IPolicyService;
 
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/onlineinsurancesystem")
 @CrossOrigin(allowedHeaders = "*", origins = "*")
+@Slf4j
 public class PolicyController {
-	
+
 	@Autowired
 	private IPolicyService policyService;
-	
+
 	@ApiOperation("To create the new policy")
 	@PostMapping("/policy/create")
-	public ResponseEntity<ResponseDTO> createPolicy(@RequestHeader String token, @Valid @RequestBody PolicyDTO policyDTO) {
-		Policy policy = policyService.createPolicy(token, policyDTO); 
+	public ResponseEntity<ResponseDTO> createPolicy(@RequestHeader String token,
+			@Valid @RequestBody PolicyDTO policyDTO) {
+		Policy policy = policyService.createPolicy(token, policyDTO);
 		ResponseDTO responseDTO = new ResponseDTO(200, "New policy created successfully", policy);
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
 	}
-	
+
 	@ApiOperation("To get all policy available for insurance")
 	@GetMapping("/policy")
 	public ResponseEntity<ResponseDTO> getAllPolicies(@RequestHeader String token) {
-		List<Policy> policies = policyService.getAllPolicies(token); 
+		List<Policy> policies = policyService.getAllPolicies(token);
 		ResponseDTO responseDTO = new ResponseDTO(200, "All existing policies", policies);
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
 	}
-	
+
 	@ApiOperation("To get policy by policyId")
 	@GetMapping("/policy/{policyId}")
-	public ResponseEntity<ResponseDTO> getPolicyByPolicyId(@RequestHeader String token, @PathVariable int policyId) {
+	public ResponseEntity<ResponseDTO> getPolicyByPolicyId(@RequestHeader String token, @PathVariable Long policyId) {
 		Policy policy = policyService.getPolicyById(token, policyId);
-		ResponseDTO responseDTO = new ResponseDTO(200, "Policy with id:"+ policyId, policy);
+		ResponseDTO responseDTO = new ResponseDTO(200, "Policy with id:" + policyId, policy);
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
 	}
-	
+
 	@ApiOperation("To update policy")
 	@PutMapping("/policy/update/{policyId}")
-	public ResponseEntity<ResponseDTO> updatePolicy(@RequestHeader String token, @PathVariable int policyId,@Valid @RequestBody PolicyDTO policyDTO) {
-		ResponseDTO responseDTO = new ResponseDTO(200, "Policy updated successfully ", new Policy(policyDTO));
+	public ResponseEntity<ResponseDTO> updatePolicy(@RequestHeader String token, @PathVariable Long policyId,
+			@Valid @RequestBody PolicyDTO policyDTO) {
+		Policy policy = policyService.updatePolicy(token, policyId, policyDTO);
+		ResponseDTO responseDTO = new ResponseDTO(200, "Policy updated successfully ", policy);
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
 	}
 
 	@ApiOperation("To delete a policy")
 	@DeleteMapping("/policy/delete/{policyId}")
-	public ResponseEntity<ResponseDTO> deletePolicy(@RequestHeader String token, @PathVariable int policyId) {
+	public ResponseEntity<ResponseDTO> deletePolicy(@RequestHeader String token, @PathVariable Long policyId) {
 		policyService.deletePolicy(token, policyId);
-		ResponseDTO responseDTO = new ResponseDTO(200, "Policy deleted successfully", "Deleted policy with id:"+ policyId);
+		ResponseDTO responseDTO = new ResponseDTO(200, "Policy deleted successfully",
+				"Deleted policy with id:" + policyId);
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
 	}
-	
+
 	@ApiOperation("To get policies of user")
 	@GetMapping("/policy/user")
 	public ResponseEntity<ResponseDTO> getPoliciesByUserId(@RequestHeader String token) {
-		List<Policy> policies = policyService.getAllPoliciesByUserId(token); 
+		List<Policy> policies = policyService.getAllPoliciesByUserId(token);
 		ResponseDTO responseDTO = new ResponseDTO(200, "User policies", policies);
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
-	}	
+	}
+
+	@ApiOperation("To register policy for a user")
+	@PostMapping("/policy/user/register/{policyNumber}")
+	public ResponseEntity<ResponseDTO> registerPolicy(@RequestHeader String token, @PathVariable Long policyNumber) {
+		Policy policy = policyService.registerPolicyByUserId(token, policyNumber);
+		ResponseDTO responseDTO = new ResponseDTO(200, "User policies", policy);
+		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+	}
 }

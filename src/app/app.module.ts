@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClaimSideNavbarComponent } from './components/claim-side-navbar/claim-side-navbar.component';
 import { ButtonComponent } from './components/button/button.component';
+import { PolicySideNavbarComponent } from './components/policy-side-navbar/policy-side-navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClaimSideNavbarComponent,
-    ButtonComponent
+    ButtonComponent,
+    PolicySideNavbarComponent
   ],
   imports: [
     BrowserModule,

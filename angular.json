@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -92,6 +93,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -127,6 +129,6 @@
   },
   "defaultProject": "OnlineClaimRegistration",
   "cli": {
-    "analytics": "4179500f-ecd8-4f78-9af1-a85e9cd2a76d"
+    "analytics": "8da58380-a79d-461f-9848-d477810e657f"
   }
 }

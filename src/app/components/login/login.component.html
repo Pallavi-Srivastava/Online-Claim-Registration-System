@@ -1,0 +1,28 @@
+<div fxLayoutAlign="center">
+    <form class="form" [formGroup]="signInForm" (ngSubmit)="signIn(signInForm.value)">
+        <div>
+            <div class="form-head" fxLayoutAlign="center">
+                <span>Online Claim Insurance</span>
+            </div>
+            <div class="title-head" fxLayoutAlign="center">Sign in</div>
+            <div class="title-head account" fxLayoutAlign="center"></div>
+            <div>
+                <mat-form-field appearance="outline" class="textbox">
+                    <mat-label>Username</mat-label>
+                    <input matInput type="text" formControlName="username" id="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && signInForm.controls.username.errors }">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline" class="textbox">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password" id="password" [ngClass]="{ 'is-invalid': submitted && signInForm.controls.password.errors }">
+                    <mat-hint><a routerLink="../forgotPassword" class="link-text" style="color: #1A73E8;">Forgot password?</a></mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="button-div" fxLayoutAlign="space-between center">
+                <a routerLink="../signUp" class="link-text">Create Account</a>
+                <input class="next-button" type="submit" value="Next" [style.fontSize.px]="11">
+            </div>
+        </div>
+    </form>
+</div>

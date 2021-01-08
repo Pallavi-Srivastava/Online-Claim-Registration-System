@@ -1,0 +1,57 @@
+.form {
+    margin-top: 67px;
+    padding: 49px 43px;
+    border: 1px solid #00000029;
+    border-radius: 8px;
+}
+
+.form-head,
+.title-head {
+    font: 21px/16px Roboto;
+    padding-bottom: 20px;
+}
+
+.title-head {
+    font: 24px Roboto;
+}
+
+.account {
+    font-size: 15px;
+}
+
+.textbox {
+    width: 400px;
+}
+
+.error-text {
+    font-size: 10px;
+}
+
+.button-div {
+    padding-top: 40px;
+}
+
+.link-text {
+    text-decoration: none;
+    color: #1A73E8;
+}
+
+.next-button {
+    background-color: #1A73E8;
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+    color: white;
+    border: white;
+}
+
+@media only screen and (max-width: 600px) {
+    .form {
+        width: 100%;
+        margin-top: 10px;
+        padding: 40px 40px;
+        border: 0px;
+    }
+    .textbox {
+        width: 100%;
+    }
+}

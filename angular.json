@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "OnlineClaimRegistration"
+    }
+  },
+  "defaultProject": "OnlineClaimRegistration",
+  "cli": {
+    "analytics": "4179500f-ecd8-4f78-9af1-a85e9cd2a76d"
+  }
 }

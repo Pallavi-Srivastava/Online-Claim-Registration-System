@@ -1,0 +1,19 @@
+@import '../../theme.scss';
+
+.side-nav-btn{
+    background-color: $btn-bg-color;
+    display:block;
+    width: $btn-width;
+    height: $btn-height;
+    text-align: $btn-text-align;
+    padding: $btn-padding;
+    border: $btn-border;
+    font-size: $btn-text-font-size;
+    margin-bottom: $btn-margin-bottom;
+    cursor: pointer;
+}
+
+.side-nav-btn:hover, .side-nav-btn-active  {
+    background-color: $btn-bg-color-hover;
+    color:  $btn-color-hover;
+}

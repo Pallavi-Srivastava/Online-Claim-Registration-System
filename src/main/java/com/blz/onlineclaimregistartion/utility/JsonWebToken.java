@@ -2,8 +2,13 @@ package com.blz.onlineclaimregistartion.utility;
 
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.SignatureException;
+
 import org.springframework.stereotype.Service;
+
+import com.blz.onlineclaimregistartion.exceptions.UserException;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
@@ -23,14 +28,14 @@ public class JsonWebToken {
 
 	public static String createToken(long id) {
 		long ttlMillis = REGISTRATION_EXP;
-		signatureAlgorithm = SignatureAlgorithm.HS256;
+		signatureAlgorithm = SignatureAlgorithm.HS256;//Header
 		nowMillis = System.currentTimeMillis();
-		now = new Date(nowMillis);
+		now = new Date(nowMillis);//payload part
 		byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(secretKey);
 		Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
 
 		JwtBuilder builder = Jwts.builder().setId(String.valueOf(id)).setIssuedAt(now).setSubject(subject)
-				.setIssuer(issuer).signWith(signatureAlgorithm, signingKey);
+				.setIssuer(issuer).signWith(signatureAlgorithm, signingKey);//payload 
 
 		if (ttlMillis >= 0) {
 			long expMillis = nowMillis + ttlMillis;
@@ -40,8 +45,14 @@ public class JsonWebToken {
 		return builder.compact();
 	}
 
+	
 	public static Long decodeToken(String jwt) {
-		return Long.parseLong(Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(secretKey))
-				.parseClaimsJws(jwt).getBody().getId());
+		try {
+			return Long.parseLong(Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(secretKey))
+					.parseClaimsJws(jwt).getBody().getId());
+		}catch(MalformedJwtException  | SignatureException e) {
+			throw new UserException("Token is incorrect");
+		}
+		
 	}
 }

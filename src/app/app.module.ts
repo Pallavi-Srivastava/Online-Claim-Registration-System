@@ -17,25 +17,30 @@ import {MatSelectModule} from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {MatTableModule} from '@angular/material/table';
-import { CreateProfileComponent } from './components/create-profile/create-profile.component';
 import { ClaimCreationComponent } from './components/claim-creation/claim-creation.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ClaimSideNavbarComponent } from './components/claim-side-navbar/claim-side-navbar.component';
 import { ButtonComponent } from './components/button/button.component';
 import { PolicySideNavbarComponent } from './components/policy-side-navbar/policy-side-navbar.component';
 import { HomeComponent } from './components/home/home.component';
+import { ProfileCreationComponent } from './components/profile-creation/profile-creation.component';
+import { ViewPoliciesComponent } from './components/view-policies/view-policies.component';
+import {MatIconModule} from '@angular/material/icon';
+import { ReportGenerationComponent } from './components/report-generation/report-generation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    CreateProfileComponent,
     ClaimCreationComponent,
     HeaderComponent,
     ClaimSideNavbarComponent,
     ButtonComponent,
     PolicySideNavbarComponent,
-    HomeComponent
+    HomeComponent,
+    ProfileCreationComponent,
+    ViewPoliciesComponent,
+    ReportGenerationComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +58,8 @@ import { HomeComponent } from './components/home/home.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatTableModule
+    MatTableModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

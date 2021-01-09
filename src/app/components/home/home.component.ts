@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CreateProfileComponent } from '../create-profile/create-profile.component'
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

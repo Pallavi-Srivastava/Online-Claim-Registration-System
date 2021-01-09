@@ -1,30 +1,28 @@
-import { Claim } from './../../models/claim';
+import { User } from './../../models/user';
 import { Component, OnInit } from '@angular/core';
 import { FormControl,FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-claim-creation',
-  templateUrl: './claim-creation.component.html',
-  styleUrls: ['./claim-creation.component.scss']
+  selector: 'app-profile-creation',
+  templateUrl: './profile-creation.component.html',
+  styleUrls: ['./profile-creation.component.scss']
 })
-export class ClaimCreationComponent implements OnInit {
+export class ProfileCreationComponent implements OnInit {
 
-  claimObj: Claim = new Claim();
+  userObj: User = new User();
 
-  claimForm: any;
-  claimNumber: any;
+  profileForm: any;
+  userId: any;
   isUpdate = false;
   constructor(private formBuilder: FormBuilder, private userService: UserService,
     private router: Router, private activatedRoute: ActivatedRoute) {
-    this. claimForm = this.formBuilder.group({
-      claimReason: ['', Validators.required],
-      accidentLocationStreet: ['', Validators.required],
-      accidentCity: ['', Validators.required],
-      accidentState: ['', Validators.required],
-      accidentZip: ['', Validators.required],
-      claimType: ['', Validators.required],
+    this. profileForm = this.formBuilder.group({
+      userName: ['', Validators.required],
+      password: ['', Validators.required],
+      email: ['', Validators.required],
+      roleCode: ['', Validators.required],
       id: ['']
     });
 
@@ -69,18 +67,16 @@ export class ClaimCreationComponent implements OnInit {
   // }
 
   setDataToFormBuilder(object): void { 
-    this.claimObj.claimReason=object.claimReason,
-    this.claimObj.accidentLocationStreet=object.accidentLocationStreet,
-    this.claimObj.accidentCity=object.accidentCity,
-    this.claimObj.accidentState=object.accidentState,
-    this.claimObj.accidentZip=object.accidentLocationStreet,
-    this.claimObj.claimType=object.claimType,
+    this.userObj.userName=object.userName,
+    this.userObj.password=object.password,
+    this.userObj.email=object.email,
+    this.userObj.roleCode=object.roleCode,
     console.log(object);
   }
   onSubmit() {
     console.log("save");
 
-      // this.userService.addAddressookRecord(this.claimObj).subscribe(response => {
+      // this.userService.addAddressookRecord(this.userObj).subscribe(response => {
       //   console.log("response is ", response);
       //   this.router.navigateByUrl('');
       // }, err => {
@@ -88,7 +84,6 @@ export class ClaimCreationComponent implements OnInit {
     }
   
   reset(): void {
-    this.claimForm.reset();
+    this.profileForm.reset();
   }
-
 }

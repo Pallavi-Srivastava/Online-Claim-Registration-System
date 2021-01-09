@@ -9,7 +9,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 0px solid rgb(253, 255, 253);
+    border: 0px solid rgb(239, 243, 239);
 }
 
 .form {
@@ -22,12 +22,21 @@ body {
     opacity: 1;
 }
 
+.form-head {
+    font: normal normal bold 22px/27px Roboto;
+    letter-spacing: 0px;
+    color: #0b0c0c;
+    opacity: 1;
+    padding-bottom: 20px;
+    margin-left: 30px;
+}
+
 .row-content {
     display: flex;
     flex-direction: row;
     margin-bottom: 30px;
     align-items: center;
-    border: 0px solid rgb(232, 238, 232);
+    border: 0px solid rgb(234, 243, 234);
 }
 
 .label {
@@ -71,7 +80,7 @@ select {
 
 .buttonParent {
     display: flex;
-    margin: 15px 280px 5px 200px;
+    margin: 20px 0px 10px 40px;
     justify-content: space-between;
 }
 
@@ -84,9 +93,8 @@ select {
     background: transparent;
     border: none;
     font-weight: 40%;
-    min-width: 120px;
+    min-width: 140px;
     padding: 7px 7px;
-    border: 1px solid rgb(5, 127, 209);
     cursor: pointer;
 }
 
@@ -94,12 +102,22 @@ select {
     text-decoration: none;
     text-align: center;
     background-color: #a8c3db;
+    border: 1px solid rgb(5, 127, 209);
 }
 
 .submitButton {
     border: none;
     border: 1px solid rgb(5, 127, 209);
+    margin-right: 30px;
     background-color: #a8c3db;
+}
+
+.resetButton {
+    text-decoration: none;
+    text-align: center;
+    background-color: #a8c3db;
+    margin-right: 105px;
+    border: 1px solid rgb(5, 127, 209);
 }
 
 .button:hover,
@@ -107,8 +125,7 @@ select {
     background-color: #518cf3;
 }
 
-.text-error,
-.date-error {
+.text-error {
     font-size: 12px;
     font-style: italic;
     color: red;

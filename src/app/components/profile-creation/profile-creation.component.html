@@ -1,0 +1,44 @@
+<div>
+    <app-header></app-header>
+    <div class="form-content">
+        <form class="form" action="#" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+            <div class="form-head">
+                <div class="form-head-text">Enter the details</div>
+            </div>
+            <div class="row-content">
+                <label class="label label-info" for="userName">Login-ID</label>
+                <input class="input" type="text" id="userName" name="userName" required [(ngModel)]="userObj.userName" [ngModelOptions]="{standalone: true}">
+            </div>
+
+            <div class="row-content ">
+                <label class="label label-info" for="password">Password</label>
+                <input class="input " type="text" id="password" name="password" required [(ngModel)]="userObj.password" [ngModelOptions]="{standalone: true} ">
+            </div>
+
+            <div class="row-content ">
+                <label class="label label-info" for="email">Email</label>
+                <input class="input" type="text" name="email" id="email" required [(ngModel)]="userObj.email" [ngModelOptions]="{standalone: true} ">
+            </div>
+
+            <div class="select-box ">
+                <div>
+                    <label for="roleCode" class="label label-info">Role ID</label>
+                    <select class="select" name="roleCode" id="roleCode" required [(ngModel)]="userObj.roleCode" [ngModelOptions]="{standalone: true} ">
+                                <option selected disabled>Select Role</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Agent">Agent</option>
+                                <option value="User">User</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="buttonParent">
+                <a href="./" class="resetButton button cancelButton">Cancel</a>
+                <div class="submit-reset">
+                    <button type="submit" class="button submitButton" id="submitButton">Add</button>
+                    <button type="reset" class="resetButton button">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

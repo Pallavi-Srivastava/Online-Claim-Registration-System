@@ -1,30 +1,26 @@
-import { Claim } from './../../models/claim';
 import { Component, OnInit } from '@angular/core';
 import { FormControl,FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { Policy } from './../../models/policy';
 
 @Component({
-  selector: 'app-claim-creation',
-  templateUrl: './claim-creation.component.html',
-  styleUrls: ['./claim-creation.component.scss']
+  selector: 'app-create-policy',
+  templateUrl: './create-policy.component.html',
+  styleUrls: ['./create-policy.component.scss']
 })
-export class ClaimCreationComponent implements OnInit {
+export class CreatePolicyComponent implements OnInit {
+  
+  policyObj:Policy=new Policy();
 
-  claimObj: Claim = new Claim();
-
-  claimForm: any;
-  claimNumber: any;
+  policyForm: any;
   isUpdate = false;
   constructor(private formBuilder: FormBuilder, private userService: UserService,
     private router: Router, private activatedRoute: ActivatedRoute) {
-    this. claimForm = this.formBuilder.group({
-      claimReason: ['', Validators.required],
-      accidentLocationStreet: ['', Validators.required],
-      accidentCity: ['', Validators.required],
-      accidentState: ['', Validators.required],
-      accidentZip: ['', Validators.required],
-      claimType: ['', Validators.required],
+    this. policyForm = this.formBuilder.group({
+      policy_number: ['', Validators.required],
+      policy_name: ['', Validators.required],
+      premium: ['', Validators.required],
       id: ['']
     });
 
@@ -69,18 +65,11 @@ export class ClaimCreationComponent implements OnInit {
   // }
 
   setDataToFormBuilder(object): void { 
-    this.claimObj.claimReason=object.claimReason,
-    this.claimObj.accidentLocationStreet=object.accidentLocationStreet,
-    this.claimObj.accidentCity=object.accidentCity,
-    this.claimObj.accidentState=object.accidentState,
-    this.claimObj.accidentZip=object.accidentLocationStreet,
-    this.claimObj.claimType=object.claimType,
     console.log(object);
   }
   onSubmit() {
     console.log("save");
 
-      // this.userService.addAddressookRecord(this.claimObj).subscribe(response => {
       //   console.log("response is ", response);
       //   this.router.navigateByUrl('');
       // }, err => {
@@ -88,7 +77,7 @@ export class ClaimCreationComponent implements OnInit {
     }
   
   reset(): void {
-    this.claimForm.reset();
+    this.policyForm.reset();
   }
 
 }

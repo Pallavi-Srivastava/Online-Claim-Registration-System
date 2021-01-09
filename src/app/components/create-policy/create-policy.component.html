@@ -1,0 +1,29 @@
+<div>
+    <app-header></app-header>
+    <div class="form-content">
+        <form class="form" action="#" [formGroup]="policyForm" (ngSubmit)="onSubmit()">
+            <div class="row-content">
+                <label class="label label-info" for="claimReason">Policy Number</label>
+                <input class="input" type="text" id="claimReason" name="claimReason" required [(ngModel)]="policyObj.policy_number" [ngModelOptions]="{standalone: true}">
+            </div>
+
+            <div class="row-content ">
+                <label class="label label-info" for="accidentLocationStreet">Policy Name</label>
+                <input class="input " type="text" id="accidentLocationStreet" name="accidentLocationStreet" required [(ngModel)]="policyObj.policy_name" [ngModelOptions]="{standalone: true} ">
+            </div>
+
+            <div class="row-content ">
+                <label class="label label-info" for="accidentCity">Premium</label>
+                <input class="input" type="text" name="accidentCity" id="accidentCity" required [(ngModel)]="policyObj.premium" [ngModelOptions]="{standalone: true} ">
+            </div>
+        
+            <div class="buttonParent">
+                <a href="./" class="button cancelButton">Reset</a>
+                <div style="display: flex; justify-content: space-evenly; padding-left: 100px;"></div>
+                <div class="submit-reset">
+                    <button type="submit" class="button submitButton" id="submitButton">Create</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

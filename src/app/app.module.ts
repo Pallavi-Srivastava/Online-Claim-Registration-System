@@ -23,6 +23,9 @@ import { ClaimSideNavbarComponent } from './components/claim-side-navbar/claim-s
 import { ButtonComponent } from './components/button/button.component';
 import { PolicySideNavbarComponent } from './components/policy-side-navbar/policy-side-navbar.component';
 import { ProfileCreationComponent } from './components/profile-creation/profile-creation.component';
+import { ViewPoliciesComponent } from './components/view-policies/view-policies.component';
+import {MatIconModule} from '@angular/material/icon';
+import { ReportGenerationComponent } from './components/report-generation/report-generation.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,9 @@ import { ProfileCreationComponent } from './components/profile-creation/profile-
     ClaimSideNavbarComponent,
     ButtonComponent,
     PolicySideNavbarComponent,
-    ProfileCreationComponent
+    ProfileCreationComponent,
+    ViewPoliciesComponent,
+    ReportGenerationComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +56,8 @@ import { ProfileCreationComponent } from './components/profile-creation/profile-
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatTableModule
+    MatTableModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

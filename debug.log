@@ -1,1 +1,15 @@
 [0108/143111.564:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[0109/113447.186:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0109/113447.201:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0109/113447.214:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0109/113447.218:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0109/113447.219:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0109/113447.230:ERROR:exception_snapshot_win.cc(99)] thread ID 17412 not found in process
+[0109/113447.231:ERROR:exception_snapshot_win.cc(99)] thread ID 19904 not found in process
+[0109/113447.231:ERROR:exception_snapshot_win.cc(99)] thread ID 7052 not found in process
+[0109/113447.251:ERROR:exception_snapshot_win.cc(99)] thread ID 20056 not found in process
+[0109/113447.251:ERROR:exception_snapshot_win.cc(99)] thread ID 13564 not found in process
+[0109/113447.281:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0109/113447.281:ERROR:exception_snapshot_win.cc(99)] thread ID 8472 not found in process
+[0109/113447.372:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0109/113447.372:ERROR:exception_snapshot_win.cc(99)] thread ID 17372 not found in process

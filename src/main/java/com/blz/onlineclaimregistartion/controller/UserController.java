@@ -5,20 +5,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.blz.onlineclaimregistartion.service.IUserService;
-import io.swagger.annotations.ApiOperation;
-
 import com.blz.onlineclaimregistartion.dto.ForgotPasswordDTO;
 import com.blz.onlineclaimregistartion.dto.RegistrationDTO;
 import com.blz.onlineclaimregistartion.dto.ResetPasswordDTO;
 import com.blz.onlineclaimregistartion.dto.ResponseDTO;
 import com.blz.onlineclaimregistartion.dto.UserDTO;
 import com.blz.onlineclaimregistartion.model.User;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/onlineinsurancesystem")
@@ -40,7 +40,11 @@ public class UserController {
 	@PostMapping("/user/login")
 	public ResponseEntity<ResponseDTO> login(@Valid @RequestBody UserDTO userDTO) {
 		String token = userService.login(userDTO);
-		return new ResponseEntity<>(new ResponseDTO(200, "Login Successful", token), HttpStatus.OK);
+		//return new ResponseEntity<>(new ResponseDTO(200, "Login Successful", token), HttpStatus.OK);
+		 if(token!=null) {
+			 return new ResponseEntity<>(new ResponseDTO(200,"User login successful", token), HttpStatus.OK);
+	        }
+		 return new ResponseEntity<>(new ResponseDTO(400,"User login failed"), HttpStatus.NOT_ACCEPTABLE);
 	}
 
 	@ApiOperation("For passwordForgot")
@@ -57,4 +61,13 @@ public class UserController {
 		User user = userService.resetPassword(resetPasswordDTO, token);
 		return new ResponseEntity<>(new ResponseDTO(200, "Successfully change the password", user), HttpStatus.OK);
 	}
+	
+	@ApiOperation("For logout")
+	@GetMapping("/user/logout")
+	public ResponseEntity<ResponseDTO> logout() {
+			 return new ResponseEntity<>(new ResponseDTO(200,"User login successful"), HttpStatus.OK);
+	 }
 }
+	
+	
+

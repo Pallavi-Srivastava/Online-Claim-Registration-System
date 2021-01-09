@@ -127,12 +127,8 @@
       }
     }
   },
-<<<<<<< HEAD
-  "defaultProject": "OnlineClaimRegistration"
-=======
   "defaultProject": "OnlineClaimRegistration",
   "cli": {
     "analytics": "8da58380-a79d-461f-9848-d477810e657f"
   }
->>>>>>> b99a6cf86d5ca1f86dcaee9ac9e58bb2d3782b1e
 }

@@ -22,6 +22,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { ClaimSideNavbarComponent } from './components/claim-side-navbar/claim-side-navbar.component';
 import { ButtonComponent } from './components/button/button.component';
 import { PolicySideNavbarComponent } from './components/policy-side-navbar/policy-side-navbar.component';
+import { HomeComponent } from './components/home/home.component';
 import { ProfileCreationComponent } from './components/profile-creation/profile-creation.component';
 import { ViewPoliciesComponent } from './components/view-policies/view-policies.component';
 import {MatIconModule} from '@angular/material/icon';
@@ -37,6 +38,7 @@ import { CreatePolicyComponent } from './components/create-policy/create-policy.
     ClaimSideNavbarComponent,
     ButtonComponent,
     PolicySideNavbarComponent,
+    HomeComponent,
     ProfileCreationComponent,
     ViewPoliciesComponent,
     ReportGenerationComponent,

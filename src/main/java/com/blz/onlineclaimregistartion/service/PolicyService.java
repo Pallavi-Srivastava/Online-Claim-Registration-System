@@ -2,7 +2,6 @@ package com.blz.onlineclaimregistartion.service;
 
 import java.util.List;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,7 +59,7 @@ public class PolicyService implements IPolicyService {
 		Long userId = JsonWebToken.decodeToken(token);
 		User user = userRepository.findById(userId);
 		String userRolecode = user.getRoleCode();
-		if(!userRolecode.equals("admin")) {
+		if(userRolecode.equals("admin")) {
 				Policy policy = this.getPolicyById(token, policyId);
 				policy.updatePolicy(policyDTO, user);
 				return policyRepository.save(policy);
@@ -74,29 +73,11 @@ public class PolicyService implements IPolicyService {
 		User user = userRepository.findById(userId);
 		String userRolecode = user.getRoleCode();
 		if(userRolecode.equals("admin")) {
-			this.getPolicyById(token, policyId);
+			Policy policy = this.getPolicyById(token, policyId);
 			policyRepository.deleteById(policyId);
 			return true;
 		}
 		return false;
-	}
-
-	@Override
-	public List<Policy> getAllPoliciesByUserId(String token) {
-		Long userId = JsonWebToken.decodeToken(token);
-		return policyRepository.getAllPoliciesRegisteredByUserId(userId);
-	}
-
-	@Override
-	public Policy registerPolicyByUserId(String token, long policyNumber) {
-		Long userId = JsonWebToken.decodeToken(token);
-		User user = userRepository.findById(userId); 
-		Policy policy = policyRepository.findPolicyDetails(policyNumber);
-		PolicyDTO policyDTO = new PolicyDTO();
-		BeanUtils.copyProperties(policy, policyDTO);
-		Policy policy2 = new Policy(policyDTO, user);
-//		User user = userRepository.findById(userId);
-		return policyRepository.save(policy2);
 	}
 
 }

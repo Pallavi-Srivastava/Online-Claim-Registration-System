@@ -1,5 +1,7 @@
 package com.blz.onlineclaimregistartion.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,19 +32,23 @@ public class UserController {
 
 	@ApiOperation("For registration")
 	@PostMapping("/user/register")
-	public ResponseEntity<ResponseDTO> register(@Valid @RequestBody RegistrationDTO registrationDto) {
-		User user = (userService.register(registrationDto));
-		return new ResponseEntity<>(new ResponseDTO(200, "Your account has been successfully created", user),
-				HttpStatus.OK);
+	public ResponseEntity<ResponseDTO> register(@Valid @RequestBody RegistrationDTO registrationDto,@RequestHeader String token) {
+		System.out.println("Register");
+		User user = (userService.register(registrationDto,token));
+		if(user!=null) {
+			return new ResponseEntity<>(new ResponseDTO(200, "Your account has been successfully created", user),
+					HttpStatus.OK);
+	        }
+		 return new ResponseEntity<>(new ResponseDTO(400,"Prmission Denied"), HttpStatus.NOT_ACCEPTABLE);
 	}
 
 	@ApiOperation("For login")
 	@PostMapping("/user/login")
 	public ResponseEntity<ResponseDTO> login(@Valid @RequestBody UserDTO userDTO) {
-		String token = userService.login(userDTO);
-		//return new ResponseEntity<>(new ResponseDTO(200, "Login Successful", token), HttpStatus.OK);
-		 if(token!=null) {
-			 return new ResponseEntity<>(new ResponseDTO(200,"User login successful", token), HttpStatus.OK);
+		System.out.println("Login");
+		List<String> data = userService.login(userDTO);
+		 if(data!=null) {
+			 return new ResponseEntity<>(new ResponseDTO(200,"User login successful", data.get(0),data.get(1)), HttpStatus.OK);
 	        }
 		 return new ResponseEntity<>(new ResponseDTO(400,"User login failed"), HttpStatus.NOT_ACCEPTABLE);
 	}
@@ -50,6 +56,7 @@ public class UserController {
 	@ApiOperation("For passwordForgot")
 	@PostMapping("/user/forgot")
 	public ResponseEntity<ResponseDTO> forgot(@Valid @RequestBody ForgotPasswordDTO fotgotPasswordDTO) {
+		System.out.println("Forgot");
 		User user = userService.forgotPassword(fotgotPasswordDTO);
 		return new ResponseEntity<>(new ResponseDTO(200, "Successfully send the mail", user), HttpStatus.OK);
 	}
@@ -58,6 +65,7 @@ public class UserController {
 	@PostMapping("/user/reset")
 	public ResponseEntity<ResponseDTO> reset(@Valid @RequestBody ResetPasswordDTO resetPasswordDTO,
 			@RequestHeader String token) {
+		System.out.println("Reset");
 		User user = userService.resetPassword(resetPasswordDTO, token);
 		return new ResponseEntity<>(new ResponseDTO(200, "Successfully change the password", user), HttpStatus.OK);
 	}
@@ -65,7 +73,8 @@ public class UserController {
 	@ApiOperation("For logout")
 	@GetMapping("/user/logout")
 	public ResponseEntity<ResponseDTO> logout() {
-			 return new ResponseEntity<>(new ResponseDTO(200,"User login successful"), HttpStatus.OK);
+		System.out.println("Logout");
+		return new ResponseEntity<>(new ResponseDTO(200,"User logout successful"), HttpStatus.OK);
 	 }
 }
 	

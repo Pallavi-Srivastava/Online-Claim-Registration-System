@@ -1,5 +1,7 @@
 package com.blz.onlineclaimregistartion.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -9,18 +11,24 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.validation.Valid;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+
 import com.blz.onlineclaimregistartion.dto.ForgotPasswordDTO;
 import com.blz.onlineclaimregistartion.dto.RegistrationDTO;
 import com.blz.onlineclaimregistartion.dto.ResetPasswordDTO;
+import com.blz.onlineclaimregistartion.dto.ResponseDTO;
 import com.blz.onlineclaimregistartion.dto.UserDTO;
 import com.blz.onlineclaimregistartion.exceptions.UserException;
 import com.blz.onlineclaimregistartion.model.User;
 import com.blz.onlineclaimregistartion.repository.UserRepository;
 import com.blz.onlineclaimregistartion.utility.JsonWebToken;
+
+import io.swagger.annotations.ApiOperation;
 
 @Service
 public class UserService implements IUserService {
@@ -36,24 +44,29 @@ public class UserService implements IUserService {
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Override
-	public User register(@Valid RegistrationDTO registrationDTO) {
-		User findByName = userRepository.findByName(registrationDTO.getUserName());
-		if (findByName != null) {
-			throw new UserException("User Already Exist");
+	public User register(@Valid RegistrationDTO registrationDTO, String token) {
+		long userId = JsonWebToken.decodeToken(token);
+		System.out.println(userId);
+		user = userRepository.findById(userId);
+		if (user.roleCode.equals("User")) {
+			throw new UserException("Admin/Agent can only create the account");
 		}
-		User userDetails = new User();
-		BeanUtils.copyProperties(registrationDTO, userDetails);
+		User userDetails = new User(registrationDTO, userId);
 		userDetails.setPassword(bCryptPasswordEncoder.encode(userDetails.getPassword()));
 		return userRepository.save(userDetails);
 	}
 
 	@Override
-	public String login(@Valid UserDTO userDTO) {
+	public List<String> login(@Valid UserDTO userDTO) {
 
 		int count = 0;
 
-		User findByName = userRepository.findByName(userDTO.getUserName());
-		if (findByName == null) {
+		user = userRepository.findByName(userDTO.getUserName());
+		List<String> response=new ArrayList();
+	
+		String userRole=user.getRoleCode();
+		
+		if (user == null) {
 			count++;
 			if (count >= 3) {
 				user.setInactiveUser(true);
@@ -61,11 +74,13 @@ public class UserService implements IUserService {
 			throw new UserException("User not Exist");
 		}
 
-		if (bCryptPasswordEncoder.matches(userDTO.getPassword(), findByName.getPassword())) {
-			System.out.println("user Id " + findByName.getUserId());
-			String token = JsonWebToken.createToken(findByName.getUserId());
-			userRepository.save(findByName);
-			return token;
+		if (bCryptPasswordEncoder.matches(userDTO.getPassword(), user.getPassword())) {
+			user.setInactiveUser(false);
+			String token = JsonWebToken.createToken(user.getUserId());
+			userRepository.save(user);
+			response.add(token);
+			response.add(userRole);
+			return response;
 		}
 		return null;
 	}
@@ -73,7 +88,7 @@ public class UserService implements IUserService {
 	@Override
 	public User forgotPassword(@Valid ForgotPasswordDTO forgotPasswordDTO) {
 
-		String url = "http://localhost:7088/swagger-ui.html#/user-controller/resetUsingPOST";
+		String url = "http://localhost:4200/reset-password";
 
 		user = userRepository.findByEmail(forgotPasswordDTO.getEmail());
 		if (user == null) {
@@ -106,7 +121,7 @@ public class UserService implements IUserService {
 			message.setSubject("Testing Gmail SSL");
 			System.out.println(user.getUserName());
 			message.setText("Dear " + user.getUserName() + ","
-					+ "\n\n To Complete the password reset process,please click here: " + url + "Token: " + token);
+					+ "\n\n To Complete the password reset process,please click here: " + url + "\n"+"Token: " + token);
 
 			Transport.send(message);
 

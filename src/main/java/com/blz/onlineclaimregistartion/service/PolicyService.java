@@ -26,39 +26,59 @@ public class PolicyService implements IPolicyService {
 
 	@Override
 	public List<Policy> getAllPolicies(String token) {
-		return policyRepository.findAll();
+		Long userId = JsonWebToken.decodeToken(token);
+		if( userId != null ) {
+			return policyRepository.findAll();	
+		}
+		return null;
 	}
 
 	@Override
 	public Policy getPolicyById(String token, Long policyId) {
-		return policyRepository.findById(policyId)
-				.orElseThrow(() -> new PolicyException("Policy with " + policyId + " id doesn't exist"));
+		Long userId = JsonWebToken.decodeToken(token);
+		if(userId != null) {
+			return policyRepository.findById(policyId)
+									.orElseThrow(() -> new PolicyException("Policy with " + policyId + " id doesn't exist"));
+		}
+		return null;
 	}
 
 	@Override
 	public Policy createPolicy(String token, PolicyDTO policyDTO) {
-
-		Long decodeToken = JsonWebToken.decodeToken(token);
-		User user = userRepository.findById(decodeToken);
-		if (user.getRoleCode() == "user") {
-			throw new UserException("User Cannot create the policy!! ");
+		Long userId = JsonWebToken.decodeToken(token);
+		User user = userRepository.findById(userId);
+		String userRolecode = user.getRoleCode();
+		if(!userRolecode.equals("admin")) {
+			throw new UserException("User/Agent Cannot create the policy!!");
 		}
-		Policy policy = new Policy();
-		BeanUtils.copyProperties(policyDTO, policy);
+		Policy policy = new Policy(policyDTO, user);
 		return policyRepository.save(policy);
 	}
 
 	@Override
 	public Policy updatePolicy(String token, Long policyId, PolicyDTO policyDTO) {
-		Policy policy = this.getPolicyById(token, policyId);
-		BeanUtils.copyProperties(policyDTO, policy);
-		return policyRepository.save(policy);
+		Long userId = JsonWebToken.decodeToken(token);
+		User user = userRepository.findById(userId);
+		String userRolecode = user.getRoleCode();
+		if(!userRolecode.equals("admin")) {
+				Policy policy = this.getPolicyById(token, policyId);
+				policy.updatePolicy(policyDTO, user);
+				return policyRepository.save(policy);
+		}
+		return null;
 	}
 
 	@Override
-	public void deletePolicy(String token, Long policyId) {
-		Policy policy = this.getPolicyById(token, policyId);
-		policyRepository.deleteById(policyId);
+	public boolean deletePolicy(String token, Long policyId) {
+		Long userId = JsonWebToken.decodeToken(token);
+		User user = userRepository.findById(userId);
+		String userRolecode = user.getRoleCode();
+		if(userRolecode.equals("admin")) {
+			this.getPolicyById(token, policyId);
+			policyRepository.deleteById(policyId);
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -70,12 +90,12 @@ public class PolicyService implements IPolicyService {
 	@Override
 	public Policy registerPolicyByUserId(String token, long policyNumber) {
 		Long userId = JsonWebToken.decodeToken(token);
+		User user = userRepository.findById(userId); 
 		Policy policy = policyRepository.findPolicyDetails(policyNumber);
 		PolicyDTO policyDTO = new PolicyDTO();
 		BeanUtils.copyProperties(policy, policyDTO);
-		Policy policy2 = new Policy(policyDTO);
-		User user = userRepository.findById(userId);
-		policy2.setUser(user);
+		Policy policy2 = new Policy(policyDTO, user);
+//		User user = userRepository.findById(userId);
 		return policyRepository.save(policy2);
 	}
 

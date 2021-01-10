@@ -15,7 +15,7 @@ public interface IPolicyService {
 
 	Policy updatePolicy(String token, Long policyId, PolicyDTO policyDTO);
 
-	void deletePolicy(String token, Long policyId);
+	boolean deletePolicy(String token, Long policyId);
 
 	List<Policy> getAllPoliciesByUserId(String token);
 

@@ -77,20 +77,4 @@ public class PolicyController {
 				"Deleted policy with id:" + policyId);
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
 	}
-
-	@ApiOperation("To get policies of user")
-	@GetMapping("/policy/user")
-	public ResponseEntity<ResponseDTO> getPoliciesByUserId(@RequestHeader String token) {
-		List<Policy> policies = policyService.getAllPoliciesByUserId(token);
-		ResponseDTO responseDTO = new ResponseDTO(200, "User policies", policies);
-		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
-	}
-
-	@ApiOperation("To register policy for a user")
-	@PostMapping("/policy/user/register/{policyNumber}")
-	public ResponseEntity<ResponseDTO> registerPolicy(@RequestHeader String token, @PathVariable Long policyNumber) {
-		Policy policy = policyService.registerPolicyByUserId(token, policyNumber);
-		ResponseDTO responseDTO = new ResponseDTO(200, "User policies", policy);
-		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
-	}
 }

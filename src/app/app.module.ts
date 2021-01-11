@@ -28,6 +28,9 @@ import { ViewPoliciesComponent } from './components/view-policies/view-policies.
 import {MatIconModule} from '@angular/material/icon';
 import { ReportGenerationComponent } from './components/report-generation/report-generation.component';
 import { CreatePolicyComponent } from './components/create-policy/create-policy.component';
+import { RegisterPolicyComponent } from './components/register-policy/register-policy.component';
+import { ViewClaimsComponent } from './components/view-claims/view-claims.component';
+import { AccountNumberComponent } from './components/account-number/account-number.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,9 @@ import { CreatePolicyComponent } from './components/create-policy/create-policy.
     ViewPoliciesComponent,
     ReportGenerationComponent,
     CreatePolicyComponent,
+    RegisterPolicyComponent,
+    ViewClaimsComponent,
+    AccountNumberComponent,
   ],
   imports: [
     BrowserModule,

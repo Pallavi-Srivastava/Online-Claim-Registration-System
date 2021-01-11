@@ -1,0 +1,19 @@
+<div class="form-content">
+    <form class="form" action="#" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <div class="form-head">
+            <div class="form-head-text">Enter the details</div>
+        </div>
+        <div class="row-content">
+            <label class="label label-info" for="userName">Account Number</label>
+            <input class="input" type="text" id="userName" autocomplete="false" name="userName" required [(ngModel)]="userObj.userName" [ngModelOptions]="{standalone: true}">
+        </div>
+
+        <div class="buttonParent">
+            <a href="./" class="resetButton button cancelButton">Cancel</a>
+            <div class="submit-reset">
+                <button type="submit" class="button submitButton" id="submitButton">Add</button>
+                <button type="reset" class="resetButton button">Reset</button>
+            </div>
+        </div>
+    </form>
+</div>

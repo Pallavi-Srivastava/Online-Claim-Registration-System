@@ -12,7 +12,9 @@ export class ClaimSideNavbarComponent implements OnInit {
   secondButton: string = "View Claim";
   thirdButton: string = "Report Generation";
   fourthButton: string = "New Profile Creation";
-
+  fifthButton: string = "View Available Policies";
+  sixthButton: string = "Create Police";
+  
 
   constructor(private router:Router) { }
 

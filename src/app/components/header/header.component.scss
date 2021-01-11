@@ -6,25 +6,12 @@
 
 .toolbar {
     background-color: #a2bbe7;
-    border: 1px solid #8DA9DB;
-    margin: 20px 5px 20px 5px;
+    border: 1px solid #8da9db;
+    margin: 20px;
     color: white;
+    opacity: 1;
 }
 
 .span {
     margin: auto;
-    font: 28px/16px Roboto;
-}
-
-.side-button {
-    padding: 10px;
-    background-color: transparent;
-    color: white;
-    border: 0px solid grey;
-    border-radius: 5px;
-    font: 21px/16px Roboto;
-}
-
-.side-button:hover {
-    background-color: #518cf3;
 }

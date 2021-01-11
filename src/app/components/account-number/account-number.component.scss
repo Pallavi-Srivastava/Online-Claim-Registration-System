@@ -1,0 +1,149 @@
+// .form-content {
+//   min-height: calc(100% -60px);
+//     background-color: #f7f7f7;
+//   display: flex;
+//     justify-content: center;
+//     align-items: center;
+//   border: 0px solid rgb(239, 243, 239);
+// }
+
+.form {
+  margin: 20px 50px;
+  width: 75%;
+  padding: 14px 20px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border: 1px solid #070707;
+  opacity: 1;
+}
+
+.form-head {
+  font: normal normal bold 22px/27px Roboto;
+  letter-spacing: 0px;
+  color: #0b0c0c;
+  opacity: 1;
+  padding-bottom: 20px;
+  margin-left: 30px;
+}
+
+.row-content {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
+  align-items: center;
+  border: 0px solid rgb(234, 243, 234);
+}
+
+.label {
+  min-width: 140px;
+  margin-left: 40px;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+.label-info {
+  font-size: 16px;
+  color: hsl(206, 100%, 1%);
+  opacity: 1;
+  background-color: #ccd6e6;
+  border: 1px solid black;
+  border-radius: 0%;
+}
+
+.input {
+  width: 60%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  margin-left: 20px;
+}
+
+select {
+  width: 60%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  font: normal normal normal 16px Roboto;
+  letter-spacing: 0px;
+  color: #42515f;
+  background-color: transparent;
+  margin-left: 20px;
+}
+
+.buttonParent {
+  display: flex;
+  margin: 20px 0px 10px 40px;
+  justify-content: space-between;
+}
+
+.button {
+  font-size: 20px;
+  font-family: Roboto;
+  letter-spacing: 0px;
+  color: black;
+  opacity: 1;
+  background: transparent;
+  border: none;
+  font-weight: 40%;
+  min-width: 140px;
+  padding: 7px 7px;
+  cursor: pointer;
+}
+
+.cancelButton {
+  text-decoration: none;
+  text-align: center;
+  background-color: #a8c3db;
+  border: 1px solid rgb(5, 127, 209);
+}
+
+.submitButton {
+  border: none;
+  border: 1px solid rgb(5, 127, 209);
+  margin-right: 30px;
+  background-color: #a8c3db;
+}
+
+.resetButton {
+  text-decoration: none;
+  text-align: center;
+  background-color: #a8c3db;
+  margin-right: 105px;
+  border: 1px solid rgb(5, 127, 209);
+}
+
+.button:hover,
+.cancelButton:hover {
+  background-color: #518cf3;
+}
+
+.text-error {
+  font-size: 12px;
+  font-style: italic;
+  color: red;
+  margin-left: 139px;
+  position: relative;
+  bottom: 30px;
+}
+
+@media only screen and (max-width: 960px) {
+  .cancelButton {
+    margin-left: 0px;
+  }
+  .form {
+    width: 85%;
+    padding: 44px 20px;
+  }
+}
+
+@media only screen and (max-width: 690px) {
+  .row-content {
+    display: block;
+  }
+  .text-error {
+    margin-left: 0px;
+  }
+}

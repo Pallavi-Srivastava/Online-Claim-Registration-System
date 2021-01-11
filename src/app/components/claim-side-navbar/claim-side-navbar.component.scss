@@ -1,16 +1,15 @@
-@import '../../theme.scss';
+@import "../../theme.scss";
 
 .side-nav-bar {
-    width: $side-nav-width;
-    margin: $side-nav-margin;
-    border: $side-nav-border;
-    padding: $side-nav-padding;
+  width: $side-nav-width;
+  margin: $side-nav-margin;
+  border: $side-nav-border;
+  padding: $side-nav-padding;
 }
 
 .side-nav-text {
-    font-weight: $side-nav-text-weight;
-    font-size: $side-nav-text-size;
-    margin-bottom: $side-nav-text-mrg-btm;
-    margin-top: $side-nav-text-mrg-top;
+  font-weight: $side-nav-text-weight;
+  font-size: $side-nav-text-size;
+  margin-bottom: $side-nav-text-mrg-btm;
+  margin-top: $side-nav-text-mrg-top;
 }
-

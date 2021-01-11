@@ -39,15 +39,15 @@ public class ClaimController {
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
 	}
 
-//	@ApiOperation("To View Claim By Id")
-//	@GetMapping("/claim/viewbyid/{policyNumber}")
-//	public ResponseEntity<ResponseDTO> viewClaimById(@RequestHeader String token,
-//			@PathVariable("policyNumber") long policyNumber) {
-////		List<Claim> claim = claimService.viewClaim(token, policyNumber);
-//		ResponseDTO responseDTO = new ResponseDTO(200, "List of cliams ", claim);
-//		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
-//	}
-//
+	@ApiOperation("To View Claim By Id")
+	@GetMapping("/claim/get/{claimNumber}")
+	public ResponseEntity<ResponseDTO> viewClaimById(@RequestHeader String token,
+													@PathVariable("claimNumber") Long claimNumber) {
+		Claim claim = claimService.viewClaim(token, claimNumber);
+		ResponseDTO responseDTO = new ResponseDTO(200, "View claim by claim number is successfull", claim);
+		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+	}
+
 //	@ApiOperation("To View All Claim")
 //	@GetMapping("/claims")
 //	public ResponseEntity<ResponseDTO> viewClaim(@RequestHeader String token) {

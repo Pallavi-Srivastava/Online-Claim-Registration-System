@@ -44,4 +44,10 @@ public class OnlineClaimExceptionHandler {
         ResponseDTO responseDTO = new ResponseDTO(400, message,exception.getMessage());
         return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.BAD_REQUEST);
     }
+    
+    @ExceptionHandler(ClaimException.class)
+    public ResponseEntity<ResponseDTO> handleClaimExceptions(ClaimException exception){
+        ResponseDTO responseDTO = new ResponseDTO(400, message,exception.getMessage());
+        return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.BAD_REQUEST);
+    }
 }

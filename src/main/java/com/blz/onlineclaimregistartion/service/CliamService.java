@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.blz.onlineclaimregistartion.dto.ClaimDTO;
+import com.blz.onlineclaimregistartion.exceptions.ClaimException;
 import com.blz.onlineclaimregistartion.exceptions.UserPolicyException;
 import com.blz.onlineclaimregistartion.model.Claim;
 import com.blz.onlineclaimregistartion.model.Policy;
@@ -44,8 +45,10 @@ public class CliamService implements IClaimService {
 	}
 
 	@Override
-	public List<Claim> viewClaim(String token, Long policyNumber) {
-		return null;
+	public Claim viewClaim(String token, Long claimNumber) {
+		Long userId = JsonWebToken.decodeToken(token);
+		return claimRepository.findById(claimNumber)
+									.orElseThrow(() -> new ClaimException("Claim with " + claimNumber + " id doesn't exist"));
 	}
 
 	@Override

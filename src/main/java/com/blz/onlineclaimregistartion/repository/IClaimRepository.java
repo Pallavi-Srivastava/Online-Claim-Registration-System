@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.blz.onlineclaimregistartion.model.Claim;
 
-public interface IClaimRepository extends JpaRepository<Claim, Integer> {
+public interface IClaimRepository extends JpaRepository<Claim, Long> {
 
 //	@Query(value = "SELECT * FROM claim where policy_id_fk=:policyId", nativeQuery = true)
 //	List<Claim> findClaimById(long policyId);

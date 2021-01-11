@@ -9,15 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -31,31 +28,31 @@ public class Claim {
 	@Column(name = "claim_number")
 	private long claimNumber;
 
-	@Column(name = "claim_resion")
+	@Column(name = "claim_reason")
 	private String claimReason;
 
 	@Column(name = "street")
-	private String accidentLocationStreet;
+	private String street;
 
 	@Column(name = "city")
-	private String accidentCity;
+	private String city;
 
 	@Column(name = "state")
-	private String accidentState;
+	private String state;
 
-	@Column(name = "zip")
-	private String accidentZip;
+	@Column(name = "zipcode")
+	private String zipcode;
 
 	@Column(name = "claim_type")
 	private String claimType;
 
-	@JsonIgnore
-	@ManyToOne(targetEntity = Policy.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "policy_id_fk", referencedColumnName = "policy_id")
-	private Policy policy;
+	@OneToOne(targetEntity = UserPolicy.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "userPolicyId", referencedColumnName = "user_policy_id", nullable = false, updatable = false)
+	private UserPolicy userPolicy;
 
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "create_stamp")
 	private Date createStamp;
+	
 }

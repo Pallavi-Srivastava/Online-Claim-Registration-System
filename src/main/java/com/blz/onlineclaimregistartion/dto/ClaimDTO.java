@@ -12,16 +12,16 @@ public class ClaimDTO {
 	private String claimReason;
 
 	@NotNull(message = "Accident Location Street cannot be null")
-	private String accidentLocationStreet;
+	private String street;
 
 	@NotEmpty(message = "City cannot be null ")
-	private String accidentCity;
+	private String city;
 
 	@NotNull(message = "State cannot be null ")
-	private String accidentState;
+	private String state;
 
 	@NotNull(message = "Zip cannot be null ")
-	private String accidentZip;
+	private String zipcode;
 
 	@NotNull(message = "Claim Type cannot be null ")
 	private String claimType;

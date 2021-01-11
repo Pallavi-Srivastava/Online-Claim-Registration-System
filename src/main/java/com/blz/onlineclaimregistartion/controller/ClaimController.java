@@ -30,29 +30,29 @@ public class ClaimController {
 	@Autowired
 	private IClaimService claimService;
 
-	@ApiOperation("To Create Claim")
-	@PostMapping("/claim/create/{policyNumber}")
-	public ResponseEntity<ResponseDTO> claim(@Valid @RequestBody ClaimDTO claimDTO,
-			@PathVariable("policyNumber") long policyNumber, @RequestHeader String token) {
-		Claim claim = claimService.createClaim(claimDTO, token, policyNumber);
-		ResponseDTO responseDTO = new ResponseDTO(200, "Claim Created Sucessfull", claim);
-		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
-	}
-
-	@ApiOperation("To View Claim By Id")
-	@GetMapping("/claim/viewbyid/{policyNumber}")
-	public ResponseEntity<ResponseDTO> viewClaimById(@RequestHeader String token,
-			@PathVariable("policyNumber") long policyNumber) {
-		List<Claim> claim = claimService.viewClaim(token, policyNumber);
-		ResponseDTO responseDTO = new ResponseDTO(200, "List of cliams ", claim);
-		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
-	}
-
-	@ApiOperation("To View All Claim")
-	@GetMapping("/claims")
-	public ResponseEntity<ResponseDTO> viewClaim(@RequestHeader String token) {
-		List<Claim> claim = claimService.viewAllClaim(token);
-		ResponseDTO responseDTO = new ResponseDTO(200, "List of cliams ", claim);
-		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
-	}
+//	@ApiOperation("To Create Claim")
+//	@PostMapping("/claim/create/{policyNumber}")
+//	public ResponseEntity<ResponseDTO> claim(@Valid @RequestBody ClaimDTO claimDTO,
+//			@PathVariable("policyNumber") long policyNumber, @RequestHeader String token) {
+//		Claim claim = claimService.createClaim(claimDTO, token, policyNumber);
+//		ResponseDTO responseDTO = new ResponseDTO(200, "Claim Created Sucessfull", claim);
+//		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+//	}
+//
+//	@ApiOperation("To View Claim By Id")
+//	@GetMapping("/claim/viewbyid/{policyNumber}")
+//	public ResponseEntity<ResponseDTO> viewClaimById(@RequestHeader String token,
+//			@PathVariable("policyNumber") long policyNumber) {
+////		List<Claim> claim = claimService.viewClaim(token, policyNumber);
+//		ResponseDTO responseDTO = new ResponseDTO(200, "List of cliams ", claim);
+//		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+//	}
+//
+//	@ApiOperation("To View All Claim")
+//	@GetMapping("/claims")
+//	public ResponseEntity<ResponseDTO> viewClaim(@RequestHeader String token) {
+//		List<Claim> claim = claimService.viewAllClaim(token);
+//		ResponseDTO responseDTO = new ResponseDTO(200, "List of cliams ", claim);
+//		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+//	}
 }

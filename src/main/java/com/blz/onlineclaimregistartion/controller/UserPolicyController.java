@@ -1,8 +1,8 @@
 package com.blz.onlineclaimregistartion.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.blz.onlineclaimregistartion.dto.ResponseDTO;
 import com.blz.onlineclaimregistartion.model.Policy;
+import com.blz.onlineclaimregistartion.service.IUserPolicyService;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -22,19 +23,28 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/onlineinsurancesystem")
 @CrossOrigin(allowedHeaders = "*", origins = "*")
 public class UserPolicyController {
+	
+	@Autowired
+	private IUserPolicyService userPolicyService;
 
 	@ApiOperation("To register policy for a user")
 	@PostMapping("/userpolicy/register/{policyId}")
 	public ResponseEntity<ResponseDTO> registerPolicy(@RequestHeader String token, @PathVariable("policyId") Long policyId) {
-		ResponseDTO responseDTO = new ResponseDTO(200, "Policy registered successfully", policyId);
+		Policy policy = userPolicyService.registerPolicy(token, policyId);
+		if(policy != null) {
+			ResponseDTO responseDTO = new ResponseDTO(200, "Successfully registered for policy", policyId);
+			return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+		}
+		ResponseDTO responseDTO = new ResponseDTO(400, "Faild to register for policy", policyId);
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
 	}
 	
 	@ApiOperation("To get policies of user")
 	@GetMapping("/userpolicy/get")
 	public ResponseEntity<ResponseDTO> getPoliciesByUserId(@RequestHeader String token) {
-		List<Policy> policies = new ArrayList<>();
-		ResponseDTO responseDTO = new ResponseDTO(200, "User policies", policies);
+		List<String> userInsuredPolicies = userPolicyService.getRegistredPolicies(token);
+//		List<Object> userInsuredPolicies = userPolicyService.getRegistredPolicies(token);
+		ResponseDTO responseDTO = new ResponseDTO(200, "User policies", userInsuredPolicies);
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
 	}
 

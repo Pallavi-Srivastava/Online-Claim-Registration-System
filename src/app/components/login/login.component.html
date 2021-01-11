@@ -1,28 +1,31 @@
-<div fxLayoutAlign="center">
-    <form class="form" [formGroup]="signInForm" (ngSubmit)="signIn(signInForm.value)">
-        <div>
-            <div class="form-head" fxLayoutAlign="center">
-                <span>Online Claim Insurance</span>
+<div>
+    <div class="example-container">
+        <mat-toolbar class="toolbar">
+            <mat-toolbar-row>
+                <span class="span">Online Insurance Claim Registration System</span>
+            </mat-toolbar-row>
+        </mat-toolbar>
+    </div>
+    <div class="form-content">
+        <form class="form" action="#" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="row-content">
+                <label class="label label-info" for="userName">Login-ID</label>
+                <input class="input" (input)="onUserNameChange()" type="text" id="userName" name="userName" [(ngModel)]="userObj.userName" [ngModelOptions]="{standalone: true}" required>
+                <span class="text-error">{{ this.userNameError }}</span>
             </div>
-            <div class="title-head" fxLayoutAlign="center">Sign in</div>
-            <div class="title-head account" fxLayoutAlign="center"></div>
-            <div>
-                <mat-form-field appearance="outline" class="textbox">
-                    <mat-label>Username</mat-label>
-                    <input matInput type="text" formControlName="username" id="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && signInForm.controls.username.errors }">
-                </mat-form-field>
+
+            <div class="row-content ">
+                <label class="label label-info" for="password">Password</label>
+                <input class="input " (input)="onPasswordChange()" type="text" id="password" name="password" [(ngModel)]="userObj.password" [ngModelOptions]="{standalone: true}" required>
+                <span class="text-error">{{ this.passwordError }}</span>
             </div>
-            <div>
-                <mat-form-field appearance="outline" class="textbox">
-                    <mat-label>Password</mat-label>
-                    <input matInput type="password" formControlName="password" id="password" [ngClass]="{ 'is-invalid': submitted && signInForm.controls.password.errors }">
-                    <mat-hint><a routerLink="../forgotPassword" class="link-text" style="color: #1A73E8;">Forgot password?</a></mat-hint>
-                </mat-form-field>
+
+            <div class="buttonParent">
+                <a routerLink="../fogot-password" class="link-text">Forgot password</a>
+                <div class="submit-reset">
+                    <button class="submitButton button" type="submit " id="submit ">{{'Login'}}</button>
+                </div>
             </div>
-            <div class="button-div" fxLayoutAlign="space-between center">
-                <a routerLink="../signUp" class="link-text">Create Account</a>
-                <input class="next-button" type="submit" value="Next" [style.fontSize.px]="11">
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>

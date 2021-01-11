@@ -26,6 +26,8 @@ import { ProfileCreationComponent } from './components/profile-creation/profile-
 import { ViewPoliciesComponent } from './components/view-policies/view-policies.component';
 import {MatIconModule} from '@angular/material/icon';
 import { ReportGenerationComponent } from './components/report-generation/report-generation.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { ReportGenerationComponent } from './components/report-generation/report
     PolicySideNavbarComponent,
     ProfileCreationComponent,
     ViewPoliciesComponent,
-    ReportGenerationComponent
+    ReportGenerationComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

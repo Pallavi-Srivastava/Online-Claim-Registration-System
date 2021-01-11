@@ -1,32 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { User } from '../models/user';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ResetPassword } from '../models/reset-password';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private getUrl: string = "http://localhost:7039/User";
+  
+  private getUrl: string = "http://localhost:7088/onlineinsurancesystem";
 
-  constructor(private http: HttpClient) { }
+  constructor(private _httpClient: HttpClient) { }
 
-  getUserList(){
-    return this.http.get(`${this.getUrl}/get`);
+  addUserRecord(user: User): Observable<User> {
+    return this._httpClient.post<User>(`${this.getUrl}/user/login`, user);
   }
 
-  getUser(id: any){
-    return this.http.get(`${this.getUrl}/get/` + id);
+  forgotPassword(user: User): Observable<User> {
+    return this._httpClient.post<User>(`${this.getUrl}/user/forgot`, user);
   }
 
-  createUser(data: any){
-    return this.http.post(`${this.getUrl}/create`,data);
+  resetPassword(user: ResetPassword,data:any): Observable<any> {
+    return this._httpClient.post<any>(`${this.getUrl}/user/reset/${data}`,user);
   }
 
-  updateUser(data: any){
-    return this.http.put(`${this.getUrl}/update/`,data);
-  }
-
-  deleteUser(id: any){
-    return this.http.delete(`${this.getUrl}/delete/` + id);
+    logOut(): Observable<any> {
+    return this._httpClient.get<any>(`${this.getUrl}/user/logout`);
   }
 }

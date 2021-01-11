@@ -12,32 +12,60 @@ import { element } from 'protractor';
 })
 export class LoginComponent implements OnInit {
 
-  signInForm!: FormGroup;
-  submitted = false;
+  userObj: User = new User();
+  validation:boolean;
+  loginForm: any;
+  userId: any;
+  isUpdate = false;
+  data:any;
+  userNameError: string="";
+  passwordError: string="";
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private route: Router,) {}
+  constructor(private formBuilder: FormBuilder, private userService: UserService,
+    private router: Router, private activatedRoute: ActivatedRoute) {
+    this. loginForm= this.formBuilder.group({
+      userName: ['', Validators.required],
+      password: ['', Validators.required],
+      id: ['']
+    });
+  }
 
   ngOnInit() {
-    this.signInForm = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.minLength(8)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      }, {});
-    }
-
-  signIn=(signInFormValue: { username: any; password: any; })=> {
-    this.submitted = true;
-
-    if (this.signInForm.invalid) return;
-      
-    let user={
-      username: signInFormValue.username,
-      password: signInFormValue.password,
-    }
-        
-    // this.userService.loginUser(user).subscribe((response: any) => {
-    //   console.log("Successful sign in: ", response);
-    //   localStorage.setItem("token", response.id);
-    //   this.route.navigate(['/dashboard']);
-    // });
   }
+
+  onUserNameChange() {
+    let userNameRegex = RegExp('^(?=[a-zA-Z0-9.@_]{6,20}$)(?!.*[_.]{2})[^_.].*[^_.]$');
+    if (userNameRegex.test(this.userObj.userName)){
+        this.userNameError = "";
+        this.validation=true;
+    } else {
+        this.userNameError = 'Invalid Userame';
+        this.validation=false;
+    }
+  }
+
+  onPasswordChange() {
+    const passwordRegex = RegExp('^(?=.*[@#$%^&+=])(?=.*[0-9])(?=.*[A-Z]).{8,}$');
+    if (passwordRegex.test(this.userObj.password)){
+        this.passwordError = "";
+        this.validation=true;
+    } else{
+        this.passwordError = 'Invalid Password.';
+        this.validation=false;
+    }
+  }
+
+  onSubmit() {
+    if(!this.validation){
+      console.log(this.validation);//false
+      return ;
+    }
+        console.log(this.validation);//true
+        this.userService.addUserRecord(this.userObj).subscribe(response => {
+        console.log("response is ", response);
+        localStorage.setItem("token", JSON.stringify(response.data));
+        // this.router.navigateByUrl('/header');
+      }, err => {
+      })
+    }
 }

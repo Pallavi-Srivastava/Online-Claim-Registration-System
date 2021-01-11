@@ -7,18 +7,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.blz.onlineclaimregistartion.dto.RegistrationDTO;
+
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Entity
 @Table(name = "user_role", uniqueConstraints = { @UniqueConstraint(columnNames = "user_name"),
 		@UniqueConstraint(columnNames = "email") })
 @Data
+@NoArgsConstructor
 public class User {
 
 	@Id
@@ -33,12 +40,15 @@ public class User {
 	private String password;
 
 	@Column(name = "role_code")
-	private String roleCode;
+	public String roleCode;
 
 	@Email
 	@Column(name = "email")
 	private String email;// To reset/forget password
-
+	
+	@Column(name= "created_by")
+	private long createdBy;  
+	
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "create_stamp")
@@ -54,5 +64,14 @@ public class User {
 
 	@Column(name = "inactive_user")
 	private boolean inactiveUser;// It's used to identify user state active/inActive
-
+	
+	public User(RegistrationDTO registrationDTO, long userId) {
+		this.userName = registrationDTO.userName;
+		this.password = registrationDTO.password;
+		this.roleCode = registrationDTO.roleCode;
+		this.email = registrationDTO.email;
+		this.createdBy=userId;
+		
+	}
 }
+

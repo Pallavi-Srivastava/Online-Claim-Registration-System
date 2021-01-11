@@ -25,6 +25,7 @@ public class RegistrationDTO {
 
 	@NotEmpty(message = "Email can't be null ")
 	@Pattern(regexp = "^([a-z0-9]+[-._+]?[a-z0-9]+)+@[a-z0-9-]+.[a-z]{2,3}.[a-z]{2,3}$", message = "Invalid Email")
-	private String email;
+	public String email;
+	
 
 }

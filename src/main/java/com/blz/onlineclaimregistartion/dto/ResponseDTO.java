@@ -7,13 +7,13 @@ import lombok.Data;
 @AllArgsConstructor
 public class ResponseDTO {
 
-	private int status;
 	private String message;
 	private Object data;
 	private int statusCode;
-
-	public ResponseDTO(int status, String message) {
-		this.status = status;
+//	private String roleCode;
+	
+	public ResponseDTO(int statusCode, String message) {
+		this.statusCode = statusCode;
 		this.message = message;
 	}
 
@@ -22,4 +22,11 @@ public class ResponseDTO {
 		this.data = data;
 		this.statusCode = statusCode;
 	}
+	
+//	public ResponseDTO(int statusCode, String message, Object data,String roleCode) {
+//		this.message = message;
+//		this.data = data;
+//		this.statusCode = statusCode;
+//		this.roleCode=roleCode;
+//	}
 }

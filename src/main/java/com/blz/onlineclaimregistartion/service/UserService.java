@@ -12,23 +12,16 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-
 import com.blz.onlineclaimregistartion.dto.ForgotPasswordDTO;
 import com.blz.onlineclaimregistartion.dto.RegistrationDTO;
 import com.blz.onlineclaimregistartion.dto.ResetPasswordDTO;
-import com.blz.onlineclaimregistartion.dto.ResponseDTO;
 import com.blz.onlineclaimregistartion.dto.UserDTO;
 import com.blz.onlineclaimregistartion.exceptions.UserException;
 import com.blz.onlineclaimregistartion.model.User;
 import com.blz.onlineclaimregistartion.repository.UserRepository;
 import com.blz.onlineclaimregistartion.utility.JsonWebToken;
-
-import io.swagger.annotations.ApiOperation;
 
 @Service
 public class UserService implements IUserService {
@@ -36,6 +29,8 @@ public class UserService implements IUserService {
 	ForgotPasswordDTO forgotPasswordDTO;
 
 	User user;
+	
+	UserDTO userDTO;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -63,7 +58,6 @@ public class UserService implements IUserService {
 
 		user = userRepository.findByName(userDTO.getUserName());
 		List<String> response=new ArrayList();
-	
 		String userRole=user.getRoleCode();
 		
 		if (user == null) {
@@ -84,11 +78,10 @@ public class UserService implements IUserService {
 		}
 		return null;
 	}
+	
 
 	@Override
 	public User forgotPassword(@Valid ForgotPasswordDTO forgotPasswordDTO) {
-
-		String url = "http://localhost:4200/reset-password";
 
 		user = userRepository.findByEmail(forgotPasswordDTO.getEmail());
 		if (user == null) {
@@ -96,6 +89,8 @@ public class UserService implements IUserService {
 		}
 		System.out.println(user.getUserId());
 		String token = JsonWebToken.createToken(user.getUserId());
+		System.out.println(token);
+		String url = "http://localhost:4200/reset-password/token";
 
 		final String username = "insuranceclaimsystem@gmail.com";
 		final String password = "@Reset2020";

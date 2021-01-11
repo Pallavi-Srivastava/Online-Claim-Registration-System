@@ -10,7 +10,7 @@ public class ResponseDTO {
 	private String message;
 	private Object data;
 	private int statusCode;
-	private String roleCode;
+//	private String roleCode;
 	
 	public ResponseDTO(int statusCode, String message) {
 		this.statusCode = statusCode;
@@ -23,10 +23,10 @@ public class ResponseDTO {
 		this.statusCode = statusCode;
 	}
 	
-	public ResponseDTO(int statusCode, String message, Object data,String roleCode) {
-		this.message = message;
-		this.data = data;
-		this.statusCode = statusCode;
-		this.roleCode=roleCode;
-	}
+//	public ResponseDTO(int statusCode, String message, Object data,String roleCode) {
+//		this.message = message;
+//		this.data = data;
+//		this.statusCode = statusCode;
+//		this.roleCode=roleCode;
+//	}
 }

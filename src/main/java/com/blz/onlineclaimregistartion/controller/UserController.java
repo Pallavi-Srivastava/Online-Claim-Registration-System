@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.blz.onlineclaimregistartion.service.IUserService;
 import com.blz.onlineclaimregistartion.dto.ForgotPasswordDTO;
+import com.blz.onlineclaimregistartion.dto.LogInResponseDTO;
 import com.blz.onlineclaimregistartion.dto.RegistrationDTO;
 import com.blz.onlineclaimregistartion.dto.ResetPasswordDTO;
 import com.blz.onlineclaimregistartion.dto.ResponseDTO;
@@ -39,18 +41,17 @@ public class UserController {
 			return new ResponseEntity<>(new ResponseDTO(200, "Your account has been successfully created", user),
 					HttpStatus.OK);
 	        }
-		 return new ResponseEntity<>(new ResponseDTO(400,"Prmission Denied"), HttpStatus.NOT_ACCEPTABLE);
+		 return new ResponseEntity<>(new ResponseDTO(400,"Account creation failed"), HttpStatus.NOT_ACCEPTABLE);
 	}
 
 	@ApiOperation("For login")
 	@PostMapping("/user/login")
-	public ResponseEntity<ResponseDTO> login(@Valid @RequestBody UserDTO userDTO) {
-		System.out.println("Login");
+	public ResponseEntity<LogInResponseDTO> login(@Valid @RequestBody UserDTO userDTO) {
 		List<String> data = userService.login(userDTO);
 		 if(data!=null) {
-			 return new ResponseEntity<>(new ResponseDTO(200,"User login successful", data.get(0),data.get(1)), HttpStatus.OK);
+			 return new ResponseEntity<>(new LogInResponseDTO(200,"User login successful", data.get(0),data.get(1)), HttpStatus.OK);
 	        }
-		 return new ResponseEntity<>(new ResponseDTO(400,"User login failed"), HttpStatus.NOT_ACCEPTABLE);
+		 return new ResponseEntity<>(new LogInResponseDTO(400,"User login failed"), HttpStatus.NOT_ACCEPTABLE);
 	}
 
 	@ApiOperation("For passwordForgot")
@@ -62,9 +63,9 @@ public class UserController {
 	}
 
 	@ApiOperation("For passwordReset")
-	@PostMapping("/user/reset")
+	@PostMapping("/user/reset/{token}")
 	public ResponseEntity<ResponseDTO> reset(@Valid @RequestBody ResetPasswordDTO resetPasswordDTO,
-			@RequestHeader String token) {
+			@PathVariable("token") String token) {
 		System.out.println("Reset");
 		User user = userService.resetPassword(resetPasswordDTO, token);
 		return new ResponseEntity<>(new ResponseDTO(200, "Successfully change the password", user), HttpStatus.OK);

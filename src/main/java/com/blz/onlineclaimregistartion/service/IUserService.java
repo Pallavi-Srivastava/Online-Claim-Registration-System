@@ -12,11 +12,10 @@ import com.blz.onlineclaimregistartion.model.User;
 public interface IUserService {
 
 	List<String> login(@Valid UserDTO userDTO);
-
+	
 	User register(@Valid RegistrationDTO registrationDTO,String token);
 
 	User forgotPassword(@Valid ForgotPasswordDTO forgotPasswordDTO);
 
-	User resetPassword(@Valid ResetPasswordDTO resetPasswordDTO, String token);
-	
+	User resetPassword(@Valid ResetPasswordDTO resetPasswordDTO, String token);	
 }

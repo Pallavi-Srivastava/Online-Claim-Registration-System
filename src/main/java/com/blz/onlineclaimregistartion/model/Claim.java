@@ -1,6 +1,6 @@
 package com.blz.onlineclaimregistartion.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,22 +11,25 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.blz.onlineclaimregistartion.dto.ClaimDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "claim")
+@NoArgsConstructor
 public class Claim {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "claim_number")
-	private long claimNumber;
+	private Long claimNumber;
 
 	@Column(name = "claim_reason")
 	private String claimReason;
@@ -47,12 +50,22 @@ public class Claim {
 	private String claimType;
 
 	@OneToOne(targetEntity = UserPolicy.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "userPolicyId", referencedColumnName = "user_policy_id", nullable = false, updatable = false)
+	@JoinColumn(name = "fk_user_policyId", referencedColumnName = "user_policy_id", nullable = false, updatable = false)
 	private UserPolicy userPolicy;
 
+	@JsonIgnore
+	@Column(nullable = false, updatable = false)
 	@CreationTimestamp
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "create_stamp")
-	private Date createStamp;
-	
+	private LocalDateTime createdDate = LocalDateTime.now();
+
+	public Claim(ClaimDTO claimDTO, UserPolicy userPolicy) {
+		this.claimReason = claimDTO.getClaimReason();
+		this.street = claimDTO.getStreet();
+		this.city = claimDTO.getCity();
+		this.state = claimDTO.getState();
+		this.zipcode = claimDTO.getZipcode();
+		this.claimType = claimDTO.getClaimType();
+		this.userPolicy = userPolicy;
+	}
+		
 }

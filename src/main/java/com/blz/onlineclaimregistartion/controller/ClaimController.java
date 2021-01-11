@@ -30,15 +30,15 @@ public class ClaimController {
 	@Autowired
 	private IClaimService claimService;
 
-//	@ApiOperation("To Create Claim")
-//	@PostMapping("/claim/create/{policyNumber}")
-//	public ResponseEntity<ResponseDTO> claim(@Valid @RequestBody ClaimDTO claimDTO,
-//			@PathVariable("policyNumber") long policyNumber, @RequestHeader String token) {
-//		Claim claim = claimService.createClaim(claimDTO, token, policyNumber);
-//		ResponseDTO responseDTO = new ResponseDTO(200, "Claim Created Sucessfull", claim);
-//		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
-//	}
-//
+	@ApiOperation("To make a claim")
+	@PostMapping("/claim/create/{userPolicyNumber}")
+	public ResponseEntity<ResponseDTO> createClaim( @RequestHeader String token,
+							@PathVariable("userPolicyNumber") Long userPolicyNumber, @Valid @RequestBody ClaimDTO claimDTO) {
+		Claim claim = claimService.createClaim(token, userPolicyNumber, claimDTO);
+		ResponseDTO responseDTO = new ResponseDTO(200, "Claim Created Sucessfull", claim);
+		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+	}
+
 //	@ApiOperation("To View Claim By Id")
 //	@GetMapping("/claim/viewbyid/{policyNumber}")
 //	public ResponseEntity<ResponseDTO> viewClaimById(@RequestHeader String token,

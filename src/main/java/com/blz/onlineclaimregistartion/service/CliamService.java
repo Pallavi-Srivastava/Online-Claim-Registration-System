@@ -2,17 +2,12 @@ package com.blz.onlineclaimregistartion.service;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.blz.onlineclaimregistartion.dto.ClaimDTO;
 import com.blz.onlineclaimregistartion.exceptions.ClaimException;
 import com.blz.onlineclaimregistartion.exceptions.UserPolicyException;
 import com.blz.onlineclaimregistartion.model.Claim;
-import com.blz.onlineclaimregistartion.model.Policy;
-import com.blz.onlineclaimregistartion.model.User;
 import com.blz.onlineclaimregistartion.model.UserPolicy;
 import com.blz.onlineclaimregistartion.repository.IClaimRepository;
 import com.blz.onlineclaimregistartion.repository.PolicyRepository;
@@ -28,9 +23,6 @@ public class CliamService implements IClaimService {
 
 	@Autowired
 	private UserRepository userRepository;
-
-	@Autowired
-	private PolicyRepository policyRepository;
 	
 	@Autowired
 	private UserPolicyRepository userPolicyRepository;
@@ -53,7 +45,8 @@ public class CliamService implements IClaimService {
 
 	@Override
 	public List<Claim> viewAllClaim(String token) {
-		return null;
+		Long userId = JsonWebToken.decodeToken(token);
+		return claimRepository.findAllClaimsByUserId(userId);
 	}
 
 }

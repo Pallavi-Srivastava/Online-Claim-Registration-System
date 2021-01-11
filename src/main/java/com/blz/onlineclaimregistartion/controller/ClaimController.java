@@ -48,11 +48,11 @@ public class ClaimController {
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
 	}
 
-//	@ApiOperation("To View All Claim")
-//	@GetMapping("/claims")
-//	public ResponseEntity<ResponseDTO> viewClaim(@RequestHeader String token) {
-//		List<Claim> claim = claimService.viewAllClaim(token);
-//		ResponseDTO responseDTO = new ResponseDTO(200, "List of cliams ", claim);
-//		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
-//	}
+	@ApiOperation("To View All Claim")
+	@GetMapping("/claim/get")
+	public ResponseEntity<ResponseDTO> viewClaim(@RequestHeader String token) {
+		List<Claim> claim = claimService.viewAllClaim(token);
+		ResponseDTO responseDTO = new ResponseDTO(200, "List of cliams ", claim);
+		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+	}
 }

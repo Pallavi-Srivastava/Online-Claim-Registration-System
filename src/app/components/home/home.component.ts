@@ -9,7 +9,12 @@ import { LocationStrategy } from '@angular/common';
 })
 export class HomeComponent implements OnInit {
 
+  roleCode:any;
+
   ngOnInit(): void {
+
+    this.roleCode=JSON.parse(localStorage.getItem("RoleCode"));
+
   }
 
 }

@@ -26,6 +26,11 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
+    // this.activatedRoute.snapshot.params.subscribe(data => 
+    //   {
+    //     console.log(data);
+    //   }
+    // )
   }
 
   onEmailChange() {

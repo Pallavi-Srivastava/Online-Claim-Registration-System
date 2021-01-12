@@ -14,7 +14,6 @@ export class ClaimSideNavbarComponent implements OnInit {
   fourthButton: string = "New Profile Creation";
   fifthButton: string = "View Available Policies";
   sixthButton: string = "Create Police";
-  
 
   constructor(private router:Router) { }
 

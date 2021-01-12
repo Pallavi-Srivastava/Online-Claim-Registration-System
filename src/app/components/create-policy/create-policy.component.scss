@@ -7,6 +7,8 @@
 // }
 
 .form {
+  display: flex;
+  flex-direction: column;
   margin: 20px 50px;
   width: 75%;
   padding: 14px 20px;
@@ -102,14 +104,13 @@ select {
   background-color: #518cf3;
 }
 
-.text-error,
-.date-error {
-  font-size: 12px;
+.error {
+  font-size: 15px;
   font-style: italic;
   color: red;
-  margin-left: 139px;
+  margin-left: 46px;
   position: relative;
-  bottom: 30px;
+  bottom: 10px;
 }
 
 @media only screen and (max-width: 960px) {

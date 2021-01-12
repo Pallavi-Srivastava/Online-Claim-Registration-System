@@ -1,6 +1,5 @@
 export class Policy {
 
-    policy_number:any;
-    policy_name:any;
+    policyName:any;
     premium:any;
 }

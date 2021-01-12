@@ -37,6 +37,6 @@ public interface UserPolicyRepository extends JpaRepository<UserPolicy, Long> {
 					+ "	FROM policy_details as pd\r\n"
 					+ "	LEFT JOIN user_policy as up\r\n"
 					+ "	ON up.fk_policy_id = policy_id;", nativeQuery = true)
-	List<Claim> findAllUserPoliciesByAdmin();
+	List<String> findAllUserPoliciesByAdmin();
 
 }

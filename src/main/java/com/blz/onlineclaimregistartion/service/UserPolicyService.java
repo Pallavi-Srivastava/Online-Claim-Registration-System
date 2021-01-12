@@ -52,8 +52,7 @@ public class UserPolicyService implements IUserPolicyService {
 		} else if (userRolecode.equals("agent")) {
 			return userPolicyRepository.findAllUserPoliciesByRoleCodeAgent(userId);
 		}
-//		return userPolicyRepository.findAllUserPoliciesByAdmin();
-		return null;
+		return userPolicyRepository.findAllUserPoliciesByAdmin();
 	}
 
 }

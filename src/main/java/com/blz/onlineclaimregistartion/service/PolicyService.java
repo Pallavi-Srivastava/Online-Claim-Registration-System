@@ -59,25 +59,24 @@ public class PolicyService implements IPolicyService {
 		Long userId = JsonWebToken.decodeToken(token);
 		User user = userRepository.findById(userId);
 		String userRolecode = user.getRoleCode();
-		if(userRolecode.equals("admin")) {
-				Policy policy = this.getPolicyById(token, policyId);
-				policy.updatePolicy(policyDTO, user);
-				return policyRepository.save(policy);
+		if(!userRolecode.equals("admin")) {
+			throw new UserException("User/Agent Cannot create the policy!!");
 		}
-		return null;
+		Policy policy = this.getPolicyById(token, policyId);
+		policy.updatePolicy(policyDTO, user);
+		return policyRepository.save(policy);
 	}
 
 	@Override
-	public boolean deletePolicy(String token, Long policyId) {
+	public void deletePolicy(String token, Long policyId) {
 		Long userId = JsonWebToken.decodeToken(token);
 		User user = userRepository.findById(userId);
 		String userRolecode = user.getRoleCode();
-		if(userRolecode.equals("admin")) {
-			Policy policy = this.getPolicyById(token, policyId);
-			policyRepository.deleteById(policyId);
-			return true;
+		if(!userRolecode.equals("admin")) {
+			throw new UserException("User/Agent Cannot create the policy!!");
 		}
-		return false;
+		Policy policy = this.getPolicyById(token, policyId);
+		policyRepository.deleteById(policyId);
 	}
 
 }

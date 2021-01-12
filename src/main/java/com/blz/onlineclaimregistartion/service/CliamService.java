@@ -8,9 +8,9 @@ import com.blz.onlineclaimregistartion.dto.ClaimDTO;
 import com.blz.onlineclaimregistartion.exceptions.ClaimException;
 import com.blz.onlineclaimregistartion.exceptions.UserPolicyException;
 import com.blz.onlineclaimregistartion.model.Claim;
+import com.blz.onlineclaimregistartion.model.User;
 import com.blz.onlineclaimregistartion.model.UserPolicy;
 import com.blz.onlineclaimregistartion.repository.IClaimRepository;
-import com.blz.onlineclaimregistartion.repository.PolicyRepository;
 import com.blz.onlineclaimregistartion.repository.UserPolicyRepository;
 import com.blz.onlineclaimregistartion.repository.UserRepository;
 import com.blz.onlineclaimregistartion.utility.JsonWebToken;
@@ -46,7 +46,14 @@ public class CliamService implements IClaimService {
 	@Override
 	public List<Claim> viewAllClaim(String token) {
 		Long userId = JsonWebToken.decodeToken(token);
-		return claimRepository.findAllClaimsByUserId(userId);
+		User user = userRepository.findById(userId);
+		String userRolecode = user.getRoleCode();
+		if (userRolecode.equals("user")) {
+			return claimRepository.findAllClaimsByUserId(userId);
+		} else if (userRolecode.equals("agent")) {
+			return claimRepository.findAllClaimsByRoleCodeAgent(userId);
+		}
+		return claimRepository.findAll();
 	}
 
 }

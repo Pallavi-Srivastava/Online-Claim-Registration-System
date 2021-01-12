@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.blz.onlineclaimregistartion.model.Claim;
 import com.blz.onlineclaimregistartion.model.UserPolicy;
 
 @Repository
@@ -36,5 +37,6 @@ public interface UserPolicyRepository extends JpaRepository<UserPolicy, Long> {
 					+ "	FROM policy_details as pd\r\n"
 					+ "	LEFT JOIN user_policy as up\r\n"
 					+ "	ON up.fk_policy_id = policy_id;", nativeQuery = true)
-	List<String> findAllUserPoliciesByAdmin();
+	List<Claim> findAllUserPoliciesByAdmin();
+
 }

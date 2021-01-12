@@ -6,12 +6,25 @@
 
 .toolbar {
     background-color: #a2bbe7;
-    border: 1px solid #8da9db;
-    margin: 20px;
+    border: 1px solid#042763;
+    margin: 17px;
     color: white;
     opacity: 1;
 }
 
 .span {
     margin: auto;
+    font: 28px/16px normal Roboto;
+    //   font: normal normal normal 25px/37px Montserrat;
+}
+
+.side-button {
+    background-color: #a2bbe7;
+    border: transparent;
+}
+
+.side-button:hover {
+    background-color: #518cf3;
+    border: 1px solid#042763;
+    border-radius: 3px;
 }

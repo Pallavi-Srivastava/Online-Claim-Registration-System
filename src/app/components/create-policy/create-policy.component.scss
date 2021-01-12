@@ -13,8 +13,7 @@
 .row-content {
     display: flex;
     flex-direction: row;
-    margin-bottom: 30px;
-    margin-top: 20px;
+    margin: 17px 0px 10px 0px;
     align-items: center;
     border: 0px solid rgb(232, 238, 232);
 }
@@ -60,8 +59,8 @@ select {
 
 .buttonParent {
     display: flex;
-    margin: auto;
-    justify-content: center;
+    justify-content: space-evenly;
+    margin: 15px 60px 10px 300px;
 }
 
 .button {
@@ -75,24 +74,24 @@ select {
     font-weight: 40%;
     min-width: 120px;
     padding: 7px 7px;
-    border: 1px solid rgb(5, 127, 209);
     cursor: pointer;
 }
 
-.cancelButton {
+.submitButton {
+    border: 1px solid rgb(5, 127, 209);
+    margin-right: 5px;
+    background-color: #a8c3db;
+}
+
+.resetButton {
     text-decoration: none;
     text-align: center;
     background-color: #a8c3db;
-}
-
-.submitButton {
-    border: none;
+    margin-left: 30px;
     border: 1px solid rgb(5, 127, 209);
-    background-color: #a8c3db;
 }
 
-.button:hover,
-.cancelButton:hover {
+.button:hover {
     background-color: #518cf3;
 }
 

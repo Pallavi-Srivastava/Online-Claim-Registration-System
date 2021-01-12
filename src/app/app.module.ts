@@ -33,6 +33,7 @@ import { CreatePolicyComponent } from './components/create-policy/create-policy.
 import { RegisterPolicyComponent } from './components/register-policy/register-policy.component';
 import { ViewClaimsComponent } from './components/view-claims/view-claims.component';
 import { AccountNumberComponent } from './components/account-number/account-number.component';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,7 @@ import { AccountNumberComponent } from './components/account-number/account-numb
     MatTableModule,
     MatIconModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -15,7 +15,10 @@ export class ProfileCreationComponent implements OnInit {
 
   profileForm: any;
   userId: any;
-  isUpdate = false;
+  validation:boolean;
+  userNameError: string="";
+  passwordError: string="";
+  emailError: string="";
   constructor(private formBuilder: FormBuilder, private userService: UserService,
     private router: Router, private activatedRoute: ActivatedRoute) {
     this. profileForm = this.formBuilder.group({
@@ -25,62 +28,58 @@ export class ProfileCreationComponent implements OnInit {
       roleCode: ['', Validators.required],
       id: ['']
     });
-
-    this.activatedRoute.params.subscribe(data => {
-      if (data && data.id) {
-        //for required  Validation
-       // this.getDataById(data.id)
-      }
-    })
-
   }
 
   ngOnInit() {
   }
 
-  getErrorMessage(control: FormControl, message: string) {
-    if (control.errors) {
-      if (control.errors.required) {
-        return message + ' is required';
-      }
-
-      if (control.errors.pattern || control.errors.whitespace) {
-        return 'Invalid ' + message.toLowerCase();
-      }
+  onUserNameChange() {
+    let userNameRegex = RegExp('^(?=[a-zA-Z0-9.@_]{6,20}$)(?!.*[_.]{2})[^_.].*[^_.]$');
+    if (userNameRegex.test(this.userObj.userName)){
+        this.userNameError = "";
+        this.validation=true;
+    } else {
+        this.userNameError = 'Invalid Login-Id';
+        this.validation=false;
     }
   }
 
-  private markFormGroupTouched(formGroup: FormGroup) {
-    (<any>Object).values(formGroup.controls).forEach(control => {
-      control.markAsTouched();
-      if (control.controls) {
-        this.markFormGroupTouched(control);
-      }
-    });
+  onPasswordChange() {
+    const passwordRegex = RegExp('^(?=.*[@#$%^&+=])(?=.*[0-9])(?=.*[A-Z]).{8,}$');
+    if (passwordRegex.test(this.userObj.password)){
+        this.passwordError = "";
+        this.validation=true;
+    } else{
+        this.passwordError = 'Invalid Password.';
+        this.validation=false;
+    }
   }
-  // getDataById(id): void {
-  //   this.userService.getAddressBookById(id).subscribe(respose => {
-  //   this.setDataToFormBuilder(respose.data);
-  //   }, err => {
-  //     console.log("User Record");
-  //   })
-  // }
 
-  setDataToFormBuilder(object): void { 
-    this.userObj.userName=object.userName,
-    this.userObj.password=object.password,
-    this.userObj.email=object.email,
-    this.userObj.roleCode=object.roleCode,
-    console.log(object);
+  onEmailChange() {
+    let emailRegex = RegExp('^([a-z0-9]+[-._+]?[a-z0-9]+)+@[a-z0-9-]+.[a-z]{2,3}.[a-z]{2,3}$');
+    if (emailRegex.test(this.userObj.email)){
+        this.emailError = "";
+        this.validation=true;
+    } else {
+        this.emailError = 'Invalid email';
+        this.validation=false;
+    }
   }
+
   onSubmit() {
-    console.log("save");
+    if(!this.validation){
+      console.log("Profile Creation:",this.validation);//false
+      return ;
+    }else{
+      console.log("Profile Creation:",this.validation);
+    }
 
-      // this.userService.addAddressookRecord(this.userObj).subscribe(response => {
-      //   console.log("response is ", response);
-      //   this.router.navigateByUrl('');
-      // }, err => {
-      // })
+    console.log("RegisterPerson");
+      this.userService.addRecord(this.userObj).subscribe(response => {
+        console.log("response is ", response);
+        this.router.navigateByUrl('');
+      }, err => {
+      })
     }
   
   reset(): void {

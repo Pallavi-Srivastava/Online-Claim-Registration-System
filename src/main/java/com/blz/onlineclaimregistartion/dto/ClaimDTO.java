@@ -1,29 +1,30 @@
 package com.blz.onlineclaimregistartion.dto;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString
 public class ClaimDTO {
 
-	@NotNull(message = "Claim Reason cannot be null")
+	@NotBlank(message = "Claim Reason cannot be blank")
 	private String claimReason;
 
-	@NotNull(message = "Accident Location Street cannot be null")
-	private String accidentLocationStreet;
+	@NotBlank(message = "Accident Location Street cannot be blank")
+	private String street;
 
-	@NotEmpty(message = "City cannot be null ")
-	private String accidentCity;
+	@NotBlank(message = "City cannot be blank")
+	private String city;
 
-	@NotNull(message = "State cannot be null ")
-	private String accidentState;
+	@NotBlank(message = "State cannot be blank")
+	private String state;
 
-	@NotNull(message = "Zip cannot be null ")
-	private String accidentZip;
+	@NotBlank(message = "Zipcode cannot be blank")
+	private String zipcode;
 
-	@NotNull(message = "Claim Type cannot be null ")
+	@NotBlank(message = "Claim Type cannot be blank")
 	private String claimType;
 
 }

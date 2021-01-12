@@ -9,9 +9,9 @@ import com.blz.onlineclaimregistartion.model.Claim;
 
 public interface IClaimService {
 
-	Claim createClaim(@Valid ClaimDTO claimDTO, String token, long policyNumber);
+	Claim createClaim(String token, Long policyNumber, @Valid ClaimDTO claimDTO);
 
-	List<Claim> viewClaim(String token, long policyNumber);
+	Claim viewClaim(String token, Long claimNumber);
 
 	List<Claim> viewAllClaim(String token);
 

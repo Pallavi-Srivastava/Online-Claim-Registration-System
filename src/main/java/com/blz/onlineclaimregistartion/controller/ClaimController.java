@@ -30,26 +30,26 @@ public class ClaimController {
 	@Autowired
 	private IClaimService claimService;
 
-	@ApiOperation("To Create Claim")
-	@PostMapping("/claim/create/{policyNumber}")
-	public ResponseEntity<ResponseDTO> claim(@Valid @RequestBody ClaimDTO claimDTO,
-			@PathVariable("policyNumber") long policyNumber, @RequestHeader String token) {
-		Claim claim = claimService.createClaim(claimDTO, token, policyNumber);
+	@ApiOperation("To make a claim")
+	@PostMapping("/claim/create/{userPolicyNumber}")
+	public ResponseEntity<ResponseDTO> createClaim( @RequestHeader String token,
+							@PathVariable("userPolicyNumber") Long userPolicyNumber, @Valid @RequestBody ClaimDTO claimDTO) {
+		Claim claim = claimService.createClaim(token, userPolicyNumber, claimDTO);
 		ResponseDTO responseDTO = new ResponseDTO(200, "Claim Created Sucessfull", claim);
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
 	}
 
 	@ApiOperation("To View Claim By Id")
-	@GetMapping("/claim/viewbyid/{policyNumber}")
+	@GetMapping("/claim/get/{claimNumber}")
 	public ResponseEntity<ResponseDTO> viewClaimById(@RequestHeader String token,
-			@PathVariable("policyNumber") long policyNumber) {
-		List<Claim> claim = claimService.viewClaim(token, policyNumber);
-		ResponseDTO responseDTO = new ResponseDTO(200, "List of cliams ", claim);
+													@PathVariable("claimNumber") Long claimNumber) {
+		Claim claim = claimService.viewClaim(token, claimNumber);
+		ResponseDTO responseDTO = new ResponseDTO(200, "View claim by claim number is successfull", claim);
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
 	}
 
 	@ApiOperation("To View All Claim")
-	@GetMapping("/claims")
+	@GetMapping("/claim/get")
 	public ResponseEntity<ResponseDTO> viewClaim(@RequestHeader String token) {
 		List<Claim> claim = claimService.viewAllClaim(token);
 		ResponseDTO responseDTO = new ResponseDTO(200, "List of cliams ", claim);

@@ -27,7 +27,7 @@ const routes: Routes = [
  // {path:"report-generation",component:ReportGenerationComponent},
   {path:"",component:LoginComponent},
   {path:"fogot-password",component:ForgotPasswordComponent},
-  {path:"reset-password/token",component:ResetPasswordComponent},
+  {path:'reset-password/:token',component:ResetPasswordComponent},
   {path:"home",component:HomeComponent,
       children:[
         {path:'',redirectTo:'home', pathMatch:'full'},

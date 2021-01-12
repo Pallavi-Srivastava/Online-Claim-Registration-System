@@ -30,6 +30,8 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.token=this.activatedRoute.snapshot.params.token;
+    console.log(this.token);
   }
 
   onNewPasswordChange() {
@@ -61,7 +63,7 @@ export class ResetPasswordComponent implements OnInit {
     }
     console.log("save");
       this.data=JSON.parse(localStorage.getItem("token"));
-      this.userService.resetPassword(this.resetObj,this.data).subscribe(response => {
+      this.userService.resetPassword(this.resetObj,this.token).subscribe(response => {
         console.log("response is ", response);
         alert("Password update Successful!! You can now login to your Account with the new password");
         this.router.navigateByUrl('');

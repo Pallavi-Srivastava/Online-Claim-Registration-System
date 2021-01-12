@@ -27,11 +27,8 @@ import com.blz.onlineclaimregistartion.utility.JsonWebToken;
 public class UserService implements IUserService {
 
 	ForgotPasswordDTO forgotPasswordDTO;
-
 	User user;
 	
-	UserDTO userDTO;
-
 	@Autowired
 	private UserRepository userRepository;
 
@@ -90,7 +87,7 @@ public class UserService implements IUserService {
 		System.out.println(user.getUserId());
 		String token = JsonWebToken.createToken(user.getUserId());
 		System.out.println(token);
-		String url = "http://localhost:4200/reset-password/token";
+		String url = "http://localhost:4200/reset-password/";
 
 		final String username = "insuranceclaimsystem@gmail.com";
 		final String password = "@Reset2020";
@@ -116,7 +113,7 @@ public class UserService implements IUserService {
 			message.setSubject("Testing Gmail SSL");
 			System.out.println(user.getUserName());
 			message.setText("Dear " + user.getUserName() + ","
-					+ "\n\n To Complete the password reset process,please click here: " + url + "\n"+"Token: " + token);
+					+ "\n\n To Complete the password reset process,please click here: " + url + token);
 
 			Transport.send(message);
 

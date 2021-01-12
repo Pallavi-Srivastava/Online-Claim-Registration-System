@@ -22,11 +22,4 @@ public class ResponseDTO {
 		this.data = data;
 		this.statusCode = statusCode;
 	}
-	
-//	public ResponseDTO(int statusCode, String message, Object data,String roleCode) {
-//		this.message = message;
-//		this.data = data;
-//		this.statusCode = statusCode;
-//		this.roleCode=roleCode;
-//	}
 }

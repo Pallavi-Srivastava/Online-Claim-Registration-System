@@ -37,8 +37,7 @@ public class PolicyController {
 
 	@ApiOperation("To create the new policy")
 	@PostMapping("/policy/create")
-	public ResponseEntity<ResponseDTO> createPolicy(@RequestHeader String token,
-			@Valid @RequestBody PolicyDTO policyDTO) {
+	public ResponseEntity<ResponseDTO> createPolicy(@RequestHeader String token, @Valid @RequestBody PolicyDTO policyDTO) {
 		Policy policy = policyService.createPolicy(token, policyDTO);
 		ResponseDTO responseDTO = new ResponseDTO(200, "New policy created successfully", policy);
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);

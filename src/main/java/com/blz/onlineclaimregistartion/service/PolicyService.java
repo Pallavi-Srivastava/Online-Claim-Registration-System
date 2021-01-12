@@ -47,7 +47,7 @@ public class PolicyService implements IPolicyService {
 		Long userId = JsonWebToken.decodeToken(token);
 		User user = userRepository.findById(userId);
 		String userRolecode = user.getRoleCode();
-		if(!userRolecode.equals("admin")) {
+		if(!userRolecode.equalsIgnoreCase("admin")) {
 			throw new UserException("User/Agent Cannot create the policy!!");
 		}
 		Policy policy = new Policy(policyDTO, user);

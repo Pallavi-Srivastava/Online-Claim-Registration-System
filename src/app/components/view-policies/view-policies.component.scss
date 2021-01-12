@@ -1,37 +1,39 @@
 #customers {
-  font-family: Arial, Helvetica, sans-serif;
-  width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
 }
 
 #customers td,
 #customers th {
-  border: 1px solid #cdd4ea;
-  padding: 8px;
+    border: 1px solid #cdd4ea;
+    padding: 8px;
 }
 
 #customers tr:nth-child(even) {
-  background-color: #cdd4ea;
+    background-color: #cdd4ea;
 }
+
 #customers tr:nth-child(odd) {
-  background-color: #e8ebf5;
+    background-color: #e8ebf5;
 }
+
 #customers tr:hover {
-  background-color: white;
+    background-color: white;
 }
 
 #customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #4472c4;
-  color: white;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4472c4;
+    color: white;
 }
 
 .make-button-claim {
-  margin: auto;
-  display: flex;
-  border: 1px snow;
-  width: 70px;
-  height: 30px;
-  background-color: #4472c4;
+    margin: auto;
+    display: flex;
+    border: 1px snow;
+    width: 70px;
+    height: 30px;
+    background-color: #4472c4;
 }

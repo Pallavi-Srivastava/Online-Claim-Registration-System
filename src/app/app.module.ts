@@ -27,6 +27,8 @@ import { ProfileCreationComponent } from './components/profile-creation/profile-
 import { ViewPoliciesComponent } from './components/view-policies/view-policies.component';
 import {MatIconModule} from '@angular/material/icon';
 import { ReportGenerationComponent } from './components/report-generation/report-generation.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { CreatePolicyComponent } from './components/create-policy/create-policy.component';
 import { RegisterPolicyComponent } from './components/register-policy/register-policy.component';
 import { ViewClaimsComponent } from './components/view-claims/view-claims.component';
@@ -45,10 +47,12 @@ import { AccountNumberComponent } from './components/account-number/account-numb
     ProfileCreationComponent,
     ViewPoliciesComponent,
     ReportGenerationComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
     CreatePolicyComponent,
     RegisterPolicyComponent,
     ViewClaimsComponent,
-    AccountNumberComponent,
+    AccountNumberComponent
   ],
   imports: [
     BrowserModule,

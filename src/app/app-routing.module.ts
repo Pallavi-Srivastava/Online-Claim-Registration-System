@@ -1,3 +1,4 @@
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ProfileCreationComponent } from './components/profile-creation/profile-creation.component';
 import { LoginComponent } from './components/login/login.component';
 import { NgModule, Component } from '@angular/core';
@@ -7,6 +8,7 @@ import { PolicySideNavbarComponent } from './components/policy-side-navbar/polic
 import { ClaimCreationComponent } from './components/claim-creation/claim-creation.component';
 import { ViewPoliciesComponent } from './components/view-policies/view-policies.component';
 import { ReportGenerationComponent } from './components/report-generation/report-generation.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { CreatePolicyComponent } from './components/create-policy/create-policy.component';
 import { HomeComponent } from './components/home/home.component';
 import { RegisterPolicyComponent } from './components/register-policy/register-policy.component';
@@ -15,8 +17,17 @@ import { AccountNumberComponent } from './components/account-number/account-numb
 
 const routes: Routes = [
 
+//  {path:"header",component:HomeComponent},
+ 
+ // {path:"profile-creation",component:ProfileCreationComponent},
+//  {path:"claim-creation",component:ClaimCreationComponent},
+ // {path:"claim-page",component:ClaimSideNavbarComponent},
+ // {path:"policy-page",component:PolicySideNavbarComponent},
+ // {path:"view-policies",component:ViewPoliciesComponent},
+ // {path:"report-generation",component:ReportGenerationComponent},
   {path:"",component:LoginComponent},
-
+  {path:"fogot-password",component:ForgotPasswordComponent},
+  {path:"reset-password/token",component:ResetPasswordComponent},
   {path:"home",component:HomeComponent,
       children:[
         {path:'',redirectTo:'home', pathMatch:'full'},
@@ -28,7 +39,6 @@ const routes: Routes = [
         {path:"view-claims",component:ViewClaimsComponent},
         {path:"create-policy",component:CreatePolicyComponent},
         {path:"account-number",component:AccountNumberComponent},
-
       ]
   }
 ];

@@ -7,4 +7,5 @@ export class User {
 	email: any;
 	loginAttempt: any;
 	inactiveUser: any;
+	data:any;
 }

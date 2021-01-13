@@ -2,7 +2,7 @@ import { Claim } from './../../models/claim';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl,FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
+import { ClaimService } from 'src/app/services/claim.service';
 
 @Component({
   selector: 'app-claim-creation',
@@ -18,30 +18,28 @@ export class ClaimCreationComponent implements OnInit {
   claimForm: any;
   claimNumber: any;
   isUpdate = false;
-  constructor(private formBuilder: FormBuilder, private userService: UserService,
+  constructor(private formBuilder: FormBuilder, private claimService:ClaimService,
     private router: Router, private activatedRoute: ActivatedRoute) {
     this. claimForm = this.formBuilder.group({
       claimReason: ['', Validators.required],
-      accidentLocationStreet: ['', Validators.required],
-      accidentCity: ['', Validators.required],
-      accidentState: ['', Validators.required],
-      accidentZip: ['', Validators.required],
+      street: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      zipcode: ['', Validators.required],
       claimType: ['', Validators.required],
       id: ['']
     });
 
     this.activatedRoute.params.subscribe(data => {
-      if (data && data.id) {
-        //for required  Validation
-       // this.getDataById(data.id)
-      }
+      console.log("data ",data.policyNumber)
+      this.policyNumber=data.policyNumber;
+      console.log("data policyNumber ",this.policyNumber);
     })
 
   }
 
   ngOnInit() {
-    console.log("claimForm ",this.claimForm)
-    console.log("policyNumber ",this.policyNumber)
+    
   }
 
   getErrorMessage(control: FormControl, message: string) {
@@ -64,6 +62,7 @@ export class ClaimCreationComponent implements OnInit {
       }
     });
   }
+
   // getDataById(id): void {
   //   this.userService.getAddressBookById(id).subscribe(respose => {
   //   this.setDataToFormBuilder(respose.data);
@@ -74,20 +73,23 @@ export class ClaimCreationComponent implements OnInit {
 
   setDataToFormBuilder(object): void { 
     this.claimObj.claimReason=object.claimReason,
-    this.claimObj.accidentLocationStreet=object.accidentLocationStreet,
-    this.claimObj.accidentCity=object.accidentCity,
-    this.claimObj.accidentState=object.accidentState,
-    this.claimObj.accidentZip=object.accidentLocationStreet,
+    this.claimObj.street=object.street,
+    this.claimObj.city=object.city,
+    this.claimObj.state=object.state,
+    this.claimObj.zipcode=object.street,
     this.claimObj.claimType=object.claimType,
     console.log(object);
   }
-  onSubmit() {
-    console.log("save");
 
-      this.userService.createClaim(this.claimObj).subscribe(response => {
+  onSubmit() {
+    console.log("policyNumber ",this.policyNumber)
+    this.setDataToFormBuilder(this.claimObj);
+
+      this.claimService.createClaim(this.policyNumber, this.claimObj).subscribe(response => {
         console.log("response is ", response);
-        this.router.navigateByUrl('');
+        this.router.navigate(["/home/view-claims"]);
       }, err => {
+        console.log("error")
       })
     }
   

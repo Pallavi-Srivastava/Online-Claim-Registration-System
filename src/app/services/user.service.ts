@@ -15,19 +15,20 @@ export class UserService {
 
   constructor(private _httpClient: HttpClient) { }
 
-  headerDict = {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'token':JSON.parse(localStorage.getItem("token"))
-  }
+  
   
   logIn(user: User): Observable<User> {
     return this._httpClient.post<User>(`${this.getUrl}/user/login`, user);
   }
 
   addRecord(user: User): Observable<any> {
-    return this._httpClient.post<any>(`${this.getUrl}/user/register`,user,{'headers':this.headerDict});
+    const headerDict = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'token':JSON.parse(localStorage.getItem("token"))
+    }
+    return this._httpClient.post<any>(`${this.getUrl}/user/register`,user,{'headers':headerDict});
   }
 
   forgotPassword(user: User): Observable<User> {

@@ -25,6 +25,7 @@ const routes: Routes = [
         {path:"view-policies",component:ViewPoliciesComponent},
         {path:"report-generation",component:ReportGenerationComponent},
         {path:"claim-creation",component:ClaimCreationComponent},
+        {path:"claim-creation/:policyNumber",component:ClaimCreationComponent},
         {path:"view-available-polices",component:RegisterPolicyComponent},
         {path:"view-claims",component:ViewClaimsComponent},
         {path:"create-policy",component:CreatePolicyComponent},

@@ -1,79 +1,27 @@
 <table id="customers" class="main-content">
-    <tr>
-      <th>Policy Number</th>
-      <th>Premium Amount</th>
-      <th>Make Claim</th>
-    </tr>
-    <tr>
-      <td>Alfreds Futterkiste</td>
-      <td>Germany</td>
-      <td>
-        <a [routerLink]="['/home/claim-creation']" routerLinkActive="router-link-active" >
-            <button class="make-button-claim"><img style="zoom: 1.4;
-                margin: auto;
-                display: flex;" src="../../../assets/icons/caret-right-fill.svg">
-            </button>
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td>Berglunds snabbköp</td>
-      <td>Sweden</td>
-      <td>
-        <a [routerLink]="['/home/claim-creation']" routerLinkActive="router-link-active" >
-          <button class="make-button-claim"><img style="zoom: 1.4;
-              margin: auto;
-              display: flex;" src="../../../assets/icons/caret-right-fill.svg">
-          </button>
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td>Centro comercial Moctezuma</td>
-      <td>Mexico</td>
-      <td>
-        <a [routerLink]="['/home/claim-creation']" routerLinkActive="router-link-active" >
-          <button class="make-button-claim"><img style="zoom: 1.4;
-              margin: auto;
-              display: flex;" src="../../../assets/icons/caret-right-fill.svg">
-          </button>
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td>Ernst Handel</td>
-      <td>Austria</td>
-      <td>
-        <a [routerLink]="['/home/claim-creation']" routerLinkActive="router-link-active" >
-          <button class="make-button-claim"><img style="zoom: 1.4;
-              margin: auto;
-              display: flex;" src="../../../assets/icons/caret-right-fill.svg">
-          </button>
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td>Island Trading</td>
-      <td>UK</td>
-      <td>
-        <a [routerLink]="['/home/claim-creation']" routerLinkActive="router-link-active" >
-          <button class="make-button-claim"><img style="zoom: 1.4;
-              margin: auto;
-              display: flex;" src="../../../assets/icons/caret-right-fill.svg">
-          </button>
-       </a>
-      </td>
-    </tr>
-    <tr>
-      <td>Königlich Essen</td>
-      <td>Germany</td>
-      <td>
-        <a [routerLink]="['/home/claim-creation']" routerLinkActive="router-link-active" >
-          <button class="make-button-claim"><img style="zoom: 1.4;
-              margin: auto;
-              display: flex;" src="../../../assets/icons/caret-right-fill.svg">
-          </button>
-       </a>
-      </td>
-    </tr>
-  </table>
+  <thead>
+    <th>Policy Number</th>
+    <th>Policy Name</th>
+    <th>Premium Amount</th>
+    <th>Claim Number</th>
+    <th>City</th>
+    <th>Claim Reason</th>
+    <th>Claim Type</th>
+    <th>Claim State</th>
+    <th>Claim Street</th>
+    <th>Claim Zip</th>
+  </thead>
+  <tr *ngFor="let policy of userInsuredClaims">
+      <td>{{policy[14]}}</td>
+      <td>{{policy[15]}}</td>
+    <td>{{policy[16]}}</td>
+    <td>{{policy[18]}}</td>
+    <td>{{policy[19]}}</td>
+    <td>{{policy[20]}}</td>
+    <td>{{policy[21]}}</td>
+    <td>{{policy[22]}}</td>
+    <td>{{policy[23]}}</td>
+    <td>{{policy[24]}}</td>
+  </tr>
+
+</table>

@@ -17,9 +17,23 @@ export class PolicyService {
       'token':JSON.parse(localStorage.getItem("token"))
     }
 
+    private getUrl: string = "http://localhost:7088/onlineinsurancesystem";
+
+
   createPolicy(data: any){
-    return this.http.post<any>('http://localhost:7088/onlineinsurancesystem/policy/create',data,{'headers':this.headerDict});
+    return this.http.post<any>(`${this.getUrl}/policy/create`,data,{'headers':this.headerDict});
   }
 
+  getAllAvailablePolicies(){
+    return this.http.get<any>(`${this.getUrl}/policy`,{'headers':this.headerDict});
+  }
+
+  registerPolicy(policyId:any){
+    return this.http.post<any>(`${this.getUrl}/userpolicy/register/${policyId}`," ",{'headers':this.headerDict});
+  }
+
+  getUserInsuredPolicies(){
+    return this.http.get<any>(`${this.getUrl}/userpolicy/get`,{'headers':this.headerDict});
+  }
 
 }

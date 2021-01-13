@@ -1,69 +1,23 @@
+
 <table id="customers" class="main-content">
-    <tr>
+    <thead>
       <th>Policy Number</th>
       <th>Premium Amount</th>
       <th>Register Policy</th>
-    </tr>
-    <tr>
-      <td>Alfreds Futterkiste</td>
-      <td>Germany</td>
-      <td>
-        <a [routerLink]="['/home/account-number']" routerLinkActive="router-link-active" >
-          <button class="make-button-claim"><img style="zoom: 1.4;
+    </thead>
+
+    <tr *ngFor="let policies of availablePolicies">
+      <td>{{policies.policyName}}</td>
+      <td>{{policies.premium}}</td>
+      <td>  
+          <button class="make-button-claim"  [routerLink]="['/home/view-available-polices']" routerLinkActive="router-link-active" ><img style="zoom: 1.4;
               margin: auto;
-              display: flex;" src="../../../assets/icons/caret-right-fill.svg">
-          </button>
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td>Berglunds snabbköp</td>
-      <td>Sweden</td>
-      <td>
-          <button class="make-button-claim"><img style="zoom: 1.4;
-              margin: auto;
-              display: flex;" src="../../../assets/icons/caret-right-fill.svg">
+              display: flex;" src="../../../assets/icons/caret-right-fill.svg"
+              (click)="registerPolicy(policies)" >
           </button>
       </td>
     </tr>
-    <tr>
-      <td>Centro comercial Moctezuma</td>
-      <td>Mexico</td>
-      <td>
-          <button class="make-button-claim"><img style="zoom: 1.4;
-              margin: auto;
-              display: flex;" src="../../../assets/icons/caret-right-fill.svg">
-          </button>
-      </td>
-    </tr>
-    <tr>
-      <td>Ernst Handel</td>
-      <td>Austria</td>
-      <td>
-          <button class="make-button-claim"><img style="zoom: 1.4;
-              margin: auto;
-              display: flex;" src="../../../assets/icons/caret-right-fill.svg">
-          </button>
-      </td>
-    </tr>
-    <tr>
-      <td>Island Trading</td>
-      <td>UK</td>
-      <td>
-          <button class="make-button-claim"><img style="zoom: 1.4;
-              margin: auto;
-              display: flex;" src="../../../assets/icons/caret-right-fill.svg">
-          </button>
-      </td>
-    </tr>
-    <tr>
-      <td>Königlich Essen</td>
-      <td>Germany</td>
-      <td>
-          <button class="make-button-claim"><img style="zoom: 1.4;
-              margin: auto;
-              display: flex;" src="../../../assets/icons/caret-right-fill.svg">
-          </button>
-      </td>
-    </tr>
+
   </table>
+
+  <!-- <input type="number" [(ngModel)]="accountNumber" required> -->

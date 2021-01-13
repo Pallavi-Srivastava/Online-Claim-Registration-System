@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -11,40 +10,25 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AccountNumberComponent implements OnInit {
 
-  userObj: User =new User();
 
-  profileForm: any;
-  userId: any;
-  isUpdate = false;
+  @Input("policyId") public roleCode: string;  
+
+
   constructor(private formBuilder: FormBuilder, private userService: UserService,
     private router: Router, private activatedRoute: ActivatedRoute) {
-    this. profileForm = this.formBuilder.group({
-      userName: ['', Validators.required],
-      id: ['']
-    });
-
-    this.activatedRoute.params.subscribe(data => {
-      if (data && data.id) {
-        //for required  Validation
-       // this.getDataById(data.id)
-      }
-    })
 
   }
+
+  accountNumber:any;
 
   ngOnInit(): void {
+    console.log("accountNumber oninit ",this.accountNumber);
   }
-  onSubmit() {
-    console.log("save");
 
-      // this.userService.addAddressookRecord(this.userObj).subscribe(response => {
-      //   console.log("response is ", response);
-      //   this.router.navigateByUrl('');
-      // }, err => {
-      // })
+  onSubmit() {
+    console.log("accountNumber onsubmit",this.accountNumber);
     }
   
   reset(): void {
-    this.profileForm.reset();
   }
 }

@@ -44,9 +44,7 @@ export class CreatePolicyComponent implements OnInit {
           'policyName':this.policyForm.controls['policyName'].value,
           'premium':this.policyForm.controls['premium'].value
         }
-
-        this.token=JSON.parse(localStorage.getItem("token"));
-        console.log("token ",this.token);
+        
         console.log(policyDTO);
         this.PolicyService.createPolicy(policyDTO).subscribe((response:any)=>{
             this.router.navigate(["/home/view-available-polices"]);

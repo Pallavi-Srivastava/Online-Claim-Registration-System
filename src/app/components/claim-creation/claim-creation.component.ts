@@ -1,5 +1,5 @@
 import { Claim } from './../../models/claim';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl,FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
@@ -12,6 +12,8 @@ import { UserService } from 'src/app/services/user.service';
 export class ClaimCreationComponent implements OnInit {
 
   claimObj: Claim = new Claim();
+
+  @Input("policyNumber") public policyNumber:any;
 
   claimForm: any;
   claimNumber: any;
@@ -38,6 +40,8 @@ export class ClaimCreationComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("claimForm ",this.claimForm)
+    console.log("policyNumber ",this.policyNumber)
   }
 
   getErrorMessage(control: FormControl, message: string) {
@@ -80,11 +84,11 @@ export class ClaimCreationComponent implements OnInit {
   onSubmit() {
     console.log("save");
 
-      // this.userService.addAddressookRecord(this.claimObj).subscribe(response => {
-      //   console.log("response is ", response);
-      //   this.router.navigateByUrl('');
-      // }, err => {
-      // })
+      this.userService.createClaim(this.claimObj).subscribe(response => {
+        console.log("response is ", response);
+        this.router.navigateByUrl('');
+      }, err => {
+      })
     }
   
   reset(): void {

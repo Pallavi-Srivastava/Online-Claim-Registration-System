@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
   validation:boolean;
   loginForm: any;
   userId: any;
-  isUpdate = false;
   data:any;
   userNameError: string="";
   passwordError: string="";
@@ -61,7 +60,7 @@ export class LoginComponent implements OnInit {
       return ;
     }
         console.log(this.validation);//true
-        this.userService.addUserRecord(this.userObj).subscribe(response => {
+        this.userService.logIn(this.userObj).subscribe(response => {
         console.log("response is ", response);
         localStorage.setItem("token", JSON.stringify(response.data));
         localStorage.setItem("RoleCode", JSON.stringify(response.roleCode));

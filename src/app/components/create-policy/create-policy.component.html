@@ -1,31 +1,29 @@
-    <div class="form-content">
-        <form class="form" action="#" [formGroup]="policyForm">
+<div class="form-content">
+    <form class="form" action="#" [formGroup]="policyForm">
 
-            <div class="row-content ">
-                <label class="label label-info" for="accidentLocationStreet">Policy Name</label>
-                <input class="input " type="text" id="accidentLocationStreet" name="accidentLocationStreet"
-                 formControlName="policyName" required>
-            </div>
+        <div class="row-content ">
+            <label class="label label-info" for="accidentLocationStreet">Policy Name</label>
+            <input class="input " type="text" id="accidentLocationStreet" name="accidentLocationStreet" formControlName="policyName" required>
+        </div>
 
-            <div class="error" fxFlex *ngIf="!policyForm.controls['policyName'].valid && policyForm.controls['policyName'].touched">
-                Invalid Policy Name
-            </div>
+        <div class="error" fxFlex *ngIf="!policyForm.controls['policyName'].valid && policyForm.controls['policyName'].touched">
+            Invalid Policy Name
+        </div>
 
-            <div class="row-content ">
-                <label class="label label-info" for="accidentCity">Premium</label>
-                <input class="input" type="number" name="accidentCity" id="accidentCity" 
-                formControlName="premium" required>
+        <div class="row-content ">
+            <label class="label label-info" for="accidentCity">Premium</label>
+            <input class="input" type="number" name="accidentCity" id="accidentCity" formControlName="premium" required>
+        </div>
+        <div class="error" *ngIf="!policyForm.controls['premium'].valid && policyForm.controls['premium'].touched">
+            Invalid Premium
+        </div>
+
+        <div class="buttonParent">
+            <button class="button cancelButton" (click)="reset()">Reset</button>
+            <div style="display: flex; justify-content: space-evenly; padding-left: 100px;"></div>
+            <div class="submit-reset">
+                <button type="submit" class="button submitButton" (click)="onSubmit()" id="submitButton">Create</button>
             </div>
-            <div class="error" *ngIf="!policyForm.controls['premium'].valid && policyForm.controls['premium'].touched">
-                Invalid Premium
-            </div>
-        
-            <div class="buttonParent">
-                <button class="button cancelButton" (click)="reset()">Reset</button>
-                <div style="display: flex; justify-content: space-evenly; padding-left: 100px;"></div>
-                <div class="submit-reset">
-                    <button type="submit" class="button submitButton" (click)="onSubmit()" id="submitButton">Create</button>
-                </div>
-            </div>
-        </form>
-    </div>
+        </div>
+    </form>
+</div>

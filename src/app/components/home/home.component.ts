@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LocationStrategy } from '@angular/common';
+
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  roleCode:any;
 
   ngOnInit(): void {
+
+    this.roleCode=JSON.parse(localStorage.getItem("RoleCode"));
+
   }
 
 }

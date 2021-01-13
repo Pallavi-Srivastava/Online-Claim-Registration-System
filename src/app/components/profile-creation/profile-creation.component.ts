@@ -77,6 +77,8 @@ export class ProfileCreationComponent implements OnInit {
     console.log("RegisterPerson");
       this.userService.addRecord(this.userObj).subscribe(response => {
         console.log("response is ", response);
+        alert("Account has been successfully created");
+        localStorage.clear();
         this.router.navigateByUrl('');
       }, err => {
       })

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,8 +13,9 @@ export class ClaimSideNavbarComponent implements OnInit {
   thirdButton: string = "Report Generation";
   fourthButton: string = "New Profile Creation";
   fifthButton: string = "View Available Policies";
-  sixthButton: string = "Create Police";
-  
+  sixthButton: string = "Create Policy";
+
+  @Input("roleCode") public roleCode: string;  
 
   constructor(private router:Router) { }
 

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.blz.onlineclaimregistartion.dto.ResponseDTO;
 import com.blz.onlineclaimregistartion.model.Policy;
+import com.blz.onlineclaimregistartion.model.UserPolicy;
 import com.blz.onlineclaimregistartion.service.IUserPolicyService;
 
 import io.swagger.annotations.ApiOperation;
@@ -42,8 +43,7 @@ public class UserPolicyController {
 	@ApiOperation("To get policies of user")
 	@GetMapping("/userpolicy/get")
 	public ResponseEntity<ResponseDTO> getPoliciesByUserId(@RequestHeader String token) {
-		List<String> userInsuredPolicies = userPolicyService.getRegistredPolicies(token);
-//		List<Object> userInsuredPolicies = userPolicyService.getRegistredPolicies(token);
+		List<UserPolicy> userInsuredPolicies = userPolicyService.getRegistredPolicies(token);
 		ResponseDTO responseDTO = new ResponseDTO(200, "User policies", userInsuredPolicies);
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
 	}

@@ -1,27 +1,21 @@
 <table id="customers" class="main-content">
   <thead>
-    <th>Policy Number</th>
-    <th>Policy Name</th>
-    <th>Premium Amount</th>
     <th>Claim Number</th>
     <th>City</th>
     <th>Claim Reason</th>
     <th>Claim Type</th>
-    <th>Claim State</th>
     <th>Claim Street</th>
+    <th>Claim State</th>
     <th>Claim Zip</th>
   </thead>
-  <tr *ngFor="let policy of userInsuredClaims">
-      <td>{{policy[14]}}</td>
-      <td>{{policy[15]}}</td>
-    <td>{{policy[16]}}</td>
-    <td>{{policy[18]}}</td>
-    <td>{{policy[19]}}</td>
-    <td>{{policy[20]}}</td>
-    <td>{{policy[21]}}</td>
-    <td>{{policy[22]}}</td>
-    <td>{{policy[23]}}</td>
-    <td>{{policy[24]}}</td>
+  <tr *ngFor="let claim of userInsuredClaims">
+    <td>{{claim.claimNumber}}</td>
+    <td>{{claim.city}}</td>
+    <td>{{claim.claimReason}}</td>
+    <td>{{claim.claimType}}</td>
+    <td>{{claim.street}}</td>
+    <td>{{claim.state}}</td>
+    <td>{{claim.zipcode}}</td>
   </tr>
 
 </table>

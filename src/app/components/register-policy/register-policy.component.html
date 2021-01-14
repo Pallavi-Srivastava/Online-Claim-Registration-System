@@ -9,8 +9,8 @@
     <tr *ngFor="let policies of availablePolicies">
       <td>{{policies.policyName}}</td>
       <td>{{policies.premium}}</td>
-      <td>  
-          <button class="make-button-claim"  [routerLink]="['/home/view-available-polices']" routerLinkActive="router-link-active" ><img style="zoom: 1.4;
+      <td >  
+          <button class="make-button-claim" [routerLink]="['/home/view-available-polices']" routerLinkActive="router-link-active" ><img style="zoom: 1.4;
               margin: auto;
               display: flex;" src="../../../assets/icons/caret-right-fill.svg"
               (click)="registerPolicy(policies)" >

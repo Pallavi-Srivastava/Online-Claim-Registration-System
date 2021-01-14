@@ -42,6 +42,9 @@ public class User {
 	@Column(name = "role_code")
 	public String roleCode;
 
+	@Column(name = "account_number")
+	public String accountNumber;
+	
 	@Email
 	@Column(name = "email")
 	private String email;// To reset/forget password

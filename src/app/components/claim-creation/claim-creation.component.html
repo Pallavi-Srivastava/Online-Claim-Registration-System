@@ -1,46 +1,46 @@
-    <div class="form-content">
-        <form class="form" action="#" [formGroup]="claimForm" (ngSubmit)="onSubmit()">
-            <div class="row-content">
-                <label class="label label-info" for="claimReason">Claim Reason</label>
-                <input class="input" type="text" id="claimReason" name="claimReason" required [(ngModel)]="claimObj.claimReason" [ngModelOptions]="{standalone: true}">
-            </div>
+<div class="form-content">
+    <form class="form" action="#" [formGroup]="claimForm" (ngSubmit)="onSubmit()">
+        <div class="row-content">
+            <label class="label label-info" for="claimReason">Claim Reason</label>
+            <input class="input" type="text" id="claimReason" name="claimReason" required [(ngModel)]="claimObj.claimReason" [ngModelOptions]="{standalone: true}">
+        </div>
 
-            <div class="row-content ">
-                <label class="label label-info" for="accidentLocationStreet">Accident Location</label>
-                <input class="input " type="text" id="accidentLocationStreet" name="accidentLocationStreet" required [(ngModel)]="claimObj.accidentLocationStreet" [ngModelOptions]="{standalone: true} ">
-            </div>
+        <div class="row-content ">
+            <label class="label label-info" for="accidentLocationStreet">Accident Location</label>
+            <input class="input " type="text" id="accidentLocationStreet" name="accidentLocationStreet" required [(ngModel)]="claimObj.accidentLocationStreet" [ngModelOptions]="{standalone: true} ">
+        </div>
 
-            <div class="row-content ">
-                <label class="label label-info" for="accidentCity">Accident City</label>
-                <input class="input" type="text" name="accidentCity" id="accidentCity" required [(ngModel)]="claimObj.accidentCity" [ngModelOptions]="{standalone: true} ">
-            </div>
+        <div class="row-content ">
+            <label class="label label-info" for="accidentCity">Accident City</label>
+            <input class="input" type="text" name="accidentCity" id="accidentCity" required [(ngModel)]="claimObj.accidentCity" [ngModelOptions]="{standalone: true} ">
+        </div>
 
-            <div class="row-content">
-                <label class="label label-info" for="accidentState">Accident State</label>
-                <input class="input" type="text" id="accidentState" name="accidentState" required [(ngModel)]="claimObj.accidentState" [ngModelOptions]="{standalone: true}">
-            </div>
+        <div class="row-content">
+            <label class="label label-info" for="accidentState">Accident State</label>
+            <input class="input" type="text" id="accidentState" name="accidentState" required [(ngModel)]="claimObj.accidentState" [ngModelOptions]="{standalone: true}">
+        </div>
 
-            <div class="row-content ">
-                <label class="label label-info" for="accidentZip">Accident Zip</label>
-                <input class="input " type="text" id="accidentZip" name="accidentZip" required [(ngModel)]="claimObj.accidentZip" [ngModelOptions]="{standalone: true} ">
-            </div>
+        <div class="row-content ">
+            <label class="label label-info" for="accidentZip">Accident Zip</label>
+            <input class="input " type="text" id="accidentZip" name="accidentZip" required [(ngModel)]="claimObj.accidentZip" [ngModelOptions]="{standalone: true} ">
+        </div>
 
-            <div class="select-box ">
-                <div>
-                    <label for="claimType" class="label label-info">Claim Type</label>
-                    <select class="select" name="claimType" id="claimType" required [(ngModel)]="claimObj.claimType" [ngModelOptions]="{standalone: true} ">
+        <div class="select-box ">
+            <div>
+                <label for="claimType" class="label label-info">Claim Type</label>
+                <select class="select" name="claimType" id="claimType" required [(ngModel)]="claimObj.claimType" [ngModelOptions]="{standalone: true} ">
                                 <option selected disabled>Select Type</option>
                                 <option value="Fire_Accident">Fire Accident</option>
                                 <option value="Customer_Injury">Customer Injury</option>
                                 <option value="Auto_Accident">Auto Accident</option>
                                 <option value="Reputational_Harm">Reputational Harm</option>
                     </select>
-                </div>
             </div>
+        </div>
 
-            <div class="buttonParent">
-                    <button type="submit" class="cancel submitCancel" id="submitButton">Cancel</button>
-                    <button type="submit" class="button submitButton" id="submitButton">Next</button>
-            </div>
-        </form>
-    </div>
+        <div class="buttonParent">
+            <button type="submit" class="button submitButton" id="submitButton">Next</button>
+            <button type="cancel" class="cancelButton button">Cancel</button>
+        </div>
+    </form>
+</div>

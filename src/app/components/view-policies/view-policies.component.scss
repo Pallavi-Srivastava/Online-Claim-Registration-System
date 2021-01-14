@@ -1,27 +1,27 @@
-#customers {
+.customers {
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
 }
 
-#customers td,
-#customers th {
+.customers-td,
+.customers-th {
     border: 1px solid #cdd4ea;
     padding: 8px;
 }
 
-#customers tr:nth-child(even) {
+.customers-tr:nth-child(even) {
     background-color: #cdd4ea;
 }
 
-#customers tr:nth-child(odd) {
+.customers-tr:nth-child(odd) {
     background-color: #e8ebf5;
 }
 
-#customers tr:hover {
+.customers-tr:hover {
     background-color: white;
 }
 
-#customers th {
+.customers-th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
@@ -36,4 +36,40 @@
     width: 70px;
     height: 30px;
     background-color: #4472c4;
+}
+
+.img {
+    zoom: 1.4;
+    margin: auto;
+    display: flex;
+}
+
+@media only screen and (max-width: 690px) {
+    .customers {
+        font-family: Arial, Helvetica, sans-serif;
+        width: auto;
+        overflow-y: scroll;
+        overflow-x: scroll;
+        padding: 2px;
+    }
+    .customers-td,
+    .customers-th {
+        border: 1px solid #cdd4ea;
+        padding: 2px;
+    }
+    .customers-th {
+        padding-top: 6px;
+        padding-bottom: 6px;
+        text-align: left;
+        background-color: #a3e609;
+        color: white;
+    }
+    .make-button-claim {
+        margin: auto;
+        display: flex;
+        border: 1px snow;
+        width: 40px;
+        height: 30px;
+        background-color: #4472c4;
+    }
 }

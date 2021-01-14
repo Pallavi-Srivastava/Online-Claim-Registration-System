@@ -11,13 +11,10 @@ import { Router } from '@angular/router';
 })
 export class UserService {
 
-  
   private getUrl: string = "http://localhost:7088/onlineinsurancesystem";
 
   constructor(private _httpClient: HttpClient,private router: Router) { }
 
-  
-  
   logIn(user: User): Observable<User> {
     return this._httpClient.post<User>(`${this.getUrl}/user/login`, user);
   }

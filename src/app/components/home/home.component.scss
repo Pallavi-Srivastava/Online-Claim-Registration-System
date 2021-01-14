@@ -1,10 +1,13 @@
 .home-container {
-  display: flex;
-  flex-direction: row;
-  padding: 20px;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    border: 2px solid red;
 }
 
 .router-outlet {
-  margin: auto;
-  width: 70%;
+    margin: auto;
+    width: 50%;
+    border: 2px solid blueviolet;
+    padding: 5px;
 }

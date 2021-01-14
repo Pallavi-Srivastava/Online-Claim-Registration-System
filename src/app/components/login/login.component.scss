@@ -11,7 +11,7 @@ body {
 
 .toolbar {
     background-color: #a2bbe7;
-    border: 1px solid #8da9db;
+    border: 2px solid#042763;
     margin: 20px 5px 20px 5px;
     color: white;
 }
@@ -45,7 +45,7 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    border: 0px solid rgb(239, 247, 239);
+    border: 1px solid rgb(245, 250, 245);
 }
 
 .label {
@@ -75,15 +75,15 @@ label {
     margin-left: 20px;
 }
 
-.link-text {
-    color: rgb(5, 127, 209);
-    text-decoration: none;
-    margin-left: 70px;
-}
-
 .buttonParent {
     display: flex;
     justify-content: space-between;
+    margin: 0px 80px;
+}
+
+.link-text {
+    color: rgb(5, 127, 209);
+    text-decoration: none;
 }
 
 .button {
@@ -101,9 +101,7 @@ label {
 }
 
 .submitButton {
-    border: none;
     border: 1px solid rgb(5, 127, 209);
-    margin-right: 120px;
     background-color: #a8c3db;
 }
 
@@ -118,4 +116,52 @@ label {
     font-style: italic;
     color: red;
     text-align: center;
+}
+
+@media only screen and (max-width: 690px) {
+    .example-container {
+        display: flex;
+    }
+    .toolbar {
+        display: flex;
+        width: 100%;
+        margin: 10px;
+        justify-content: center;
+    }
+    .span {
+        margin: auto;
+        font: 14px/6px bold Roboto;
+    }
+    .form {
+        width: 85%;
+        padding: 44px 10px;
+        margin: 90px 30px;
+    }
+    .row-content {
+        margin: 15px 10px;
+    }
+    .label {
+        min-width: 90px;
+        margin-left: 5px;
+        padding: 8px;
+    }
+    .input {
+        width: 50%;
+        margin-left: 10px;
+    }
+    .buttonParent {
+        margin: 0px 35px;
+    }
+    .button {
+        font-size: 17px;
+        min-width: 60px;
+        padding: 5px;
+    }
+    .submitButton {
+        background-color: #a8c3db;
+    }
+    .text-error {
+        margin: 5px 3px;
+        font-size: 10px;
+    }
 }

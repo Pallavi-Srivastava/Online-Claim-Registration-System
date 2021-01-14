@@ -76,7 +76,7 @@ export class ClaimCreationComponent implements OnInit {
     this.claimObj.street=object.street,
     this.claimObj.city=object.city,
     this.claimObj.state=object.state,
-    this.claimObj.zipcode=object.street,
+    this.claimObj.zipcode=object.zipcode,
     this.claimObj.claimType=object.claimType,
     console.log(object);
   }

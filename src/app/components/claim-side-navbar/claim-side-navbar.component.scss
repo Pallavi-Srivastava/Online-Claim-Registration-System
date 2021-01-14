@@ -8,9 +8,31 @@
 
 .side-nav-text {
     font-weight: $side-nav-text-weight;
-    font-size: $side-nav-text-size;
+    font-size: $side-nav-font-size;
     margin-bottom: $side-nav-text-mrg-btm;
     margin-top: $side-nav-text-mrg-top;
     text-align: $side-nav-text-align;
     padding: $side-nav-padding;
+    color: $side-nav-color;
+}
+
+@media only screen and (max-width: 690px) {
+    .side-nav-bar {
+        width: $side-nav-media-width;
+        margin: $side-nav-media-margin;
+        border: $side-nav-media-border;
+        padding: $side-nav-media-padding;
+    }
+}
+
+@media only screen and (max-width: 690px) {
+    .side-nav-text {
+        font-weight: $side-nav-media-text-weight;
+        font-size: $side-nav-media-font-size;
+        margin-bottom: $side-nav-media-text-mrg-btm;
+        margin-top: $side-nav-media-text-mrg-top;
+        text-align: $side-nav-media-text-align;
+        padding: $side-nav-media-padding;
+        color: $side-nav-media-color;
+    }
 }

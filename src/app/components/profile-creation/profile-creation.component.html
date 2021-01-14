@@ -21,6 +21,12 @@
             <span class="text-error">{{ this.emailError }}</span>
         </div>
 
+        <div class="row-content">
+            <label class="label label-info" for="accountNumber">Account Number</label>
+            <input class="input" (input)="onAccountNumberChange()" type="text" name="accountNumber" id="accountNumber" required [(ngModel)]="userObj.accountNumber" [ngModelOptions]="{standalone: true} ">
+            <span class="text-error">{{ this.accountNumberError }}</span>
+        </div>
+
         <div class="select-box">
             <div>
                 <label for="roleCode" class="label label-info">Role ID</label>

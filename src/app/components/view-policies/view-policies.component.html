@@ -3,17 +3,18 @@
         <th class="customers-th">Policy Number</th>
         <th class="customers-th">Policy Name</th>
         <th class="customers-th">Premium Amount</th>
+        <th class="customers-th">Account Number</th>
         <th class="customers-th">Make Claim</th>
     </thead>
     <tr *ngFor="let policy of userInsuredPolicies" class="customers-tr">
-        <td class="customers-td">{{policy[0]}}</td>
-        <td class="customers-td">{{policy[1]}}</td>
-        <td class="customers-td">{{policy[3]}}</td>
+        <td class="customers-td">{{policy.policy.policyId}}</td>
+        <td class="customers-td">{{policy.policy.policyName}}</td>
+        <td class="customers-td">{{policy.policy.premium}}</td>
+        <td class="customers-td">{{policy.user.accountNumber}}</td>
         <td class="customers-td">
-            <button class="make-button-claim" [routerLink]="['/home/claim-creation', policy[0]]" routerLinkActive="router-link-active"><img src="../../../assets/icons/caret-right-fill.svg"
-              (click)="getPolicyNumber(policy)">
+            <button class="make-button-claim" [routerLink]="['/home/claim-creation', policy.userPolicyId]" routerLinkActive="router-link-active"><img src="../../../assets/icons/caret-right-fill.svg"
+              (click)="getUserPolicyNumber(policy)">
           </button>
         </td>
     </tr>
-
 </table>

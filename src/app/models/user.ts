@@ -8,4 +8,5 @@ export class User {
 	loginAttempt: any;
 	inactiveUser: any;
 	data:any;
+	accountNumber:any;
 }

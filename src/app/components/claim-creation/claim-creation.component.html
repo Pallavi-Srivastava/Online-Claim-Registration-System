@@ -1,4 +1,5 @@
 <div class="form-content">
+
     <form class="form" action="#" [formGroup]="claimForm" (ngSubmit)="onSubmit()">
         <div class="row-content">
             <label class="label label-info" for="claimReason">Claim Reason</label>
@@ -39,8 +40,8 @@
         </div>
 
         <div class="buttonParent">
-            <button type="submit" class="button submitButton" id="submitButton">Next</button>
-            <button type="cancel" class="cancelButton button">Cancel</button>
+            <button type="submit" class="button submitButton"  id="submitButton">Next</button>
+            <button type="reset" (click)="onReset()" class="cancelButton button">Cancel</button>
         </div>
     </form>
 </div>

@@ -10,7 +10,6 @@ import { Policy } from './../../models/policy';
   styleUrls: ['./view-claims.component.scss']
 })
 export class ViewClaimsComponent implements OnInit {
-
  
   userInsuredClaims:Array<any>;
   policy :Policy =new Policy();

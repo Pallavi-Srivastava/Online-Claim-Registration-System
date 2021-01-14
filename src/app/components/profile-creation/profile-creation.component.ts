@@ -18,6 +18,7 @@ export class ProfileCreationComponent implements OnInit {
   validation:boolean;
   userNameError: string="";
   passwordError: string="";
+  accountNumberError: string="";
   emailError: string="";
   constructor(private formBuilder: FormBuilder, private userService: UserService,
     private router: Router, private activatedRoute: ActivatedRoute) {
@@ -25,6 +26,7 @@ export class ProfileCreationComponent implements OnInit {
       userName: ['', Validators.required],
       password: ['', Validators.required],
       email: ['', Validators.required],
+      accountNumber:['',Validators.required],
       roleCode: ['', Validators.required],
       id: ['']
     });
@@ -36,6 +38,7 @@ export class ProfileCreationComponent implements OnInit {
   onUserNameChange() {
     let userNameRegex = RegExp('^(?=[a-zA-Z0-9.@_]{6,20}$)(?!.*[_.]{2})[^_.].*[^_.]$');
     if (userNameRegex.test(this.userObj.userName)){
+      console.log("this.userObj.userName ",this.userObj.userName);
         this.userNameError = "";
         this.validation=true;
     } else {
@@ -62,6 +65,18 @@ export class ProfileCreationComponent implements OnInit {
         this.validation=true;
     } else {
         this.emailError = 'Invalid email';
+        this.validation=false;
+    }
+  }
+
+  onAccountNumberChange(){
+    let accountNumberRegex = RegExp('^[1-9][0-9]{10}$');
+    if (accountNumberRegex.test(this.userObj.accountNumber)){
+      console.log(this.userObj.accountNumber)
+        this.accountNumberError = "";
+        this.validation=true;
+    } else {
+        this.accountNumberError = 'Invalid Account Number';
         this.validation=false;
     }
   }

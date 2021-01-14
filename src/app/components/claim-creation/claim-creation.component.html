@@ -1,5 +1,5 @@
-    <div class="form-content">
 
+<div class="form-content">
         <form class="form" action="#" [formGroup]="claimForm" (ngSubmit)="onSubmit()">
             <div class="row-content">
                 <label class="label label-info" for="claimReason">Claim Reason</label>
@@ -40,8 +40,10 @@
             </div>
 
             <div class="buttonParent">
-                    <button type="submit" class="cancel submitCancel" id="submitButton">Cancel</button>
-                    <button type="submit" class="button submitButton" [routerLink]="['/home/view-claims']" routerLinkActive="router-link-active"   id="submitButton">Create Claim</button>
+                    <div class="cancel submitCancel" (click)="onReset()">Cancel</div>
+                    <button type="submit" class="button submitButton"  [routerLink]="['/home/view-claims']" routerLinkActive="router-link-active" id="submitButton">Approve Claim</button>
             </div>
         </form>
     </div>
+
+    <!-- (click)="onSubmit()" -->

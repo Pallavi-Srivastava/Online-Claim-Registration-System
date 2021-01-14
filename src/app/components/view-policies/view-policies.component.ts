@@ -12,7 +12,7 @@ export class ViewPoliciesComponent implements OnInit {
 
   userInsuredPolicies:Array<any>;
   policy :Policy =new Policy();
-  policyNumber:any;
+  userPolicyNumber:any;
 
   constructor(private router:Router, private policyService:PolicyService) { }
 
@@ -27,9 +27,9 @@ export class ViewPoliciesComponent implements OnInit {
     })
   }
 
-  getPolicyNumber(policy:any){
-    console.log("policyNumber ",policy[0])
-    this.policyNumber=policy[0];
+  getUserPolicyNumber(policy:any){
+    console.log("view-policies userPolicyId ",policy.userPolicyId)
+    this.userPolicyNumber=policy.userPolicyId;
   }
 
 }

@@ -3,7 +3,7 @@
     <app-button [buttonName]="firstButton"  [routerLink]="['/home/view-policies']" routerLinkActive="router-link-active" ></app-button>
     <app-button [buttonName]="secondButton" [routerLink]="['/home/view-claims']" routerLinkActive="router-link-active" ></app-button>
     <app-button [buttonName]="thirdButton" *ngIf="roleCode!=='user'" [routerLink]="['/home/report-generation']" routerLinkActive="router-link-active" ></app-button>
-    <app-button [buttonName]="fourthButton" *ngIf="roleCode=='admin'" [routerLink]="['/home/profile-creation']" routerLinkActive="router-link-active" ></app-button>
+    <app-button [buttonName]="fourthButton" *ngIf="roleCode!=='user'" [routerLink]="['/home/profile-creation']" routerLinkActive="router-link-active" ></app-button>
     <app-button [buttonName]="fifthButton"  [routerLink]="['/home/view-available-polices']" routerLinkActive="router-link-active" ></app-button>
     <app-button [buttonName]="sixthButton" *ngIf="roleCode=='admin'" [routerLink]="['/home/create-policy']" routerLinkActive="router-link-active" ></app-button>
 </div>

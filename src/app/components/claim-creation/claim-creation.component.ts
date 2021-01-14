@@ -13,7 +13,7 @@ export class ClaimCreationComponent implements OnInit {
 
   claimObj: Claim = new Claim();
 
-  @Input("policyNumber") public policyNumber:any;
+  @Input("userPolicyNumber") public userPolicyNumber:any;
 
   claimForm: any;
   claimNumber: any;
@@ -31,9 +31,9 @@ export class ClaimCreationComponent implements OnInit {
     });
 
     this.activatedRoute.params.subscribe(data => {
-      console.log("data ",data.policyNumber)
-      this.policyNumber=data.policyNumber;
-      console.log("data policyNumber ",this.policyNumber);
+      this.userPolicyNumber=data.policyNumber;
+      console.log("claim-creation active-router-subscribe userPolicyNumber ",this.userPolicyNumber);
+      console.log("claim-creation active-router-subscribe",data);
     })
 
   }
@@ -82,10 +82,10 @@ export class ClaimCreationComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("policyNumber ",this.policyNumber)
+    console.log("claim-creation on submit policyNumber ",this.userPolicyNumber)
     this.setDataToFormBuilder(this.claimObj);
 
-      this.claimService.createClaim(this.policyNumber, this.claimObj).subscribe(response => {
+      this.claimService.createClaim(this.userPolicyNumber, this.claimObj).subscribe(response => {
         console.log("response is ", response);
         this.router.navigate(["/home/view-claims"]);
       }, err => {
@@ -93,7 +93,7 @@ export class ClaimCreationComponent implements OnInit {
       })
     }
   
-  reset(): void {
+    onReset(): void {
     this.claimForm.reset();
   }
 

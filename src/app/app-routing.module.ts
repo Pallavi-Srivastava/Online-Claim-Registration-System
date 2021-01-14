@@ -1,4 +1,4 @@
-import { AuthGuard } from './auth.guard';
+
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ProfileCreationComponent } from './components/profile-creation/profile-creation.component';
 import { LoginComponent } from './components/login/login.component';
@@ -13,12 +13,13 @@ import { HomeComponent } from './components/home/home.component';
 import { RegisterPolicyComponent } from './components/register-policy/register-policy.component';
 import { ViewClaimsComponent } from './components/view-claims/view-claims.component';
 import { AccountNumberComponent } from './components/account-number/account-number.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   {path:"",component:LoginComponent},
   {path:"fogot-password",component:ForgotPasswordComponent},
   {path:'reset-password/:token',component:ResetPasswordComponent},
-  {path:"home",component:HomeComponent,canActivate:[AuthGuard],
+  {path:"home",component:HomeComponent,
       children:[
         {path:'',redirectTo:'home', pathMatch:'full'},
         {path:'profile-creation',component:ProfileCreationComponent},
@@ -30,7 +31,7 @@ const routes: Routes = [
         {path:"view-claims",component:ViewClaimsComponent},
         {path:"create-policy",component:CreatePolicyComponent},
         {path:"account-number",component:AccountNumberComponent},
-      ]
+      ],canActivateChild:[AuthGuard],canActivate:[AuthGuard]
   }
 ];
 

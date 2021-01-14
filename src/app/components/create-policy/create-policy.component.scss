@@ -59,8 +59,8 @@ select {
 
 .buttonParent {
     display: flex;
-    justify-content: space-evenly;
-    margin: 15px 60px 10px 300px;
+    margin: 10px 45px 10px 40px;
+    justify-content: flex-end;
 }
 
 .button {
@@ -74,20 +74,22 @@ select {
     font-weight: 40%;
     min-width: 120px;
     padding: 7px 7px;
+    border: 1px solid rgb(5, 127, 209);
     cursor: pointer;
 }
 
 .submitButton {
+    border: none;
     border: 1px solid rgb(5, 127, 209);
-    margin-right: 5px;
     background-color: #a8c3db;
+    margin: 0px 20px 0px 10px;
 }
 
 .resetButton {
     text-decoration: none;
     text-align: center;
     background-color: #a8c3db;
-    margin-left: 30px;
+    margin: 0px 10px 0px 0px;
     border: 1px solid rgb(5, 127, 209);
 }
 

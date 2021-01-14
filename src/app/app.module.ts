@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -33,7 +32,7 @@ import { CreatePolicyComponent } from './components/create-policy/create-policy.
 import { RegisterPolicyComponent } from './components/register-policy/register-policy.component';
 import { ViewClaimsComponent } from './components/view-claims/view-claims.component';
 import { AccountNumberComponent } from './components/account-number/account-number.component';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './services/auth.guard';
 
 @NgModule({
   declarations: [

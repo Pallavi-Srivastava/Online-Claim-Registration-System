@@ -4,6 +4,7 @@ import { User } from '../models/user';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ResetPassword } from '../models/reset-password';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class UserService {
   
   private getUrl: string = "http://localhost:7088/onlineinsurancesystem";
 
-  constructor(private _httpClient: HttpClient) { }
+  constructor(private _httpClient: HttpClient,private router: Router) { }
 
   
   
@@ -39,11 +40,8 @@ export class UserService {
     return this._httpClient.post<any>(`${this.getUrl}/user/reset/${data}`,user);
   }
 
-    logOut(): Observable<any> {
+  logOut(): Observable<any> {
     return this._httpClient.get<any>(`${this.getUrl}/user/logout`);
   }
-  
-  loggedIn(){
-    return !!localStorage.getItem('token');
-  }
 }
+

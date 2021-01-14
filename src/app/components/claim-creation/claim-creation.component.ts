@@ -94,6 +94,7 @@ export class ClaimCreationComponent implements OnInit {
     }
   
     onReset(): void {
+      console.log("**************")
     this.claimForm.reset();
   }
 

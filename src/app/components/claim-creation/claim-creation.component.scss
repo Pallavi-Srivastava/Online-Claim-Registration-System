@@ -69,13 +69,11 @@ select {
 
 .buttonParent {
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    margin: 10px 0px 10px 35%;
+    margin: 10px 35px 10px 40px;
+    justify-content: flex-end;
 }
 
-.button,
-.cancel {
+.button {
     font-size: 20px;
     font-family: Roboto;
     letter-spacing: 0px;
@@ -90,20 +88,25 @@ select {
     cursor: pointer;
 }
 
-.submitButton,
-.submitCancel {
+.submitButton {
     border: none;
     border: 1px solid rgb(5, 127, 209);
     background-color: #a8c3db;
+    margin: 0px 20px 0px 20px;
 }
 
-.button:hover,
-.cancel:hover {
+.cancelButton {
+    text-decoration: none;
+    text-align: center;
+    background-color: #a8c3db;
+    border: 1px solid rgb(5, 127, 209);
+}
+
+.button:hover {
     background-color: #518cf3;
 }
 
-.text-error,
-.date-error {
+.text-error {
     font-size: 12px;
     font-style: italic;
     color: red;

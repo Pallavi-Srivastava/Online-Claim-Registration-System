@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -19,7 +18,6 @@ import javax.persistence.UniqueConstraint;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Entity
 @Table(name = "user_role", uniqueConstraints = { @UniqueConstraint(columnNames = "user_name"),
@@ -43,7 +41,7 @@ public class User {
 	public String roleCode;
 
 	@Column(name = "account_number")
-	public String accountNumber;
+	public Long accountNumber;
 	
 	@Email
 	@Column(name = "email")
@@ -73,8 +71,7 @@ public class User {
 		this.password = registrationDTO.password;
 		this.roleCode = registrationDTO.roleCode;
 		this.email = registrationDTO.email;
-		this.createdBy=userId;
-		
+		this.createdBy=userId;	
 	}
 }
 

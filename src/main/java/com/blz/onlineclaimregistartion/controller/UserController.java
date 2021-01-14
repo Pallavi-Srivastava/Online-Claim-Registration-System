@@ -35,7 +35,6 @@ public class UserController {
 	@ApiOperation("For registration")
 	@PostMapping("/user/register")
 	public ResponseEntity<ResponseDTO> register(@Valid @RequestBody RegistrationDTO registrationDto,@RequestHeader String token) {
-		System.out.println("Register");
 		User user = (userService.register(registrationDto,token));
 		if(user!=null) {
 			return new ResponseEntity<>(new ResponseDTO(200, "Your account has been successfully created", user),
@@ -57,7 +56,6 @@ public class UserController {
 	@ApiOperation("For passwordForgot")
 	@PostMapping("/user/forgot")
 	public ResponseEntity<ResponseDTO> forgot(@Valid @RequestBody ForgotPasswordDTO fotgotPasswordDTO) {
-		System.out.println("Forgot");
 		User user = userService.forgotPassword(fotgotPasswordDTO);
 		return new ResponseEntity<>(new ResponseDTO(200, "Successfully send the mail", user), HttpStatus.OK);
 	}
@@ -66,7 +64,6 @@ public class UserController {
 	@PostMapping("/user/reset/{token}")
 	public ResponseEntity<ResponseDTO> reset(@Valid @RequestBody ResetPasswordDTO resetPasswordDTO,
 			@PathVariable("token") String token) {
-		System.out.println("Reset");
 		User user = userService.resetPassword(resetPasswordDTO, token);
 		return new ResponseEntity<>(new ResponseDTO(200, "Successfully change the password", user), HttpStatus.OK);
 	}
@@ -74,7 +71,6 @@ public class UserController {
 	@ApiOperation("For logout")
 	@GetMapping("/user/logout")
 	public ResponseEntity<ResponseDTO> logout() {
-		System.out.println("Logout");
 		return new ResponseEntity<>(new ResponseDTO(200,"User logout successful"), HttpStatus.OK);
 	 }
 }

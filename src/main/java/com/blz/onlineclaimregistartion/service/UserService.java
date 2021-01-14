@@ -40,7 +40,7 @@ public class UserService implements IUserService {
 		long userId = JsonWebToken.decodeToken(token);
 		System.out.println(userId);
 		user = userRepository.findById(userId);
-		if (user.roleCode.equals("User")) {
+		if (user.roleCode.equals("user")) {
 			throw new UserException("Admin/Agent can only create the account");
 		}
 		User userDetails = new User(registrationDTO, userId);
@@ -54,9 +54,10 @@ public class UserService implements IUserService {
 		int count = 0;
 
 		user = userRepository.findByName(userDTO.getUserName());
+		
 		List<String> response=new ArrayList();
 		String userRole=user.getRoleCode();
-		
+		System.out.println("user "+user+"userRole "+userRole);
 		if (user == null) {
 			count++;
 			if (count >= 3) {
@@ -84,9 +85,7 @@ public class UserService implements IUserService {
 		if (user == null) {
 			throw new UserException("Email account that you tried to reach does not exist");
 		}
-		System.out.println(user.getUserId());
 		String token = JsonWebToken.createToken(user.getUserId());
-		System.out.println(token);
 		String url = "http://localhost:4200/reset-password/";
 
 		final String username = "insuranceclaimsystem@gmail.com";
@@ -108,16 +107,12 @@ public class UserService implements IUserService {
 		try {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("from@gmail.com"));
-			System.out.println(forgotPasswordDTO.getEmail());
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(forgotPasswordDTO.getEmail()));
 			message.setSubject("Testing Gmail SSL");
-			System.out.println(user.getUserName());
 			message.setText("Dear " + user.getUserName() + ","
 					+ "\n\n To Complete the password reset process,please click here: " + url + token);
 
 			Transport.send(message);
-
-			System.out.println("Done");
 
 		} catch (MessagingException e) {
 			e.printStackTrace();

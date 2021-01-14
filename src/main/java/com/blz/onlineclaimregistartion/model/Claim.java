@@ -50,7 +50,7 @@ public class Claim {
 	private String claimType;
 
 	@OneToOne(targetEntity = UserPolicy.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "fk_user_policyId", referencedColumnName = "user_policy_id", nullable = false, updatable = false)
+	@JoinColumn(name = "fk_user_policy_id", referencedColumnName = "user_policy_id", nullable = false, updatable = false)
 	private UserPolicy userPolicy;
 
 	@JsonIgnore

@@ -41,13 +41,12 @@ public class UserPolicyService implements IUserPolicyService {
 	}
 
 	@Override
-	public List<String> getRegistredPolicies(String token) {
+	public List<UserPolicy> getRegistredPolicies(String token) {
 		Long userId = JsonWebToken.decodeToken(token);
 		User user = userRepository.findById(userId);
 		String userRolecode = user.getRoleCode();
 		if (userRolecode.equals("user")) {
-			List<String> userInsuredPlocies = userPolicyRepository.findAllUserPoliciesByuserId(userId);
-//			List<Object> userInsuredPlocies = userPolicyRepository.findAllByuserId(userId);
+			List<UserPolicy> userInsuredPlocies = userPolicyRepository.findAllUserPoliciesByuserId(userId);
 			return userInsuredPlocies;
 		} else if (userRolecode.equals("agent")) {
 			return userPolicyRepository.findAllUserPoliciesByRoleCodeAgent(userId);

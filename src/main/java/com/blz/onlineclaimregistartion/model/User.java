@@ -56,6 +56,9 @@ public class User {
 
 	@Column(name = "login_attempt")
 	private int loginAttempt;// To identify no. of logIn attempt
+	
+	@Column(name = "accountNumber")
+	private long accountNumber;
 
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
@@ -66,6 +69,7 @@ public class User {
 	private boolean inactiveUser;// It's used to identify user state active/inActive
 	
 	public User(RegistrationDTO registrationDTO, long userId) {
+		this.accountNumber=registrationDTO.accountNumber;
 		this.userName = registrationDTO.userName;
 		this.password = registrationDTO.password;
 		this.roleCode = registrationDTO.roleCode;

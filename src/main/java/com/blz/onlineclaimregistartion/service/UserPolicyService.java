@@ -46,12 +46,11 @@ public class UserPolicyService implements IUserPolicyService {
 		User user = userRepository.findById(userId);
 		String userRolecode = user.getRoleCode();
 		if (userRolecode.equals("user")) {
-			List<UserPolicy> userInsuredPlocies = userPolicyRepository.findAllUserPoliciesByuserId(userId);
-			return userInsuredPlocies;
+			return userPolicyRepository.findAllUserPoliciesByuserId(userId);
 		} else if (userRolecode.equals("agent")) {
 			return userPolicyRepository.findAllUserPoliciesByRoleCodeAgent(userId);
 		}
-		return userPolicyRepository.findAllUserPoliciesByAdmin();
+		return userPolicyRepository.findAll();
 	}
 
 }

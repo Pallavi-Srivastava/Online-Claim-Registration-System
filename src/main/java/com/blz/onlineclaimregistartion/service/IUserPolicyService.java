@@ -9,6 +9,6 @@ public interface IUserPolicyService {
 
 	Policy registerPolicy(String token, Long PolicyId);
 	
-	List<UserPolicy> getRegistredPolicies(String token);
+	List<UserPolicy> getRegistredPolicies(String token); 
 	
 }

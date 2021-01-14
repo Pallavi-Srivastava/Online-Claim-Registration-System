@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -19,7 +18,6 @@ import javax.persistence.UniqueConstraint;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Entity
 @Table(name = "user_role", uniqueConstraints = { @UniqueConstraint(columnNames = "user_name"),
@@ -42,6 +40,9 @@ public class User {
 	@Column(name = "role_code")
 	public String roleCode;
 
+	@Column(name = "account_number")
+	public Long accountNumber;
+	
 	@Email
 	@Column(name = "email")
 	private String email;// To reset/forget password
@@ -56,9 +57,7 @@ public class User {
 
 	@Column(name = "login_attempt")
 	private int loginAttempt;// To identify no. of logIn attempt
-	
-	@Column(name = "accountNumber")
-	private long accountNumber;
+
 
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
@@ -74,8 +73,7 @@ public class User {
 		this.password = registrationDTO.password;
 		this.roleCode = registrationDTO.roleCode;
 		this.email = registrationDTO.email;
-		this.createdBy=userId;
-		
+		this.createdBy=userId;	
 	}
 }
 

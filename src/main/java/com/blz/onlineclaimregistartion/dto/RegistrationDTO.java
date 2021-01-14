@@ -29,6 +29,6 @@ public class RegistrationDTO {
 	@Pattern(regexp = "^([a-z0-9]+[-._+]?[a-z0-9]+)+@[a-z0-9-]+.[a-z]{2,3}.[a-z]{2,3}$", message = "Invalid Email")
 	public String email;
 	
-    public Long accountNumber;
-
+	@NotBlank(message = "Account Number can't be blank")
+	public Long accountNumber;
 }

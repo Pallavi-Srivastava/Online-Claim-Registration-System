@@ -6,6 +6,15 @@
 
 .router-outlet {
     margin: auto;
-    width: 50%;
-    padding: 5px;
+    width: 70%;
+}
+
+@media only screen and (max-width: 690px) {
+    .home-container {
+        flex-direction: column;
+    }
+    .router-outlet {
+        overflow-x: scroll;
+        width: 100%;
+    }
 }

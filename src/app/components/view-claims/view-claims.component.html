@@ -1,21 +1,21 @@
-<table id="customers" class="main-content">
-  <thead>
-    <th>Claim Number</th>
-    <th>City</th>
-    <th>Claim Reason</th>
-    <th>Claim Type</th>
-    <th>Claim Street</th>
-    <th>Claim State</th>
-    <th>Claim Zip</th>
-  </thead>
-  <tr *ngFor="let claim of userInsuredClaims">
-    <td>{{claim.claimNumber}}</td>
-    <td>{{claim.city}}</td>
-    <td>{{claim.claimReason}}</td>
-    <td>{{claim.claimType}}</td>
-    <td>{{claim.street}}</td>
-    <td>{{claim.state}}</td>
-    <td>{{claim.zipcode}}</td>
-  </tr>
+<table class="customers">
+    <thead class="customers-thread">
+        <th class="customers-th">Claim Number</th>
+        <th class="customers-th">City</th>
+        <th class="customers-th">Claim Reason</th>
+        <th class="customers-th">Claim Type</th>
+        <th class="customers-th">Claim Street</th>
+        <th class="customers-th">Claim State</th>
+        <th class="customers-th">Claim Zip</th>
+    </thead>
+    <tr *ngFor="let claim of userInsuredClaims" class="customers-tr">
+        <td class="customers-td">{{claim.claimNumber}}</td>
+        <td class="customers-td">{{claim.city}}</td>
+        <td class="customers-td">{{claim.claimReason}}</td>
+        <td class="customers-td">{{claim.claimType}}</td>
+        <td class="customers-td">{{claim.street}}</td>
+        <td class="customers-td">{{claim.state}}</td>
+        <td class="customers-td">{{claim.zipcode}}</td>
+    </tr>
 
 </table>

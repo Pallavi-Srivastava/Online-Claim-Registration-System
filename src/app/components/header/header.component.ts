@@ -11,10 +11,13 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   [x: string]: any;
 
+  userName:any;
+
   constructor(private userService: UserService,private breakpointObserver: BreakpointObserver, private router : Router)  {
    }
 
   ngOnInit(): void {
+    this.userName=JSON.parse(localStorage.getItem("userName"));
   }
 
   onLogOut(){

@@ -17,7 +17,7 @@ export class PolicyService {
       'token':JSON.parse(localStorage.getItem("token"))
     }
 
-    private getUrl: string = "http://localhost:7088/onlineinsurancesystem";
+    private getUrl: string = "http://ec2-3-17-191-27.us-east-2.compute.amazonaws.com:7088/onlineinsurancesystem";
 
 
   createPolicy(data: any){

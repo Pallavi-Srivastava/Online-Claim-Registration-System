@@ -64,6 +64,7 @@ export class LoginComponent implements OnInit {
         console.log("response is ", response);
         localStorage.setItem("token", JSON.stringify(response.data));
         localStorage.setItem("RoleCode", JSON.stringify(response.roleCode));
+        localStorage.setItem("userName", JSON.stringify(response.userName));
         this.router.navigateByUrl('/home');
       }, err => {
       })

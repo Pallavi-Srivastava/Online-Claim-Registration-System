@@ -7,7 +7,7 @@
 }
 
 .form {
-    margin: 20px 50px;
+    margin: 10px 50px;
     width: 95%;
     padding: 14px 20px;
     background: #ffffff 0% 0% no-repeat padding-box;
@@ -28,7 +28,7 @@
 .row-content {
     display: flex;
     flex-direction: row;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     align-items: center;
     border: 0px solid rgb(234, 243, 234);
 }
@@ -121,21 +121,54 @@ select {
     text-align: center;
 }
 
-@media only screen and (max-width: 960px) {
-    .cancelButton {
-        margin-left: 0px;
-    }
-    .form {
-        width: 85%;
-        padding: 44px 20px;
-    }
-}
-
 @media only screen and (max-width: 690px) {
-    .row-content {
-        display: block;
+    .form {
+        display: flex;
+        flex-direction: column;
+        margin: 5px 5px;
+        width: 100%;
+        padding: 4px 10px;
     }
-    .text-error {
-        margin-left: 0px;
+    .form-head {
+        font: normal normal bold 18px/10px Roboto;
+        padding-bottom: 10px;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .row-content {
+        display: flex;
+        flex-direction: column;
+        margin: 10px 0px 10px 0px;
+    }
+    .label {
+        min-width: 100px;
+        margin-left: 20px;
+    }
+    .label-info {
+        font-size: 10px;
+    }
+    .input {
+        width: 60%;
+        padding: 10px;
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+    .select-box {
+        margin: 10px 85px;
+    }
+    .select {
+        width: 90%;
+        padding: 10px;
+        margin: 10px 15px 10px 15px;
+    }
+    .buttonParent {
+        display: flex;
+        margin: 20px 8px 10px 8px;
+        flex-direction: row;
+    }
+    .error {
+        font-size: 10px;
+        margin-left: 40%;
+        bottom: 10px;
     }
 }

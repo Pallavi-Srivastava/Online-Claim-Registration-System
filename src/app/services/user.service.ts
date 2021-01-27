@@ -11,13 +11,10 @@ import { Router } from '@angular/router';
 })
 export class UserService {
 
-  
   private getUrl: string = "http://ec2-3-17-191-27.us-east-2.compute.amazonaws.com:7088/onlineinsurancesystem";
 
   constructor(private _httpClient: HttpClient,private router: Router) { }
 
-  
-  
   logIn(user: User): Observable<User> {
     return this._httpClient.post<User>(`${this.getUrl}/user/login`, user);
   }

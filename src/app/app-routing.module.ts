@@ -1,3 +1,4 @@
+import { HeaderComponent } from './components/header/header.component';
 
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ProfileCreationComponent } from './components/profile-creation/profile-creation.component';
@@ -17,6 +18,7 @@ import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   {path:"",component:LoginComponent},
+  {path:"header",component:HeaderComponent},
   {path:"fogot-password",component:ForgotPasswordComponent},
   {path:'reset-password/:token',component:ResetPasswordComponent},
   {path:"home",component:HomeComponent,

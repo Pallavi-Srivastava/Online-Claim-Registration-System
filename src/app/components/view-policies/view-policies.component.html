@@ -1,23 +1,20 @@
-<table id="customers" class="main-content">
-    <thead>
-      <th>Policy Number</th>
-      <th>Policy Name</th>
-      <th>Premium Amount</th>
-      <th>Account Number</th>
-      <th>Make Claim</th>
+<table class="customers">
+    <thead class="customers-thread">
+        <th class="customers-th">Policy Number</th>
+        <th class="customers-th">Policy Name</th>
+        <th class="customers-th">Premium Amount</th>
+        <th class="customers-th">Account Number</th>
+        <th class="customers-th">Make Claim</th>
     </thead>
-    <tr *ngFor="let policy of userInsuredPolicies">
-        <td>{{policy.policy.policyId}}</td>
-        <td>{{policy.policy.policyName}}</td>
-        <td>{{policy.policy.premium}}</td>
-        <td>{{policy.user.accountNumber}}</td>
-      <td>
-          <button class="make-button-claim" [routerLink]="['/home/claim-creation', policy.userPolicyId]" routerLinkActive="router-link-active"><img style="zoom: 1.4;
-              margin: auto;
-              display: flex;" src="../../../assets/icons/caret-right-fill.svg"
+    <tr *ngFor="let policy of userInsuredPolicies" class="customers-tr">
+        <td class="customers-td">{{policy.policy.policyId}}</td>
+        <td class="customers-td">{{policy.policy.policyName}}</td>
+        <td class="customers-td">{{policy.policy.premium}}</td>
+        <td class="customers-td">{{policy.user.accountNumber}}</td>
+        <td class="customers-td">
+            <button class="make-button-claim" [routerLink]="['/home/claim-creation', policy.userPolicyId]" routerLinkActive="router-link-active"><img src="../../../assets/icons/caret-right-fill.svg"
               (click)="getUserPolicyNumber(policy)">
           </button>
-      </td>
+        </td>
     </tr>
-
-  </table>
+</table>

@@ -1,12 +1,12 @@
 .example-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: center;
     background-color: white;
 }
 
 .toolbar {
     background-color: #a2bbe7;
-    border: 1px solid#042763;
+    border: 2px solid#042763;
     margin: 17px;
     color: white;
     opacity: 1;
@@ -15,7 +15,6 @@
 .span {
     margin: auto;
     font: 28px/16px normal Roboto;
-    //   font: normal normal normal 25px/37px Montserrat;
 }
 
 .side-button {
@@ -27,4 +26,25 @@
     background-color: #518cf3;
     border: 1px solid#042763;
     border-radius: 3px;
+}
+
+@media only screen and (max-width: 690px) {
+    .example-container {
+        display: flex;
+    }
+    .toolbar {
+        display: flex;
+        width: 100%;
+        margin: 10px;
+        justify-content: center;
+    }
+    .span {
+        margin: auto;
+        font: 14px/6px bold Roboto;
+    }
+    .side-button {
+        background-color: transparent;
+        font-size: 12px;
+        margin: 5px 0px 5px 5px;
+    }
 }

@@ -16,12 +16,12 @@
 
             <div class="row-content ">
                 <label class="label label-info" for="password">Password</label>
-                <input class="input " (input)="onPasswordChange()" type="text" id="password" name="password" [(ngModel)]="userObj.password" [ngModelOptions]="{standalone: true}" required>
+                <input class="input" (input)="onPasswordChange()" type="password" id="password" name="password" [(ngModel)]="userObj.password" [ngModelOptions]="{standalone: true}" required>
                 <span class="text-error">{{ this.passwordError }}</span>
             </div>
 
             <div class="buttonParent">
-                <a routerLink="../fogot-password" class="link-text">Forgot password</a>
+                <a class="link-text" routerLink="../fogot-password">Forgot password</a>
                 <div class="submit-reset">
                     <button class="submitButton button" type="submit " id="submit ">{{'Login'}}</button>
                 </div>

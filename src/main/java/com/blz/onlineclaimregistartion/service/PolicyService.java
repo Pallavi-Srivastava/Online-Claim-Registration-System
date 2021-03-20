@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.blz.onlineclaimregistartion.dto.PolicyDTO;
+import com.blz.onlineclaimregistartion.enums.UserRoleEnum;
 import com.blz.onlineclaimregistartion.exceptions.PolicyException;
 import com.blz.onlineclaimregistartion.exceptions.UserException;
 import com.blz.onlineclaimregistartion.model.Policy;
@@ -47,7 +48,7 @@ public class PolicyService implements IPolicyService {
 		Long userId = JsonWebToken.decodeToken(token);
 		User user = userRepository.findById(userId);
 		String userRolecode = user.getRoleCode();
-		if(!userRolecode.equalsIgnoreCase("admin")) {
+		if(!userRolecode.equalsIgnoreCase(UserRoleEnum.ADMIN.getUserRole())) {
 			throw new UserException("User/Agent Cannot create the policy!!");
 		}
 		Policy policy = new Policy(policyDTO, user);
@@ -59,7 +60,7 @@ public class PolicyService implements IPolicyService {
 		Long userId = JsonWebToken.decodeToken(token);
 		User user = userRepository.findById(userId);
 		String userRolecode = user.getRoleCode();
-		if(!userRolecode.equals("admin")) {
+		if(!userRolecode.equals(UserRoleEnum.ADMIN.getUserRole())) {
 			throw new UserException("User/Agent Cannot create the policy!!");
 		}
 		Policy policy = this.getPolicyById(token, policyId);
@@ -72,8 +73,8 @@ public class PolicyService implements IPolicyService {
 		Long userId = JsonWebToken.decodeToken(token);
 		User user = userRepository.findById(userId);
 		String userRolecode = user.getRoleCode();
-		if(!userRolecode.equals("admin")) {
-			throw new UserException("User/Agent Cannot create the policy!!");
+		if(!userRolecode.equals(UserRoleEnum.ADMIN.getUserRole())) {
+			throw new UserException("User/Agent Cannot delete the policy!!");
 		}
 		Policy policy = this.getPolicyById(token, policyId);
 		policyRepository.deleteById(policyId);

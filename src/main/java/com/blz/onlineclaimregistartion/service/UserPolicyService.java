@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.blz.onlineclaimregistartion.enums.UserRoleEnum;
 import com.blz.onlineclaimregistartion.exceptions.PolicyException;
 import com.blz.onlineclaimregistartion.model.Policy;
 import com.blz.onlineclaimregistartion.model.User;
@@ -45,9 +46,9 @@ public class UserPolicyService implements IUserPolicyService {
 		Long userId = JsonWebToken.decodeToken(token);
 		User user = userRepository.findById(userId);
 		String userRolecode = user.getRoleCode();
-		if (userRolecode.equals("user")) {
+		if (userRolecode.equals(UserRoleEnum.USER.getUserRole())) {
 			return userPolicyRepository.findAllUserPoliciesByuserId(userId);
-		} else if (userRolecode.equals("agent")) {
+		} else if (userRolecode.equals(UserRoleEnum.AGENT.getUserRole())) {
 			return userPolicyRepository.findAllUserPoliciesByRoleCodeAgent(userId);
 		}
 		return userPolicyRepository.findAll();

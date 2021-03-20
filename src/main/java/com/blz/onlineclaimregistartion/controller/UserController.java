@@ -25,7 +25,7 @@ import com.blz.onlineclaimregistartion.model.User;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/onlineinsurancesystem")
+@RequestMapping("/onlineinsurancesystem/user")
 @CrossOrigin(allowedHeaders = "*", origins = "*")
 public class UserController {
 
@@ -33,7 +33,7 @@ public class UserController {
 	private IUserService userService;
 
 	@ApiOperation("For registration")
-	@PostMapping("/user/register")
+	@PostMapping("/register")
 	public ResponseEntity<ResponseDTO> register(@Valid @RequestBody RegistrationDTO registrationDto,@RequestHeader String token) {
 		User user = (userService.register(registrationDto,token));
 		if(user!=null) {
@@ -44,7 +44,7 @@ public class UserController {
 	}
 
 	@ApiOperation("For login")
-	@PostMapping("/user/login")
+	@PostMapping("/login")
 	public ResponseEntity<LogInResponseDTO> login(@Valid @RequestBody UserDTO userDTO) {
 		List<String> data = userService.login(userDTO);
 		 if(data!=null) {
@@ -54,14 +54,14 @@ public class UserController {
 	}
 
 	@ApiOperation("For passwordForgot")
-	@PostMapping("/user/forgot")
+	@PostMapping("/forgot")
 	public ResponseEntity<ResponseDTO> forgot(@Valid @RequestBody ForgotPasswordDTO fotgotPasswordDTO) {
 		User user = userService.forgotPassword(fotgotPasswordDTO);
 		return new ResponseEntity<>(new ResponseDTO(200, "Successfully send the mail", user), HttpStatus.OK);
 	}
 
 	@ApiOperation("For passwordReset")
-	@PostMapping("/user/reset/{token}")
+	@PostMapping("/reset/{token}")
 	public ResponseEntity<ResponseDTO> reset(@Valid @RequestBody ResetPasswordDTO resetPasswordDTO,
 			@PathVariable("token") String token) {
 		User user = userService.resetPassword(resetPasswordDTO, token);
@@ -69,7 +69,7 @@ public class UserController {
 	}
 	
 	@ApiOperation("For logout")
-	@GetMapping("/user/logout")
+	@GetMapping("/logout")
 	public ResponseEntity<ResponseDTO> logout() {
 		return new ResponseEntity<>(new ResponseDTO(200,"User logout successful"), HttpStatus.OK);
 	 }

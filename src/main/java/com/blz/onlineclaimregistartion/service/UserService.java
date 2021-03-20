@@ -18,6 +18,7 @@ import com.blz.onlineclaimregistartion.dto.ForgotPasswordDTO;
 import com.blz.onlineclaimregistartion.dto.RegistrationDTO;
 import com.blz.onlineclaimregistartion.dto.ResetPasswordDTO;
 import com.blz.onlineclaimregistartion.dto.UserDTO;
+import com.blz.onlineclaimregistartion.enums.UserRoleEnum;
 import com.blz.onlineclaimregistartion.exceptions.UserException;
 import com.blz.onlineclaimregistartion.model.User;
 import com.blz.onlineclaimregistartion.repository.UserRepository;
@@ -40,7 +41,7 @@ public class UserService implements IUserService {
 		long userId = JsonWebToken.decodeToken(token);
 		System.out.println(userId);
 		user = userRepository.findById(userId);
-		if (user.roleCode.equals("user")) {
+		if (user.roleCode.equals(UserRoleEnum.USER.getUserRole())) {
 			throw new UserException("Admin/Agent can only create the account");
 		}
 		User userDetails = new User(registrationDTO, userId);

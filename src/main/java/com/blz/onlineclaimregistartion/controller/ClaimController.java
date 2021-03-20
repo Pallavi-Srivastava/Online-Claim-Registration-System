@@ -23,7 +23,7 @@ import com.blz.onlineclaimregistartion.service.IClaimService;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/onlineinsurancesystem")
+@RequestMapping("/onlineinsurancesystem/claim")
 @CrossOrigin(allowedHeaders = "*", origins = "*")
 public class ClaimController {
 
@@ -31,7 +31,7 @@ public class ClaimController {
 	private IClaimService claimService;
 
 	@ApiOperation("To make a claim")
-	@PostMapping("/claim/create/{userPolicyNumber}")
+	@PostMapping("/create/{userPolicyNumber}")
 	public ResponseEntity<ResponseDTO> createClaim( @RequestHeader String token,
 							@PathVariable("userPolicyNumber") Long userPolicyNumber, @Valid @RequestBody ClaimDTO claimDTO) {
 		Claim claim = claimService.createClaim(token, userPolicyNumber, claimDTO);
@@ -40,7 +40,7 @@ public class ClaimController {
 	}
 
 	@ApiOperation("To View Claim By Id")
-	@GetMapping("/claim/get/{claimNumber}")
+	@GetMapping("/get/{claimNumber}")
 	public ResponseEntity<ResponseDTO> viewClaimById(@RequestHeader String token,
 													@PathVariable("claimNumber") Long claimNumber) {
 		Claim claim = claimService.viewClaim(token, claimNumber);
@@ -49,7 +49,7 @@ public class ClaimController {
 	}
 
 	@ApiOperation("To View All Claim")
-	@GetMapping("/claim/get")
+	@GetMapping("/get")
 	public ResponseEntity<ResponseDTO> viewClaim(@RequestHeader String token) {
 		System.out.println("token"+ token);
 		List<Claim> claim = claimService.viewAllClaim(token);

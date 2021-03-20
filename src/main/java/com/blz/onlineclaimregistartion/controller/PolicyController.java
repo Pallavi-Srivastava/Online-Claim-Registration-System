@@ -27,7 +27,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("/onlineinsurancesystem")
+@RequestMapping("/onlineinsurancesystem/policy")
 @CrossOrigin(allowedHeaders = "*", origins = "*")
 @Slf4j
 public class PolicyController {
@@ -36,7 +36,7 @@ public class PolicyController {
 	private IPolicyService policyService;
 
 	@ApiOperation("To create the new policy")
-	@PostMapping("/policy/create")
+	@PostMapping("/create")
 	public ResponseEntity<ResponseDTO> createPolicy(@RequestHeader String token, @Valid @RequestBody PolicyDTO policyDTO) {
 		Policy policy = policyService.createPolicy(token, policyDTO);
 		ResponseDTO responseDTO = new ResponseDTO(200, "New policy created successfully", policy);
@@ -44,7 +44,7 @@ public class PolicyController {
 	}
 
 	@ApiOperation("To get all policy available for insurance")
-	@GetMapping("/policy")
+	@GetMapping("/")
 	public ResponseEntity<ResponseDTO> getAllPolicies(@RequestHeader String token) {
 		List<Policy> policies = policyService.getAllPolicies(token);
 		ResponseDTO responseDTO = new ResponseDTO(200, "All existing policies", policies);
@@ -52,7 +52,7 @@ public class PolicyController {
 	}
 
 	@ApiOperation("To get policy by policyId")
-	@GetMapping("/policy/{policyId}")
+	@GetMapping("/{policyId}")
 	public ResponseEntity<ResponseDTO> getPolicyByPolicyId(@RequestHeader String token, @PathVariable Long policyId) {
 		Policy policy = policyService.getPolicyById(token, policyId);
 		ResponseDTO responseDTO = new ResponseDTO(200, "Policy with id:" + policyId, policy);
@@ -60,7 +60,7 @@ public class PolicyController {
 	}
 
 	@ApiOperation("To update policy")
-	@PutMapping("/policy/update/{policyId}")
+	@PutMapping("/update/{policyId}")
 	public ResponseEntity<ResponseDTO> updatePolicy(@RequestHeader String token, @PathVariable Long policyId,
 			@Valid @RequestBody PolicyDTO policyDTO) {
 		Policy policy = policyService.updatePolicy(token, policyId, policyDTO);
@@ -69,7 +69,7 @@ public class PolicyController {
 	}
 
 	@ApiOperation("To delete a policy")
-	@DeleteMapping("/policy/delete/{policyId}")
+	@DeleteMapping("/delete/{policyId}")
 	public ResponseEntity<ResponseDTO> deletePolicy(@RequestHeader String token, @PathVariable Long policyId) {
 		policyService.deletePolicy(token, policyId);
 		ResponseDTO responseDTO = new ResponseDTO(200, "Policy deleted successfully",

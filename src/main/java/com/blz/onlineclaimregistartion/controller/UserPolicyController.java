@@ -21,7 +21,7 @@ import com.blz.onlineclaimregistartion.service.IUserPolicyService;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/onlineinsurancesystem")
+@RequestMapping("/onlineinsurancesystem/userpolicy")
 @CrossOrigin(allowedHeaders = "*", origins = "*")
 public class UserPolicyController {
 	
@@ -29,7 +29,7 @@ public class UserPolicyController {
 	private IUserPolicyService userPolicyService;
 
 	@ApiOperation("To register policy for a user")
-	@PostMapping("/userpolicy/register/{policyId}")
+	@PostMapping("/register/{policyId}")
 	public ResponseEntity<ResponseDTO> registerPolicy( @PathVariable("policyId") Long policyId, @RequestHeader String token) {
 		Policy policy = userPolicyService.registerPolicy(token, policyId);
 		if(policy != null) {
@@ -42,7 +42,7 @@ public class UserPolicyController {
 	
 	
 	@ApiOperation("To get policies of user")
-	@GetMapping("/userpolicy/get")
+	@GetMapping("/get")
 	public ResponseEntity<ResponseDTO> getPoliciesByUserId(@RequestHeader String token) {
 		List<UserPolicy> userInsuredPolicies = userPolicyService.getRegistredPolicies(token);
 		ResponseDTO responseDTO = new ResponseDTO(200, "User policies", userInsuredPolicies);

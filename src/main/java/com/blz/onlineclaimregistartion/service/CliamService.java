@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.blz.onlineclaimregistartion.dto.ClaimDTO;
+import com.blz.onlineclaimregistartion.enums.UserRoleEnum;
 import com.blz.onlineclaimregistartion.exceptions.ClaimException;
 import com.blz.onlineclaimregistartion.exceptions.UserPolicyException;
 import com.blz.onlineclaimregistartion.model.Claim;
@@ -29,7 +30,7 @@ public class CliamService implements IClaimService {
 
 	@Override
 	public Claim createClaim(String token, Long userPolicyNumber, ClaimDTO claimDTO) {
-		Long userId = JsonWebToken.decodeToken(token);
+		JsonWebToken.decodeToken(token);
 		UserPolicy userPolicy = userPolicyRepository.findById(userPolicyNumber)
 													.orElseThrow(() -> new UserPolicyException("User Policy with " + userPolicyNumber + " id doesn't exist"));
 		Claim claim = new Claim(claimDTO, userPolicy);
@@ -38,7 +39,7 @@ public class CliamService implements IClaimService {
 
 	@Override
 	public Claim viewClaim(String token, Long claimNumber) {
-		Long userId = JsonWebToken.decodeToken(token);
+		JsonWebToken.decodeToken(token);
 		return claimRepository.findById(claimNumber)
 									.orElseThrow(() -> new ClaimException("Claim with " + claimNumber + " id doesn't exist"));
 	}
@@ -48,9 +49,9 @@ public class CliamService implements IClaimService {
 		Long userId = JsonWebToken.decodeToken(token);
 		User user = userRepository.findById(userId);
 		String userRolecode = user.getRoleCode();
-		if (userRolecode.equals("user")) {
+		if (userRolecode.equals(UserRoleEnum.USER.getUserRole())) {
 			return claimRepository.findAllClaimsByUserId(userId);
-		} else if (userRolecode.equals("agent")) {
+		} else if (userRolecode.equals(UserRoleEnum.AGENT.getUserRole())) {
 			return claimRepository.findAllClaimsByRoleCodeAgent(userId);
 		}
 		return claimRepository.findAll();
